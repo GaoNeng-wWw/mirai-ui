@@ -2,10 +2,8 @@ module.exports = {
     ignores: [(commit) => commit.includes('init')],
     extends: ['@commitlint/config-conventional'],
     rules: {
-        // 信息以空格开头
-        'body-leading-blank': [2, 'always'],
-        'footer-leading-blank': [2, 'always'],
         // 信息最大长度
+        'footer-leading-blank': [2, 'always'],
         'header-max-length': [2, 'always', 100],
         // 信息不能未空
         'subject-empty': [2, 'never'],
