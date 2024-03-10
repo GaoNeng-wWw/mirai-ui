@@ -1,0 +1,22 @@
+{
+  "name": "@mirai-ui/internal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dashify": "^1.0.3",
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.25",
+    "chalk": "^5.3.0",
+    "dashify": "^2.0.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.15"
+  },
+  "dependencies": {
+    "camelcase": "^8.0.0"
+  }
+}

@@ -151,6 +151,7 @@ export const miraiUiPlugin = (
   },{
     theme:{
       extend:{
+        // @ts-ignore
         colors: {
           // ...semanticColor.light,
           ...resolved?.colors
