@@ -28,7 +28,7 @@ export {${camelCase(name, { pascalCase: true })}};
 export default {
     name: '${camelCase(name, { pascalCase: true })}',
     install: (app:App) => {
-        app.component(${camelCase(name, { pascalCase: true })}.name, camelCase(name, {pascalCase: true}));
+        app.component(${camelCase(name, { pascalCase: true })}.name, ${camelCase(name, {pascalCase: true})});
     }
 }
     `,

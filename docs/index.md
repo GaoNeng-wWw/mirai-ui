@@ -5,6 +5,10 @@ layout: home
 hero:
   name: "Mirai ui"
   text: "A moden ui library"
+  actions:
+    - theme: brand
+      text: 快速开始
+      link: /guide/
 
 features:
   - title: Feature A

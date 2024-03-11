@@ -15,6 +15,7 @@
   "scripts": {
     "prepare": "husky",
     "postinstall": "pnpm -C packages/theme build",
-    "create:components": "esno ./internal/src/create-components.ts"
+    "create:components": "esno ./internal/src/create-components.ts",
+    "create:side-bar": "esno ./internal/src/auto-generate-side-bar.ts"
   }
 }

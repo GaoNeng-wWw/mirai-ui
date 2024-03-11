@@ -1,34 +1,33 @@
-import { defineConfig } from 'vitepress'
+import {join} from 'path';
+import {readdirSync} from 'fs';
+import { DefaultTheme, defineConfig } from 'vitepress'
 import {blockPlugin} from './plugins/demo';
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Mirai ui",
   description: "A moden ui library",
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
+
     nav: [
-      { text: 'Home', link: '/' },
-      {
-        text: 'Button', link: '/components/button/'
-      }
+      { text: '首页', link: '/' },
+      { text: '指南', link: '/guide/'},
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '指南',
         items: [
           {
-            text: 'Button', link: '/components/button'
+            text: '快速开始',
+            link: '/guide/'
           }
         ]
+      },
+      {
+        text: 'Components',
+        items: [...generateSideBar()]
       }
     ],
-
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ],
-
   },
   markdown: {
     config(md) {
@@ -38,3 +37,25 @@ export default defineConfig({
     },
   }
 })
+
+function generateSideBar(){
+  const hasMarkdownFile = (files: string[]) => files.some((file) => file.includes('.md'))
+  const root = process.cwd();
+  const sideBars:DefaultTheme.SidebarItem[] = [];
+  const components = readdirSync(join(root, 'components'));
+  for (const comp of components){
+    const compPath = join(root, 'components', comp);
+    const files = readdirSync(compPath);
+    const shouldDrop = !(files.length > 0 && hasMarkdownFile(files));
+    if (shouldDrop){
+      console.warn(`${comp} not have markdown file`);
+      continue;
+    }
+    sideBars.push({
+      text: `${comp[0].toUpperCase()}${comp.slice(1)}`,
+      link: `/components/${comp}/`
+    })
+    
+  }
+  return sideBars;
+}
