@@ -14,6 +14,6 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     // ...
-    app.component(demo.name, demo)
+    app.component(demo.name!, demo)
   }
 } satisfies Theme
