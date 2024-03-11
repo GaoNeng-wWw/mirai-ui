@@ -2,9 +2,9 @@
   "name": "@mirai-ui/theme",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "tsup index.ts --dts"
+    "build": "tsup src --dts"
   },
   "keywords": [],
   "author": "",
