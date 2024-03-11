@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "strict": true,
+      "jsx": "preserve",
+      "sourceMap": true,
+      "lib": ["esnext", "dom","DOM.Iterable"],
+      "esModuleInterop": true,
+      "declaration": true,
+    },
+    "include": ["**/*.ts", "**/*.vue", ".vitepress/**/*.ts", ".vitepress/**/*.vue"],
+    "exclude": ["node_modules"]
+}
+  
