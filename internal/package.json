@@ -13,8 +13,10 @@
     "@types/node": "^20.11.25",
     "chalk": "^5.3.0",
     "dashify": "^2.0.0",
+    "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "inquirer": "^9.2.15"
+    "inquirer": "^9.2.15",
+    "ts-morph": "^22.0.0"
   },
   "dependencies": {
     "camelcase": "^8.0.0"
