@@ -4,7 +4,9 @@ const {miraiUiPlugin} = require('@mirai-ui/theme');
 module.exports = {
   content: [
     './.vitepress/**/*.{js,ts,tsx,vue,md}',
-    './**/*.md'
+    './**/*.vue',
+    './**/*.md',
+    './node_modules/@mirai-ui/**/*.{js,ts,tsx,vue,md}'
   ],
   theme: {
     extend: {},

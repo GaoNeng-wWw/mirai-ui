@@ -1,4 +1,4 @@
-import { ThemeColors } from "./colors/semantic"
+import { ThemeColors } from './colors/semantic';
 
 export type ConfigTheme = {
     extend?: 'light' | 'dark';

@@ -79,6 +79,7 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
-    '@typescript-eslint/ban-ts-comment': 'off'
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'tailwindcss/no-custom-classname': 0
   }
 };

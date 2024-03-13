@@ -4,7 +4,14 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsup src --dts"
+    "build": "tsup src --dts --format cjs,esm --clean"
+  },
+  "exports": {
+    ".":{
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
   },
   "keywords": [],
   "author": "",

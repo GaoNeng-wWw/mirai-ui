@@ -4,14 +4,7 @@ import dashify from 'dashify';
 import inquirer from 'inquirer';
 import { join } from 'path';
 import { existsSync } from 'fs';
-import chalk from 'chalk';
-
-const info = (msg: string) => console.log(chalk.bold.white(msg));
-const warn = (msg: string) => console.log(chalk.yellow(msg));
-const err = (msg: string) => console.log(chalk.red(msg));
-const buildMsg = (name: string, successed: boolean = false) => console.log(
-    chalk.bold.blue('Build'), ' ', chalk.bold.white(name), successed ? chalk.bold.blue('success') : chalk.yellow('fail')
-)
+import { info, err, warn, buildMsg } from './log';
 
 const builder = {
     directive: (name: string, root: string) => {
