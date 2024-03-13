@@ -130,3 +130,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 pnpm-lock.yaml
+
+packages/vue-components/index.ts
