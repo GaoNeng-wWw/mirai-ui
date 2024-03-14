@@ -41,7 +41,7 @@ const buildComponent = async () => {
             name: `M${camelcase(component.split('/').at(-1), {pascalCase: true})}`,
             entry: entryPath,
             fileName: 'index',
-            formats: ['es', 'umd'],
+            formats: ['es', 'umd', 'cjs'],
           },
           outDir: outputDir,
           emptyOutDir: false,
