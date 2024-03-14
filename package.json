@@ -15,7 +15,10 @@
   },
   "scripts": {
     "prepare": "husky",
+    "clean": "rimraf -g **/dist",
     "postinstall": "pnpm -C packages/theme build",
+    "build:vue": "pnpm clean && pnpm -C packages/theme build && pnpm build:dts:vue-components && esno ./internal/src/build-vue-components.ts && pnpm -C packages/vue-components build",
+    "build:dts:vue-components": "pnpm --filter @mirai-ui/vue-* build:dts",
     "dev": "pnpm -C ./docs docs:dev",
     "create:components": "esno ./internal/src/create-components.ts",
     "create:side-bar": "esno ./internal/src/auto-generate-side-bar.ts",

@@ -1,12 +1,31 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   test: {
     environment: 'happy-dom',
-    
+  },
+  build:{
+    lib:{
+      entry: 'index.ts',
+      name: 'MiraiUi',
+      fileName: 'vue-components',
+      formats: ['es', 'umd'],
+    },
+    rollupOptions:{
+      external: ['vue', '@mirai-ui/theme'],
+      output:{
+        exports: 'named',
+        globals:{
+          vue: 'Vue',
+          '@mirai-ui/theme': '@mirai-ui/theme'
+        },
+      },
+    },
+    outDir: 'dist',
+    emptyOutDir: false,
   }
-})
+});
