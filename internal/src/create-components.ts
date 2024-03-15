@@ -1,3 +1,5 @@
+import packages from '../../packages/vue-components/package.json'
+import shell from 'shelljs';
 import { createFileSync, writeFileSync } from 'fs-extra';
 import camelCase from 'camelcase';
 import dashify from 'dashify';
@@ -21,7 +23,7 @@ export {${camelCase(name, { pascalCase: true })}};
 export default {
     name: '${camelCase(name, { pascalCase: true })}',
     install: (app:App) => {
-        app.component(${camelCase(name, { pascalCase: true })}.name, ${camelCase(name, {pascalCase: true})});
+        app.component(${camelCase(name, { pascalCase: true })}.name!, ${camelCase(name, {pascalCase: true})});
     }
 }
     `,
@@ -39,7 +41,7 @@ defineOptions({
             [join(root, name, '__tests__', `${camelCase(name)}.test.ts`)]: `
 import { describe, it, expect} from 'vitest';
 import { mount } from '@vue/test-utils';
-import  from '../src/${camelCase(name)}.vue';
+import ${camelCase(name)} from '../src/${camelCase(name)}.vue';
 describe('Button', ()=>{
     it('should to be defined', ()=>{
         expect(mount(button)).toBeDefined()
@@ -48,9 +50,33 @@ describe('Button', ()=>{
     `,
             [join(root, name, 'package.json')]: `
 {
-    "name": "@mirai-ui/vue-${name}",
-    "version": "0.0.0",
-    "devDependencies": {}
+  "name": "@mirai-ui/vue-${name}",
+  "version": "${packages.version}",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "build:dts": "vue-tsc --declaration --emitDeclarationOnly"
+  },
+  "exports":{
+    ".":{
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist.d.ts"
+    }
+  },
+  "files": ["dist"]
+}
+`,
+            [join(root,name,'tsconfig.json')]: `
+{
+  "exclude": ["node_modules", "__tests__"],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "target": "ES2020",
+    "moduleResolution": "Node",
+  }
 }
 `
     }
@@ -72,6 +98,8 @@ describe('Button', ()=>{
                 err(e)
             }
         }
+        shell.cd(join(root, name))
+        .exec(`pnpm i vue vue-tsc @mirai-ui/theme --save-dev --filter @mirai-ui/vue-${name}`)
         return true;
     }
 } as const;
