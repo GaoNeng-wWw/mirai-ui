@@ -2,16 +2,9 @@
   "name": "@mirai-ui/theme",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsup src --dts --format cjs,esm --clean"
-  },
-  "exports": {
-    ".":{
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
   },
   "keywords": [],
   "author": "",
@@ -29,6 +22,7 @@
   },
   "dependencies": {
     "color": "^4.2.3",
+    "color2k": "^2.0.3",
     "deepmerge": "^4.3.1",
     "eslint-plugin-tailwindcss": "^3.15.0",
     "lodash.omit": "^4.5.0"

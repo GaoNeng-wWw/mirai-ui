@@ -10,7 +10,7 @@
       "esModuleInterop": true,
       "declaration": true,
     },
-    "include": ["**/*.ts", "**/*.vue", ".vitepress/**/*.ts", ".vitepress/**/*.vue"],
+    "include": ["**/*.ts", "**/*.vue", ".vitepress/**/*.ts", ".vitepress/**/*.vue", ".vitepress/**/*.mts"],
     "exclude": ["node_modules"]
 }
   
