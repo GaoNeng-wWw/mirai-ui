@@ -3,10 +3,12 @@ import { semanticColor } from './colors/semantic';
 import { ConfigTheme } from './types';
 import flatten from 'flat';
 import Color from 'color';
+import { commonColor } from './colors/common';
 
 interface Config {
   prefix?: string;
-  themes?: Record<string, ConfigTheme>
+  themes?: Record<string, ConfigTheme>;
+  addCommonColor?: boolean
 }
 
 interface Resoved{
@@ -66,6 +68,7 @@ const resolve = (
       name: themeName,
       definition: [`&.${themeName}`, `&[data-theme='${themeName}']`],
     });
+
     for (const [colorName, colorValue] of Object.entries(flatColors)) {
       if (!colorValue) { return; }
 
@@ -81,7 +84,6 @@ const resolve = (
 
         
         resolved.utilities[cssSelector]![colorVar] = `${h} ${s}% ${l}%`;
-        
         if (typeof defaultAlphaValue === 'number') {
           resolved.utilities[cssSelector]![opacityVar] = defaultAlphaValue.toFixed(2);
         }
@@ -121,7 +123,7 @@ const omit = (obj:Object, key: string[]) => {
 export const miraiUiPlugin = (
   config: Config={}
 ) => {
-  const { prefix, themes } = config;
+  const { prefix, themes, addCommonColor=false } = config;
   const userLight = themes?.light ?? {};
   const userDark = themes?.dark ?? {};
   const otherTheme = omit(config.themes ?? {}, ['light', 'dark']);
@@ -143,6 +145,7 @@ export const miraiUiPlugin = (
     ...otherTheme
   };
   const resolved = resolve(theme, 'light', prefix);
+  
   return plugin((api) => {
     api.addUtilities({ ...resolved?.utilities });
     resolved?.variants.forEach((variant) => {
@@ -153,7 +156,7 @@ export const miraiUiPlugin = (
       extend:{
         // @ts-ignore
         colors: {
-          // ...semanticColor.light,
+          ...(addCommonColor ? commonColor : {}),
           ...resolved?.colors
         },
       }
