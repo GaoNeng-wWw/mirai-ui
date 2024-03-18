@@ -146,17 +146,17 @@ const light:ThemeColors = {
   },
   success:{
     ...commonColor.green,
-    foreground: readableColor(commonColor.green[500]),
-    DEFAULT: commonColor.green[500]
+    foreground: readableColor(commonColor.green[600]),
+    DEFAULT: commonColor.green[600]
   },
   warning:{
     ...commonColor.orange,
-    foreground: readableColor(commonColor.orange[500]),
-    DEFAULT: commonColor.orange[500]
+    foreground: readableColor(commonColor.orange[600]),
+    DEFAULT: commonColor.orange[600]
   },
   danger:{
     ...commonColor.red,
-    foreground: readableColor(commonColor.white),
+    foreground: readableColor(commonColor.red[500]),
     DEFAULT: commonColor.red[500]
   }
     
@@ -186,16 +186,15 @@ const dark:ThemeColors = {
   },
   warning:{
     ...colorReverse(commonColor.zinc),
-    foreground: readableColor(commonColor.orange[500]),
+    foreground: commonColor.white,
     DEFAULT: commonColor.orange[500]
   },
   danger:{
     ...colorReverse(commonColor.red),
-    foreground: readableColor(commonColor.white),
+    foreground: commonColor.white,
     DEFAULT: commonColor.red[500]
   }
 };
-
 export const semanticColor = {
   light,
   dark
