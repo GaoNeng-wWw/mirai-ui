@@ -11,6 +11,7 @@ const COMPONENT_NAME='MButton';
 defineOptions({
   name: COMPONENT_NAME
 });
+// defineEmits(['press', 'click', 'dbClick']);
 
 const props = defineProps(buttonProp);
 const { type, shape } = toRefs(props);

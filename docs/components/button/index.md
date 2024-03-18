@@ -16,3 +16,10 @@ category: common
 
 :::demo button/disabled
 :::
+
+## 事件
+
+你可以使用所有的原生事件
+
+:::demo button/event
+:::
