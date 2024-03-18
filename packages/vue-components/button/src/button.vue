@@ -1,4 +1,3 @@
-
 <template>
   <button :class="style">
     <slot />
@@ -17,4 +16,3 @@ const props = defineProps(buttonProp);
 const { type, shape } = toRefs(props);
 const style = computed(() => button({ type: type.value, shape:shape.value }));
 </script>
-    

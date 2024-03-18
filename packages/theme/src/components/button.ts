@@ -2,80 +2,102 @@ import type { VariantProps } from 'cva';
 import { cva } from 'cva';
 
 export const button = cva({
-  base: 'group inline-flex rounded px-3 py-1.5 outline-none transition-all active:scale-95',
+  base: 'group inline-flex rounded px-3 py-1.5 outline-none transition-all active:scale-95 disabled:pointer-events-none disabled:border-opacity-50 disabled:text-opacity-50',
   variants: {
     shape:{
-      solid: 'border-none disabled:pointer-events-none disabled:text-white/50',
-      outline: 'border-2 border-solid !bg-transparent hover:!bg-transparent active:!bg-transparent'
+      solid: 'border-none disabled:bg-opacity-50 disabled:text-opacity-50',
+      outline: 'border-2 border-solid !bg-transparent hover:!bg-transparent active:!bg-transparent',
+      flat: 'border-none bg-transparent hover:bg-opacity-20 disabled:bg-transparent'
     },
     type: {
-      default: [
-        'bg-default border-default',
-        'hover:bg-default/80',
-        'active:bg-default',
-        'disabled:bg-default/50',
-      ],
-      primary: [
-        'bg-primary border-primary',
-        'hover:bg-primary/80',
-        'active:bg-primary',
-        'disabled:bg-primary-500/50',
-      ],
-      warning: [
-        'bg-warning border-warning',
-        'hover:bg-warning/80',
-        'active:bg-warning',
-        'disabled:bg-warning/50',
-      ],
-      danger: [
-        'bg-danger border-danger ',
-        'hover:bg-danger/80',
-        'active:bg-danger',
-        'disabled:bg-danger/50',
-      ],
-      success: [
-        'bg-success border-success',
-        'hover:bg-success/80',
-        'active:bg-success',
-        'disabled:bg-success/50',
-      ]
+      default: '',
+      primary: '',
+      warning: '',
+      danger: '',
+      success: ''
     },
   },
   compoundVariants: [
     {
       shape: 'solid',
-      type: ['primary', 'warning', 'success', 'danger'],
-      class: 'text-white'
+      type: 'default',
+      class: 'bg-default text-default-foreground hover:bg-opacity-80 active:scale-95'
+    },
+    {
+      shape: 'solid',
+      type: 'primary',
+      class: 'bg-primary text-white hover:bg-opacity-80 active:scale-95'
+    },
+    {
+      shape: 'solid',
+      type: 'warning',
+      class: 'bg-warning text-white hover:bg-opacity-80 active:scale-95'
+    },
+    {
+      shape: 'solid',
+      type: 'danger',
+      class: 'bg-danger text-white hover:bg-opacity-80 active:scale-95'
+    },
+    {
+      shape: 'solid',
+      type: 'success',
+      class: 'bg-success text-white hover:bg-opacity-80 active:scale-95'
+    },
+    {
+      shape: 'outline',
+      type: ['default', 'primary', 'warning', 'danger', 'success'],
+      class: 'hover:border-opacity-80 hover:text-opacity-80 active:scale-95'
     },
     {
       shape: 'outline',
       type: 'default',
-      class: 'text-default-foreground border-default'
+      class: 'border-default text-default-foreground'
     },
     {
       shape: 'outline',
       type: 'primary',
-      class: '!text-primary hover:border-primary/80 active:border-primary hover:text-primary/80 active:text-primary'
+      class: 'border-primary text-primary'
     },
     {
       shape: 'outline',
       type: 'warning',
-      class: '!text-warning hover:border-warning/80 active:border-warning hover:text-warning/80 active:text-warning'
+      class: 'border-warning text-warning'
     },
     {
       shape: 'outline',
       type: 'danger',
-      class: '!text-danger hover:border-danger/80 active:border-danger hover:text-danger/80 active:text-danger'
+      class: 'border-danger text-danger'
     },
     {
       shape: 'outline',
       type: 'success',
-      class: '!text-success hover:border-success/80 active:border-success hover:text-success/80 active:text-success'
+      class: 'border-success text-success'
     },
-  ],
-  defaultVariants: {
-    shape: 'solid',
-    type: 'default'
-  }
+    {
+      shape: 'flat',
+      type: 'default',
+      class: 'text-default-foreground hover:bg-default/40'
+    },
+    {
+      shape: 'flat',
+      type: 'primary',
+      class: 'text-primary hover:bg-primary/20'
+    },
+    {
+      shape: 'flat',
+      type: 'warning',
+      class: 'text-warning hover:bg-warning/20'
+    },
+    {
+      shape: 'flat',
+      type: 'danger',
+      class: 'text-danger hover:bg-danger/20'
+    },
+    {
+      shape: 'flat',
+      type: 'success',
+      class: 'text-success hover:bg-success/20'
+    },
+  ]
 });
 export type ButtonProp = VariantProps<typeof button>;
