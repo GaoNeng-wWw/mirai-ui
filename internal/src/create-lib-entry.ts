@@ -26,18 +26,18 @@ const buildEntry = (metas: EntryExport[]) => {
     const {componentName, installName, exportDeclaration} = meta;
     sourcefile.addImportDeclaration({
       isTypeOnly: false,
-      moduleSpecifier: `./${componentName}/index.ts`,
-      namedImports: [...exportDeclaration],
+      moduleSpecifier: `./${componentName}`,
       defaultImport: `${componentName}Default`
     });
     defaultImports.push(`${componentName}Default`);
     buildMsg(`${componentName}`, true)
   })
-  metas.forEach((meta) => {
+  metas.forEach(({componentName}) => {
     sourcefile.addExportDeclaration({
-      namedExports: meta.exportDeclaration
+      moduleSpecifier: `./${componentName}`
     })
   })
+
   sourcefile.addVariableStatement({
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
@@ -72,7 +72,6 @@ fg('**/index.ts', {
   cwd: join(__dirname, '../../packages/vue-components')
 })
 .then((rawPaths)=>{
-  console.log(rawPaths)
   const paths = rawPaths.filter((path) => !path.includes('shared'));
   const project = new Project();
   const sourcefiles = paths.map((path) => project.addSourceFileAtPath(path));
