@@ -3,7 +3,7 @@ import { cva } from 'cva';
 
 export const button = cva({
   base: [
-    'group inline-flex rounded px-3 py-1.5 outline-none transition-all active:scale-95',
+    'group inline-flex outline-none transition-all active:scale-95',
     'disabled:pointer-events-none disabled:border-opacity-50 disabled:text-opacity-50',
     'data-[loading=true]:pointer-events-none data-[loading=true]:border-opacity-50 data-[loading=true]:text-opacity-50',
     'items-center justify-center gap-2'
@@ -21,6 +21,11 @@ export const button = cva({
       danger: '',
       success: ''
     },
+    size: {
+      sm: 'px-2 h-8  rounded-sm text-sm',
+      md: 'px-3 h-10 rounded text-base',
+      lg: 'px-6 h-12 rounded-lg text-lg',
+    }
   },
   compoundVariants: [
     {

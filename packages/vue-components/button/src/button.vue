@@ -16,6 +16,6 @@ defineOptions({
   name: COMPONENT_NAME
 });
 const props = defineProps(buttonProp);
-const { type, shape } = toRefs(props);
-const style = computed(() => button({ type: type.value, shape:shape.value }));
+const { type, shape, size } = toRefs(props);
+const style = computed(() => button({ type: type.value, shape:shape.value, size: size.value }));
 </script>

@@ -7,7 +7,11 @@ category: common
 ## 快速使用
 
 :::demo button/demo-1
+:::
 
+## 不同大小
+
+:::demo button/sizes
 :::
 
 ## 禁用
