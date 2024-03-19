@@ -10,7 +10,11 @@ export const buttonProp = {
   },
   shape: {
     type: String as PropType<ButtonShape>,
-    default: 'solid'
+    default: 'solid',
+  },
+  loading: {
+    type: Boolean,
+    default:false,
   }
 } as const;
 

@@ -2,10 +2,15 @@ import type { VariantProps } from 'cva';
 import { cva } from 'cva';
 
 export const button = cva({
-  base: 'group inline-flex rounded px-3 py-1.5 outline-none transition-all active:scale-95 disabled:pointer-events-none disabled:border-opacity-50 disabled:text-opacity-50',
+  base: [
+    'group inline-flex rounded px-3 py-1.5 outline-none transition-all active:scale-95',
+    'disabled:pointer-events-none disabled:border-opacity-50 disabled:text-opacity-50',
+    'data-[loading=true]:pointer-events-none data-[loading=true]:border-opacity-50 data-[loading=true]:text-opacity-50',
+    'items-center justify-center gap-2'
+  ],
   variants: {
     shape:{
-      solid: 'border-none disabled:bg-opacity-50 disabled:text-opacity-50',
+      solid: 'border-none disabled:bg-opacity-50 disabled:text-opacity-50 data-[loading=true]:bg-opacity-50 data-[loading=true]:text-opacity-50',
       outline: 'border-2 border-solid !bg-transparent hover:!bg-transparent active:!bg-transparent',
       flat: 'border-none bg-transparent hover:bg-opacity-20 disabled:bg-transparent'
     },
@@ -99,5 +104,5 @@ export const button = cva({
       class: 'text-success hover:bg-success/20'
     },
   ]
-});
+} as const);
 export type ButtonProp = VariantProps<typeof button>;
