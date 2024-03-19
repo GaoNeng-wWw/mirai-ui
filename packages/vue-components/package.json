@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vue-tsc --declaration --emitDeclarationOnly && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:cov": "vitest --coverage"
   },
   "dependencies": {
     "vue": "^3.4.19"
