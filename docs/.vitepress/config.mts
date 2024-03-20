@@ -2,6 +2,7 @@ import {join} from 'path';
 import {readdirSync} from 'fs';
 import { DefaultTheme, defineConfig } from 'vitepress'
 import {blockPlugin} from './plugins/demo';
+import PropsTable from './plugins/props-table';
 
 export default defineConfig({
   title: "Mirai ui",
@@ -35,6 +36,9 @@ export default defineConfig({
         instance.use(blockPlugin, {});
       })
     },
+  },
+  vite: {
+    plugins: [PropsTable]
   }
 })
 
