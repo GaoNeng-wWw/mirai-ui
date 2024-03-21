@@ -1,5 +1,9 @@
-import {Expression, Node,Symbol, Project, ts, PropertyAssignment, ObjectLiteralExpression, SyntaxKind} from 'ts-morph';
-import {Content, Plugin} from 'vitepress';
+import {sep} from 'path';
+import {Identifier, ImportDeclaration, Statement} from '@babel/types';
+import {Expression, Node,Symbol, Project, ts, PropertyAssignment, ObjectLiteralExpression, SyntaxKind, ImportTypeNode} from 'ts-morph';
+import {Plugin} from 'vitepress';
+import {parse, compileScript} from '@vue/compiler-sfc';
+import {walkAST} from 'ast-kit';
 
 
 type PropContentConfigure = {
@@ -23,8 +27,9 @@ interface PropItem {
 
 const ignoreModule = ['theme', '.vitepress', 'node_modules'];
 
+
 const extractPropTable = (id: string):{
-  table: PropItem[],
+  table: {[x:string]: PropItem},
   codes:string[]
 } => {
   const project = new Project();
@@ -32,7 +37,7 @@ const extractPropTable = (id: string):{
   const varStmts = sourcefile.getVariableStatements();
   const exportedStmts = varStmts.filter((stmt) => stmt.isExported())
   if (!exportedStmts.length){
-    return {table: [], codes: []};
+    return {table: {}, codes: []};
   }
   const variableDeclarationList = exportedStmts.map((stmt)=>{
     return stmt.getChildren();
@@ -64,7 +69,7 @@ const extractPropTable = (id: string):{
     }
   }
   const rawPropTable = new Map<string, {name: string, decl:Node<ts.Node>|undefined}>();
-  const propsItems: PropItem[] = [];
+  const propsItems:Map<string, PropItem> = new Map();
   for (const [name, symbol] of symbols.entries()){
     for (const s of symbol){
       const typeName = s?.getEscapedName() ?? '';
@@ -141,35 +146,54 @@ const extractPropTable = (id: string):{
         }
         propItem.types.name = typeName ?? 'unknown';
       }
-      propsItems.push(propItem);
-      rawPropTable.set(name, {name: typeName, decl: value});
+      propsItems.set(name, propItem);
     }
   }
   const types = sourcefile.getTypeAliases()
   .map((node)=>node.getFullText().trim())
   return {
-    table: propsItems,
+    table: Object.fromEntries(propsItems.entries()),
     codes: types
   }
 }
 
-const tsExport = new Map<string, ReturnType<typeof extractPropTable>>();
+export const tsExport = new Map<string, ReturnType<typeof extractPropTable>[]>();
+const CONSTANT = 'defineProps';
 
 export default {
   name: 'props-table',
   enforce: 'pre',
   transform(code:string, id:string) {
-    if (!id.endsWith('vue') && !id.endsWith('ts')){
+    if (!id.endsWith('vue') && !id.endsWith('ts') || ignoreModule.some((m) => id.includes(m))){
+      return;
+    }
+    const pathArr = id.split('/');
+    let idx = 0;
+    for (;idx<pathArr.length;idx++){
+      if (pathArr[idx].includes('components')){
+        break;
+      }
+    }
+    const componentName = pathArr[idx+1].toLowerCase();
+    if (componentName === 'index.ts' || componentName.includes('_')){
       return;
     }
     if (id.endsWith('ts')){
+
       if (ignoreModule.some((m) => id.includes(m))){
         return;
       }
-      if (!tsExport.has(id)){
-        tsExport.set(id, extractPropTable(id))
+      const data = extractPropTable(id)
+      const dataIsEmpty = Object.values(data).every((value) => Array.isArray(value) ? !value.length : !Object.values(value).length)
+      if (dataIsEmpty){
+        return;
+      }
+      if (!tsExport.has(componentName)){
+        tsExport.set(componentName, [data])
+      } else {
+        tsExport.get(componentName)?.push(data)
       }
     }
   },
-  apply: 'serve'
+  apply: 'serve',
 } as Plugin
