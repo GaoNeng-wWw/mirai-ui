@@ -2,13 +2,12 @@ import {join} from 'path';
 import {readdirSync} from 'fs';
 import { DefaultTheme, defineConfig } from 'vitepress'
 import {blockPlugin} from './plugins/demo';
-import PropsTable from './plugins/props-table';
+import { propsTablePlugin } from './plugins/props-table';
 
 export default defineConfig({
   title: "Mirai ui",
   description: "A moden ui library",
   themeConfig: {
-
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/'},
@@ -29,16 +28,21 @@ export default defineConfig({
         items: [...generateSideBar()]
       }
     ],
+    i18nRouting: true,
   },
   markdown: {
     config(md) {
       md.use((instance)=>{
         instance.use(blockPlugin, {});
+        instance.use(propsTablePlugin, {});
       })
     },
   },
-  vite: {
-    plugins: [PropsTable]
+  locales:{
+    root: {
+      label: '中文',
+      lang: 'zh'
+    }
   }
 })
 

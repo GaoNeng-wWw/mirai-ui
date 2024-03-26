@@ -132,3 +132,4 @@ dist
 pnpm-lock.yaml
 
 packages/vue-components/index.ts
+props-table-data.json
