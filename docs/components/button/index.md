@@ -27,3 +27,8 @@ category: common
 
 :::demo button/event
 :::
+
+## Props
+
+:::props-table button
+:::

@@ -9,6 +9,7 @@
       "lib": ["esnext", "dom","DOM.Iterable"],
       "esModuleInterop": true,
       "declaration": true,
+      "resolveJsonModule": true
     },
     "include": ["**/*.ts", "**/*.vue", ".vitepress/**/*.ts", ".vitepress/**/*.vue", ".vitepress/**/*.mts"],
     "exclude": ["node_modules"]
