@@ -30,6 +30,9 @@ export const button = cva({
       sm: 'rounded-sm',
       md: 'rounded',
       lg: 'rounded-lg'
+    },
+    iconOnly:{
+      true: '!px-0',
     }
   },
   compoundVariants: [
@@ -113,6 +116,21 @@ export const button = cva({
       type: 'success',
       class: 'text-success hover:bg-success/20'
     },
+    {
+      iconOnly: true,
+      size: 'sm',
+      class: 'min-w-8 w-8 h-8'
+    },
+    {
+      iconOnly: true,
+      size: 'md',
+      class: 'min-w-10 w-10 h-10'
+    },
+    {
+      iconOnly: true,
+      size: 'lg',
+      class: 'min-w-12 w-12 h-12'
+    }
   ]
 } as const);
 export type ButtonProp = VariantProps<typeof button>;

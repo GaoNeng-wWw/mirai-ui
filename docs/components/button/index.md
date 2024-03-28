@@ -40,6 +40,11 @@ category: common
 :::demo button/radius
 :::
 
+## IconOnly
+
+:::demo button/iconOnly
+:::
+
 ## Props
 
 :::props-table button

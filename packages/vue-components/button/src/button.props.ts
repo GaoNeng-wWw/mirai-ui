@@ -60,6 +60,17 @@ export const buttonProp = {
   radius: {
     type: String as PropType<ButtonRadius>,
     default: 'md',
+  },
+
+  /**
+   * @description {zh} 是否只有icon
+   * @description {en} Is there only an icon
+   * @demo {zh} #IconOnly
+   * @demo {en} #IconOnly
+   */
+  iconOnly: {
+    type: Boolean,
+    default:false,
   }
 } as const;
 
