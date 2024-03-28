@@ -65,8 +65,8 @@ export const buttonProp = {
   /**
    * @description {zh} 是否只有icon
    * @description {en} Is there only an icon
-   * @demo {zh} #IconOnly
-   * @demo {en} #IconOnly
+   * @demo {zh} #icononly
+   * @demo {en} #icononly
    */
   iconOnly: {
     type: Boolean,
