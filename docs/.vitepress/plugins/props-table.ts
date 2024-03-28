@@ -16,7 +16,7 @@ export const propsTablePlugin: MarkdownIt.PluginSimple = (md: MarkdownIt) => {
         if (!(compName in propsData)){
           return {};
         }
-        const {tableData,  typeAlias} = propsData[compName as keyof typeof propsData];
+        const {tableData} = propsData[compName as keyof typeof propsData];
         return `<props-table tableData="${md.utils.escapeHtml(JSON.stringify(tableData))}">`
       }
       return '</props-table>'

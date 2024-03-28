@@ -32,3 +32,6 @@ category: common
 
 :::props-table button
 :::
+
+## Types
+

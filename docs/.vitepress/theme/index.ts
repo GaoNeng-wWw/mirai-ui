@@ -15,7 +15,6 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
     app.component(demo.name!, demo)
     app.component(propsTable.name! ?? 'props-table', propsTable);
     app.use(Miraiui);
