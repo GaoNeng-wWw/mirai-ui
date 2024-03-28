@@ -3,7 +3,7 @@ import { ExtractPropTypes, PropType } from 'vue';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonType = 'default' | 'primary' | 'warning' | 'danger' | 'success';
 export type ButtonShape = 'solid' | 'outline';
-export type ButtonRadius = 'sm' | 'md' | 'lg';
+export type ButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
 
 export const buttonProp = {
 

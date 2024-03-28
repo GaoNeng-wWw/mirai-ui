@@ -42,6 +42,8 @@ category: common
 
 ## IconOnly
 
+你可以通过设置`icon-only`属性来标识，当前按钮是否是icon按钮。当为`true`时，按钮将会强制为矩形
+
 :::demo button/iconOnly
 :::
 
@@ -56,5 +58,5 @@ category: common
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonType = 'default' | 'primary' | 'warning' | 'danger' | 'success';
 export type ButtonShape = 'solid' | 'outline';
-export type ButtonRadius = 'sm' | 'md' | 'lg';
+export type ButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
 ```

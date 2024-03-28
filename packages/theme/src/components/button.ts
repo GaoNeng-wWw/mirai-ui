@@ -27,9 +27,11 @@ export const button = cva({
       lg: 'px-6 h-12 rounded-lg text-lg',
     },
     radius: {
+      none: 'rounded-none',
       sm: 'rounded-sm',
       md: 'rounded',
-      lg: 'rounded-lg'
+      lg: 'rounded-lg',
+      full: 'rounded-full'
     },
     iconOnly:{
       true: '!px-0',
