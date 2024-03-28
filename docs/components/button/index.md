@@ -28,6 +28,13 @@ category: common
 :::demo button/event
 :::
 
+## 插槽
+
+你可以使用`suffix`与`prefix`插槽来为按钮文本前后增加你所需要的东西
+
+:::demo button/suffix
+:::
+
 ## Props
 
 :::props-table button

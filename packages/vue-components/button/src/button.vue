@@ -4,6 +4,7 @@
       <loading-svg v-if="props.loading" />
     </slot>
     <slot />
+    <slot name="suffix" />
   </button>
 </template>
 <script setup lang="ts">
