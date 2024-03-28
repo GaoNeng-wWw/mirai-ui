@@ -35,6 +35,11 @@ category: common
 :::demo button/suffix
 :::
 
+## 圆角大小
+
+:::demo button/radius
+:::
+
 ## Props
 
 :::props-table button
@@ -42,3 +47,9 @@ category: common
 
 ## Types
 
+```typescript
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonType = 'default' | 'primary' | 'warning' | 'danger' | 'success';
+export type ButtonShape = 'solid' | 'outline';
+export type ButtonRadius = 'sm' | 'md' | 'lg';
+```

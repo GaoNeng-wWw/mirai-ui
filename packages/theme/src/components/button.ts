@@ -25,6 +25,11 @@ export const button = cva({
       sm: 'px-2 h-8  rounded-sm text-sm',
       md: 'px-3 h-10 rounded text-base',
       lg: 'px-6 h-12 rounded-lg text-lg',
+    },
+    radius: {
+      sm: 'rounded-sm',
+      md: 'rounded',
+      lg: 'rounded-lg'
     }
   },
   compoundVariants: [

@@ -3,6 +3,7 @@ import { ExtractPropTypes, PropType } from 'vue';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonType = 'default' | 'primary' | 'warning' | 'danger' | 'success';
 export type ButtonShape = 'solid' | 'outline';
+export type ButtonRadius = 'sm' | 'md' | 'lg';
 
 export const buttonProp = {
 
@@ -48,6 +49,17 @@ export const buttonProp = {
   size: {
     type: String as PropType<ButtonSize>,
     default: 'md'
+  },
+
+  /**
+   * @description {zh} 圆角大小
+   * @description {en} size of border radius
+   * @demo {zh} #圆角大小
+   * @demo {en} #radius
+   */
+  radius: {
+    type: String as PropType<ButtonRadius>,
+    default: 'md',
   }
 } as const;
 
