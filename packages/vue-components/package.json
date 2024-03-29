@@ -1,8 +1,17 @@
 {
   "name": "@mirai-ui/vue-components",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "license":"MIT",
+  "description": "Mirai ui vue components",
+  "keywords": [
+    "vue",
+    "components",
+    "ui",
+    "design",
+    "tailwindcss"
+  ],
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --declaration --emitDeclarationOnly && vite build",
@@ -14,6 +23,7 @@
     "vue": "^3.4.19"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-vue": "^5.0.4",

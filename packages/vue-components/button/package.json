@@ -1,6 +1,7 @@
 {
   "name": "@mirai-ui/vue-button",
   "version": "0.0.0",
+  "license": "MIT",
   "devDependencies": {
     "@mirai-ui/theme": "workspace:^",
     "vue": "^3.4.19",

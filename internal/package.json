@@ -5,7 +5,8 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "private": "true",
   "devDependencies": {
     "@babel/types": "^7.24.0",
     "@types/dashify": "^1.0.3",
