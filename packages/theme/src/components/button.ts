@@ -25,6 +25,16 @@ export const button = cva({
       sm: 'px-2 h-8  rounded-sm text-sm',
       md: 'px-3 h-10 rounded text-base',
       lg: 'px-6 h-12 rounded-lg text-lg',
+    },
+    radius: {
+      none: 'rounded-none',
+      sm: 'rounded-sm',
+      md: 'rounded',
+      lg: 'rounded-lg',
+      full: 'rounded-full'
+    },
+    iconOnly:{
+      true: '!px-0',
     }
   },
   compoundVariants: [
@@ -108,6 +118,21 @@ export const button = cva({
       type: 'success',
       class: 'text-success hover:bg-success/20'
     },
+    {
+      iconOnly: true,
+      size: 'sm',
+      class: 'min-w-8 w-8 h-8'
+    },
+    {
+      iconOnly: true,
+      size: 'md',
+      class: 'min-w-10 w-10 h-10'
+    },
+    {
+      iconOnly: true,
+      size: 'lg',
+      class: 'min-w-12 w-12 h-12'
+    }
   ]
 } as const);
 export type ButtonProp = VariantProps<typeof button>;

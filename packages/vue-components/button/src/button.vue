@@ -4,6 +4,7 @@
       <loading-svg v-if="props.loading" />
     </slot>
     <slot />
+    <slot name="suffix" />
   </button>
 </template>
 <script setup lang="ts">
@@ -16,6 +17,13 @@ defineOptions({
   name: COMPONENT_NAME
 });
 const props = defineProps(buttonProp);
-const { type, shape, size } = toRefs(props);
-const style = computed(() => button({ type: type.value, shape:shape.value, size: size.value }));
+const { type, shape, size, radius, iconOnly } = toRefs(props);
+const style = computed(() => button({ 
+  type: type.value,
+  shape:shape.value,
+  size: size.value,
+  radius: radius.value,
+  iconOnly: iconOnly.value
+})
+);
 </script>
