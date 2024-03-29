@@ -1,4 +1,4 @@
-import {miraiUiPlugin} from '@mirai-ui/theme';
+import {miraiUiPlugin}  from '@mirai-ui/theme';
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [

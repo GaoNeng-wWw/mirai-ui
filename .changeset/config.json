@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "commit": false,
+  "fixed": [],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "dev",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "@mirai-ui/docs",
+    "@mirai-ui/internal"
+  ],
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "GaoNeng-wWw/mirai-ui" }
+  ]
+}

@@ -2,6 +2,7 @@
   "private": true,
   "packageManager": "pnpm@8.15.3",
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@commitlint/config-conventional": "^19.0.3",
     "@vitest/coverage-v8": "^1.4.0",
     "commitlint": "^19.0.3",
@@ -19,7 +20,7 @@
     "prepare": "husky",
     "clean": "rimraf -g **/dist",
     "postinstall": "pnpm -C packages/theme build",
-    "dev:vue": "pnpm build:vue-props-table-data && pnpm -C docs docs:dev",
+    "dev:vue": "pnpm build:vue-props-table-data && concurrently \"pnpm -C packages/theme dev\" \"pnpm -C docs docs:dev\"",
     "build:vue-props-table-data": "esno ./internal/src/build-props-table-data.ts",
     "build:vue": "pnpm clean  && pnpm -C packages/theme build && pnpm build:dts:vue-components && esno ./internal/src/build-vue-components.ts && pnpm -C packages/vue-components build",
     "build:dts:vue-components": "pnpm --filter @mirai-ui/vue-* build:dts",
