@@ -285,6 +285,9 @@ const extractProps = (
         }
       })
     }
+    if (!propsName){
+      return null;
+    }
     const componentFileRoot = dirname(path)
     const propsFilePath = join(componentFileRoot, propsFileRelativePath);
     propsFile.push({
