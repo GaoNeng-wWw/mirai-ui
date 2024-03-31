@@ -1,0 +1,22 @@
+{
+  "name": "@mirai-ui/vue-transition-collapse",
+  "version": "0.0.0",
+  "devDependencies": {
+    "@mirai-ui/theme": "workspace:^",
+    "vue": "^3.4.19",
+    "vue-tsc": "^1.8.27"
+  },
+  "scripts": {
+    "build:dts": "vue-tsc --declaration --emitDeclarationOnly"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}
