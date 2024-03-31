@@ -1,7 +1,9 @@
 import { Project, SyntaxKind, VariableDeclarationKind, ts } from 'ts-morph';
 import fg from 'fast-glob';
-import { join } from 'path';
+import { join, relative } from 'path';
 import { buildMsg, info } from './log';
+import dashify from 'dashify';
+import camelcase from 'camelcase';
 
 type EntryExport = {
   exportDeclaration: string[];
@@ -26,7 +28,7 @@ const buildEntry = (metas: EntryExport[]) => {
     const {componentName, installName, exportDeclaration} = meta;
     sourcefile.addImportDeclaration({
       isTypeOnly: false,
-      moduleSpecifier: `./${componentName}`,
+      moduleSpecifier: `./${dashify(componentName, {condense: true})}`,
       defaultImport: `${componentName}Default`
     });
     defaultImports.push(`${componentName}Default`);
@@ -34,7 +36,7 @@ const buildEntry = (metas: EntryExport[]) => {
   })
   metas.forEach(({componentName}) => {
     sourcefile.addExportDeclaration({
-      moduleSpecifier: `./${componentName}`
+      moduleSpecifier: `./${dashify(componentName, {condense: true})}`
     })
   })
 
@@ -85,13 +87,14 @@ fg('**/index.ts', {
                   .filter(ts.isExportSpecifier)
                   .map(specifier => specifier.name)
                   .map(identifier => identifier.escapedText)
-                  .map(stringLike => stringLike.toString());
+                  .map(stringLike => stringLike.toString())
+                  .map(str => camelcase(str))
     const installName = compNames.map((name) => `${name}Install`);
     const compName = sourcefile.getFilePath().toString().split('/').at(-2);
     entryExport.push({
       installName: installName[0],
       exportDeclaration: compNames,
-      componentName: compName
+      componentName: camelcase(compName)
     });
   }
   buildEntry(entryExport)
