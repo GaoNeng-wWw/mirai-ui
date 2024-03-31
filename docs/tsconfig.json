@@ -2,7 +2,7 @@
     "compilerOptions": {
       "target": "esnext",
       "module": "Node16",
-      "moduleResolution": "Node16",
+      "moduleResolution": "Bundler",
       "strict": true,
       "jsx": "preserve",
       "sourceMap": true,
@@ -12,6 +12,5 @@
       "resolveJsonModule": true
     },
     "include": ["**/*.ts", "**/*.vue", ".vitepress/**/*.ts", ".vitepress/**/*.vue", ".vitepress/**/*.mts"],
-    "exclude": ["node_modules"]
 }
   
