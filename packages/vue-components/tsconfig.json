@@ -1,22 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
+    "target": "ES2020",
+    "moduleResolution": "Node",
     "isolatedModules": true,
-    "jsx": "preserve",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "useDefineForClassFields": true,
     "outDir": "dist",
-    "declaration":  true,
-    "declarationDir": "dist/types"
+    "lib": ["DOM","DOM.Iterable","ES2020"]
   },
-  "include": ["**/*.ts", "**/*.vue"],
-  "exclude": ["**/node_modules", "**/*.spec.ts", "**/*.test.ts", "vite.config.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    { "path": "./tsconfig.src.json" },
+    { "path": "./tsconfig.node.json" },
+  ],
+  "exclude": ["**/node_modules", "**/__tests__"]
 }

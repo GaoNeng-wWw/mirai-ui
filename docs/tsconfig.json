@@ -1,16 +1,22 @@
 {
     "compilerOptions": {
-      "target": "esnext",
-      "module": "Node16",
-      "moduleResolution": "Bundler",
-      "strict": true,
-      "jsx": "preserve",
-      "sourceMap": true,
-      "lib": ["esnext", "dom","DOM.Iterable"],
-      "esModuleInterop": true,
-      "declaration": true,
-      "resolveJsonModule": true
+      "rootDir": ".",
+      "baseUrl": ".",
+      "lib": ["ESNext", "DOM", "DOM.Iterable"],
+      "types": [],
+      "paths": {
+        "@mirai-ui/vue-*": ["../packages/vue-components/$1"],
+        "@miria-ui/theme": ["../packages/theme"]
+      }
     },
-    "include": ["**/*.ts", "**/*.vue", ".vitepress/**/*.ts", ".vitepress/**/*.vue", ".vitepress/**/*.mts"],
+    "include": [
+      "**/*.ts",
+      "**/*.vue",
+      ".vitepress/**/*.ts",
+      ".vitepress/**/*.vue",
+      ".vitepress/**/*.mts",
+      "../packages/vue-components/**/*"
+    ],
+    "extends": "../packages/vue-components/tsconfig.base.json",
 }
   

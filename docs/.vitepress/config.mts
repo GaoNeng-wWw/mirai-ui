@@ -34,7 +34,7 @@ export default defineConfig({
     config(md) {
       md.use((instance)=>{
         instance.use(blockPlugin, {});
-        instance.use(propsTablePlugin, {})
+        // instance.use(propsTablePlugin, {})
       })
     },
   },
@@ -42,6 +42,16 @@ export default defineConfig({
     root: {
       label: '中文',
       lang: 'zh'
+    }
+  },
+  vite: {
+    resolve:{
+      alias: [
+        {
+          find: /^@mirai-ui\/vue-(?!components\b)(.*)$/,
+          replacement: join(__dirname, '../../packages/vue-components/$1')
+        }
+      ]
     }
   }
 })

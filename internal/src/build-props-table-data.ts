@@ -239,6 +239,7 @@ const extractProps = (
   for (const compName of compNames){
     const vueComponentRoot = join(root,dashify(compName, {condense: true }))
     const path = join(vueComponentRoot, vueFiles[compName][0]);
+    console.log(vueComponentRoot)
     const {descriptor} = parse(readFileSync(path).toString())
     if (!descriptor.scriptSetup){
       warn(`${compName} not find setup script`)
