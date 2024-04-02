@@ -1,7 +1,6 @@
 {
   "name": "@mirai-ui/vue-collapse",
   "version": "0.0.0",
-  "type": "module",
   "devDependencies": {
     "vue": "^3.4.19",
     "vue-tsc": "^1.8.27"
