@@ -25,8 +25,7 @@ export default {
     install: (app:App) => {
         app.component(${camelCase(name, { pascalCase: true })}.name!, ${camelCase(name, {pascalCase: true})});
     }
-}
-    `,
+}`,
             [join(root, name, 'src', `${camelCase(name)}.vue`)]: `
 <template>
   <slot />
@@ -36,15 +35,14 @@ const COMPONENT_NAME='M${camelCase(name, { pascalCase: true })}'
 defineOptions({
   name: COMPONENT_NAME
 })
-</script>
-    `,
+</script>`,
             [join(root, name, '__tests__', `${camelCase(name)}.test.ts`)]: `
 import { describe, it, expect} from 'vitest';
 import { mount } from '@vue/test-utils';
 import ${camelCase(name)} from '../src/${camelCase(name)}.vue';
-describe('Button', ()=>{
+describe('camelCase(name)', ()=>{
     it('should to be defined', ()=>{
-        expect(mount(button)).toBeDefined()
+        expect(mount(${camelCase(name)})).toBeDefined()
     })
 })
     `,
@@ -69,14 +67,10 @@ describe('Button', ()=>{
 `,
             [join(root,name,'tsconfig.json')]: `
 {
-  "exclude": ["node_modules", "__tests__"],
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "target": "ES2020",
-    "moduleResolution": "Node",
-  }
+  },
 }
 `
     }
