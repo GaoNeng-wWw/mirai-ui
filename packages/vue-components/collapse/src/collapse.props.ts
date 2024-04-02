@@ -15,6 +15,14 @@ export const collapseProps = {
   color: {
     type: String as PropType<CollapseColor>,
     default: 'default'
+  },
+  accordion: {
+    type: Boolean,
+    default: false
+  },
+  disabledKeys: {
+    type: Array as PropType<(string|number|symbol)[]>,
+    default: []
   }
 } as const;
 
@@ -24,5 +32,7 @@ export const collapseItemProps = {
     required: true
   }
 };
+
+export const CONSTANT = Symbol('collapse');
 
 export type CollapseProps = ExtractPropTypes<typeof collapseProps>;
