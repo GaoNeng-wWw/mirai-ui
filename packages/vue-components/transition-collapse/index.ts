@@ -13,4 +13,3 @@ export default {
     app.component(TransitionCollapse.name!, _transitionCollapse);
   }
 };
-    
