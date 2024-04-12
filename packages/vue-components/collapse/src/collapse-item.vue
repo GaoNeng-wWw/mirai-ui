@@ -25,7 +25,7 @@ import type { CollapseProvide } from './collapse.type';
 import { TransitionCollapse } from '@mirai-ui/vue-transition-collapse';
 import { collapseBody, collapseHeader } from '@mirai-ui/theme';
 import ArrowDown from './icons/arrow-down.vue';
-import { computed, getCurrentInstance, inject, toRefs, useSlots } from 'vue';
+import { computed, getCurrentInstance, inject, toRefs, useSlots, watch } from 'vue';
 import { collapseItemProps, CONSTANT } from './collapse.props';
 const headerClass = collapseHeader();
 const bodyClass = collapseBody();
@@ -42,7 +42,15 @@ const { title } = toRefs(props);
 const collapsed = inject<CollapseProvide>(CONSTANT, null);
 const disabled = computed(() => collapsed.disabledKeys.some((k) => k.value === key) || props.disabled);
 const open = computed(() => collapsed.modelValue.includes(key));
+watch(open, () => {
+  if (open.value) {
+    collapsed.open(key);
+  } else {
+    collapsed.close(key);
+  }
+});
 const onHandleClick = () => {
+  debugger;
   collapsed.onItemClick(key);
 };
 
