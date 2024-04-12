@@ -5,3 +5,9 @@
 
 :::demo collapse/basic
 :::
+
+
+## 不同颜色
+
+:::demo collapse/colors
+:::

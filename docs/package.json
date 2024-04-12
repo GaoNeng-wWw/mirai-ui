@@ -15,6 +15,7 @@
   "devDependencies": {
     "@babel/types": "^7.24.0",
     "@mirai-ui/theme": "workspace:^",
+    "@mirai-ui/vue-components": "workspace:^",
     "@tailwindcss/typography": "^0.5.10",
     "@types/markdown-it": "^13.0.7",
     "@types/markdown-it-container": "^2.0.9",
@@ -31,7 +32,6 @@
     "vitepress": "1.0.0-rc.45"
   },
   "dependencies": {
-    "@mirai-ui/vue-components": "workspace:^",
     "markdown-it": "^14.0.0",
     "markdown-it-container": "^4.0.0",
     "shiki": "^1.1.7"
