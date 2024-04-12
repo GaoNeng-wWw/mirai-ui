@@ -24,6 +24,10 @@ export const collapseProps = {
   disabledKeys: {
     type: Array as PropType<(string|number|symbol)[]>,
     default: []
+  },
+  allowInitOpenEvent: {
+    type: Boolean,
+    default: false
   }
 } as const;
 

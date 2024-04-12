@@ -6,11 +6,15 @@
 <script setup lang="ts">
 import { collapse } from '@mirai-ui/theme';
 import { collapseProps, CONSTANT } from './collapse.props';
-import { computed, provide, reactive, toRefs } from 'vue';
+import { computed, onMounted, provide, reactive, toRefs } from 'vue';
 const COMPONENT_NAME='MCollapse';
 defineOptions({
   name: COMPONENT_NAME
 });
+const emits = defineEmits<{
+  open: [string|number|symbol];
+  close: [string|number|symbol];
+}>();
 const modelValue = defineModel<(string|number|symbol)[]>({
   required: true,
   default: [],
@@ -28,7 +32,7 @@ const onItemClick = (key: string|number|symbol) => {
   }
   const actived = [...modelValue.value];
   if (props.accordion) {
-    modelValue.value = actived.filter((activeKey) => activeKey === key);
+    // TODO: accordion
     return;
   }
   const idx = actived.indexOf(key);
@@ -39,10 +43,20 @@ const onItemClick = (key: string|number|symbol) => {
   }
   modelValue.value = actived;
 };
+
+onMounted(() => {
+  if (props.allowInitOpenEvent) {
+    modelValue.value.forEach((key) => {
+      emits('open', key);
+    });
+  }
+});
 provide(CONSTANT, reactive({
   modelValue: modelValue,
   disabledKeys: toRefs(props.disabledKeys),
-  onItemClick
+  onItemClick,
+  open: (key: string | number | symbol) => emits('open', key),
+  close: (key: string | number | symbol) => emits('close', key),
 }));
 
 </script>
