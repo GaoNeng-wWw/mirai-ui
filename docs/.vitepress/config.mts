@@ -50,6 +50,10 @@ export default defineConfig({
         {
           find: /^@mirai-ui\/vue-(?!components\b)(.*)$/,
           replacement: join(__dirname, '../../packages/vue-components/$1')
+        },
+        {
+          find: /^@mirai-ui\/theme$/,
+          replacement: join(__dirname, '../../packages/theme')
         }
       ]
     }

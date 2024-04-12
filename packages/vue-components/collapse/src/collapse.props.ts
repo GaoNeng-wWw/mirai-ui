@@ -14,7 +14,8 @@ export const collapseProps = {
   },
   color: {
     type: String as PropType<CollapseColor>,
-    default: 'default'
+    default: 'default',
+    requried: false
   },
   accordion: {
     type: Boolean,
@@ -30,6 +31,10 @@ export const collapseItemProps = {
   title: {
     type: String,
     required: true
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 };
 

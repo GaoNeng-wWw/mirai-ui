@@ -5,8 +5,8 @@
   "types": "./dist/index.d.ts",
   "main": "./dist",
   "scripts": {
-    "build": "tsup src --dts --format cjs,esm --clean",
-    "dev": "tsup src --dts --format cjs,esm --watch --clean --no-splitting"
+    "build": "tsup ./index.ts --dts --format cjs,esm --clean",
+    "dev": "tsup ./index.ts --dts --format cjs,esm --watch --clean --no-splitting"
   },
   "keywords": [
     "mirai-ui",
@@ -14,11 +14,6 @@
     "tailwindcss",
     "component-library"
   ],
-  "exports":{
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js",
-    "types": "./dist/index.d.ts"
-  },
   "files": ["dist"],
   "author": "",
   "license": "MIT",

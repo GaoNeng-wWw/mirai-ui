@@ -1,12 +1,6 @@
 import { RendererElement } from 'vue';
 
 export const useCollapse = () => {
-  const reset = (el: RendererElement) => {
-    el.style.maxHeight = '';
-    el.style.overflow = el.dataset.oldOverflow;
-    el.style.paddingTop = el.dataset.oldPaddingTop;
-    el.style.paddingBottom = el.dataset.oldPaddingBottom;
-  };
   const events = {
     beforeEnter(el: RendererElement) {
       if (!el.dataset) { el.dataset = {}; }
@@ -34,7 +28,6 @@ export const useCollapse = () => {
         el.style.paddingTop = el.dataset.oldPaddingTop;
         el.style.paddingBottom = el.dataset.oldPaddingBottom;
         el.style.overflow = 'hidden';
-        reset(el);
       });
     },
   

@@ -1,22 +1,22 @@
 {
     "compilerOptions": {
-      "rootDir": ".",
-      "baseUrl": ".",
       "lib": ["ESNext", "DOM", "DOM.Iterable"],
       "types": [],
+      "baseUrl": ".",
       "paths": {
-        "@mirai-ui/vue-*": ["../packages/vue-components/$1"],
-        "@miria-ui/theme": ["../packages/theme"]
+        "@mirai-ui/vue-*": ["../packages/vue-components"],
+        "@mirai-ui/theme": ["../packages/theme"]
       }
     },
     "include": [
-      "**/*.ts",
-      "**/*.vue",
+      "./**/*.ts",
+      "./**/*.vue",
       ".vitepress/**/*.ts",
       ".vitepress/**/*.vue",
       ".vitepress/**/*.mts",
-      "../packages/vue-components/**/*"
+      "../packages/vue-components/**/*",
+      "./docs/components/**/*.md"
     ],
-    "extends": "../packages/vue-components/tsconfig.base.json",
+    "exclude": ["__tests__"]
 }
   
