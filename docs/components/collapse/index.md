@@ -16,3 +16,8 @@
 
 :::demo collapse/events
 :::
+
+## 阻止展开或收起
+
+::: demo collapse/before-event
+:::
