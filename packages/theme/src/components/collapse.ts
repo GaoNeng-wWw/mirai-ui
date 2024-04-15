@@ -6,6 +6,7 @@ export const collapse = cva({
     dark:border-default
     group
     w-full
+    overflow-hidden
     border
   `,
   variants: {
@@ -38,20 +39,9 @@ export const collapseHeader = cva({
     'group-data-[color=warning]:bg-warning group-data-[color=warning]:text-warning-foreground',
     'group-data-[color=danger]:bg-danger group-data-[color=danger]:text-danger-foreground',
     'group-[&>div:not(:first-child):not(:last-child)]:rounded-none',
-    // '[&[data-open=true]]:group-[&>div:last-child]:rounded-none',
-    // '[&[data-open=false]]:group-[&>div:last-child]:rounded-t-none',
     'group-[&>div:first-child]:rounded-b-none',
     'group-[&>div:last-child]:rounded-t-none',
     'group-[&>div:last-child]:rounded-b-none',
-    // 'group-data-[color=default]:bg-default group-data-[color=default]:dark:bg-default-200 group-data-[color=default]:text-default-foreground',
-    // 'group-data-[color=danger]:data-[disabled=true]:text-red-500',
-    // 'group-data-[color=primary]:bg-primary group-data-[color=primary]:text-primary-foreground',
-    // 'group-data-[color=success]:bg-success group-data-[color=success]:text-success-foreground',
-    // 'group-data-[color=warning]:bg-warning group-data-[color=warning]:text-warning-foreground',
-    // 'group-data-[color=primary]:data-[disabled=true]:text-primary-foreground/50',
-    // 'group-data-[color=success]:data-[disabled=true]:text-success-foreground/50',
-    // 'group-data-[color=warning]:data-[disabled=true]:text-warning-foreground/50',
-    // 'group-data-[color=danger]:bg-danger group-data-[color=danger]:text-danger-foreground group-data-[color=danger]:data-[disabled=true]:text-red-500',
   ],
 });
 

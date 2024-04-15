@@ -50,7 +50,6 @@ watch(open, () => {
   }
 });
 const onHandleClick = () => {
-  debugger;
   collapsed.onItemClick(key);
 };
 

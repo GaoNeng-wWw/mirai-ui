@@ -30,10 +30,17 @@ const onItemClick = (key: string|number|symbol) => {
   if (props.disabledKeys.includes(key)) {
     return;
   }
-  const actived = [...modelValue.value];
+  let actived = [...modelValue.value];
   if (props.accordion) {
-    // TODO: accordion
-    return;
+    if (modelValue.value.includes(key)) {
+      actived = [];
+    } else {
+
+      actived = [key];
+    }
+    modelValue.value = actived;
+    console.log(modelValue.value);
+    return ;
   }
   const idx = actived.indexOf(key);
   if (idx > -1 ) {
