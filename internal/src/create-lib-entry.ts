@@ -78,24 +78,20 @@ fg('**/index.ts', {
   const project = new Project();
   const sourcefiles = paths.map((path) => project.addSourceFileAtPath(path));
   const entryExport: EntryExport[] = [];
+  const installNames = new Set();
   for (const sourcefile of sourcefiles){
-    const exportDeclaration = sourcefile.getExportDeclarations().map((decl) => decl.compilerNode)
-    const exportClause = exportDeclaration[0].exportClause.getChildren();
-    const syntaxLists = exportClause.filter(isSyntaxList);
-    const compNames = syntaxLists.map((syntaxList) => syntaxList.getChildren())
-                  .flat()
-                  .filter(ts.isExportSpecifier)
-                  .map(specifier => specifier.name)
-                  .map(identifier => identifier.escapedText)
-                  .map(stringLike => stringLike.toString())
-                  .map(str => camelcase(str))
-    const installName = compNames.map((name) => `${name}Install`);
-    const compName = sourcefile.getFilePath().toString().split('/').at(-2);
-    entryExport.push({
-      installName: installName[0],
-      exportDeclaration: compNames,
-      componentName: camelcase(compName)
+    const exportDeclaration = sourcefile.getExportDeclarations()
+    const nameExports = exportDeclaration.map((exp) => exp.getNamedExports()).flat();
+    const exportItem = nameExports.map((specifer) => {
+      return specifer.getSymbol().getEscapedName();
     });
+    const installName = `${camelcase(sourcefile.getFilePath().toString().split('/').at(-2))}Install`;
+    entryExport.push({
+      installName,
+      exportDeclaration: exportItem,
+      componentName: camelcase(sourcefile.getFilePath().toString().split('/').at(-2))
+    })
   }
+  console.log(entryExport)
   buildEntry(entryExport)
 })
