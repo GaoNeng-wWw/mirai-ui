@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { Collapse } from '../';
+import Collapse from '../src/collapse.vue';
 import { mount, shallowMount } from '@vue/test-utils';
 import CollapseItem from '../src/collapse-item.vue';
 import { RendererElement, RendererNode, VNode, h } from 'vue';
