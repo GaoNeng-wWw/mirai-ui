@@ -33,6 +33,7 @@ export default defineConfig({
     exclude: ['./index.ts', './**/index.ts', 'node_modules'],
     coverage:{
       exclude: [
+        'node_modules/**',
         '**/node_modules/**', '**/dist/**',
         '**/cypress/**', '**/.{idea,git,cache,output,temp}/**', 
         '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*',
