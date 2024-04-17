@@ -34,7 +34,7 @@ export default defineConfig({
     config(md) {
       md.use((instance)=>{
         instance.use(blockPlugin, {});
-        // instance.use(propsTablePlugin, {})
+        instance.use(propsTablePlugin, {})
       })
     },
   },

@@ -21,3 +21,8 @@
 
 ::: demo collapse/before-event
 :::
+
+## Props
+
+:::props collapse
+:::
