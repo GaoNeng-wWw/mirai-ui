@@ -1,170 +1,114 @@
 <template>
-  <div class="w-full">
-    <div v-for="{propsName, datas} of (tableData as TableData)">
-      <h3>{{ propsName }}</h3>
-      <table>
-        <th v-for="title of tableHeader">
-          {{ title[shortLang] }}
+  <table class="min-w-64 w-full">
+    <thead>
+      <tr>
+        <th v-for="[header,id] of tableHeader" :key="id">
+          {{ header }}
         </th>
-        <template v-for="item of datas">
-          <tr style="position: relative">
-            <td v-for="{id:key} of tableHeader">
-              <template v-if="key === 'type' || key === 'demo'">
-                <template v-if="item[key].name && item[key].href">
-                  <a :href="`${item[key].href}`">
-                    {{ item[key].name }}
-                  </a>
-                </template>
-                <template v-else>
-                  {{ item[key].name }}
-                </template>
-              </template>
-              <template v-else>
-                <template v-if="item[key]?.value">
-                  {{ item[key].value }}
-                </template>
-              </template>
-            </td>
-            <div class="delete-line" v-if="item['deprecated'] && item['deprecated'].value.length"></div>
-          </tr>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="row of tableData">
+        <template v-for="col of row">
+          <td v-if="col.startsWith('#')">
+            <a :href="col">
+              {{ col }}
+            </a>
+          </td>
+          <td v-else>
+            {{ col }}
+          </td>
         </template>
-      </table>
-    </div>
-  </div>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script lang="ts" setup>
-import { useData } from 'vitepress';
+import {useData} from 'vitepress';
 import { computed } from 'vue';
+import Data from '../props-table-data.json';
+interface DataIndex {
+  name: string;
+  type: string;
+  description: {
+    [lang: string]: string;
+  };
+  demo: {
+    [lang: string]: string;
+  };
+  deprecated: {
+    [lang: string]: string;
+  }
+  defaultValue: string;
+}
+const index = [
+  {
+    title: {
+      zh: '参数名',
+      en: 'Name'
+    },
+    id: 'name'
+  },
+  {
+    title: {
+      zh: '参数类型',
+      en: 'Type'
+    },
+    id: 'type'
+  },
+  {
+    title: {
+      zh: '类型简介',
+      en: 'Description'
+    },
+    id: 'description'
+  },
+  {
+    title:{
+      zh: '示例',
+      en: 'Demo'
+    },
+    id: 'demo'
+  },
+  {
+    title:{
+      zh: '默认值',
+      en: 'Defalut Value'
+    },
+    id: 'defaultValue'
+  }
+] as const;
 
-const tableHeader = [
-  {
-    id: 'name',
-    zh: '参数名',
-    en: 'Name'
-  },
-  {
-    id: 'type',
-    zh: '参数类型',
-    en: 'Type'
-  },
-  {
-    id: 'description',
-    zh: '简介',
-    en: 'Description'
-  },
-  {
-    id: 'demo',
-    zh: '示例链接',
-    en: 'Demo'
-  },
-  {
-    id: 'default',
-    zh: '默认值',
-    en: 'Default'
-  },
-  {
-    id: 'deprecated',
-    zh: '废弃理由',
-    en: 'Deprecated Reason'
-  },
-]
-
-type RawTableData = {
-    props: {
-      name: string;
-      type: {
-        ref: boolean;
-        name: string;
-      };
-      description: {
-        [lang:string]: string;
-      };
-      deprecated: {
-        [lang:string]: string;
-      };
-      demo: {
-        [lang:string]: string;
-      };
-      default: string
-    }[];
-    propsName: string;
-}[]
-type TableData = {
-  propsName:string;
-  datas: {
-    name: {
-      value: string
-    };
-    type: {
-      name: string;
-      href: string;
-    };
-    description: {
-      value: string;
-    };
-    deprecated: {
-      value: string;
-    };
-    demo: {
-      name: string;
-      href: string;
-    };
-    default: {
-      value: string;
-    }
-  }[]
-}[]
 const props = defineProps<{
-  tableData: string;
-}>();
+  componentName: string
+}>()
+
+const data = computed<DataIndex[]>(()=> Data[props.componentName]);
+
 const {lang} = useData();
 const shortLang = computed(() => lang.value.split('-')[0]);
-const tableData = computed(()=>{
-  const rawData=JSON.parse(props.tableData) as RawTableData;
-  const data: TableData = [];
-  for (const raw of rawData){
-    const tableProps:TableData[number]['datas'] = raw.props.map((p) => {
-      return {
-        name: {
-          value: p.name
-        },
-        type: {
-          name: p.type.name,
-          href: p.type.ref ? '#types' : ''
-        },
-        description: {
-          value: p.description[shortLang.value] ?? p.description['en']
-        },
-        deprecated: {
-          value: p.deprecated[shortLang.value] ?? p.description['en']
-        },
-        demo: {
-          name: p.demo[shortLang.value] ?? p.demo['en'],
-          href: p.demo[shortLang.value] ?? p.demo['en']
-        },
-        default: {
-          value: p.default
+const tableHeader = computed(()=>{
+  return index.map<string[]>((item) => [item.title[shortLang.value] ?? item.title['en'], item.id])
+})
+const tableData = computed(() => {
+  const res:string[][] = [];
+  for (const item of data.value){
+    const tmp:string[] = [];
+    for (const {id} of index){
+      if (id === 'name' || id === 'type'){
+        tmp.push(item[id]);
+      } else {
+        if (item[id]?.[shortLang.value] || item[id]?.['en']){
+          tmp.push(item[id][shortLang.value] ?? item[id]['en']);
+        } else {
+          tmp.push('-')
         }
       }
-    });
-    data.push({
-      propsName: raw.propsName,
-      datas: tableProps
-    })
+    }
+    res.push(tmp);
   }
-  console.log(data)
-  return data;
-});
-</script>
+  return res;
+})
 
-<style>
-.delete-line{
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  height: 2px;
-  background: black;
-}
-</style>
+</script>

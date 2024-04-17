@@ -14,4 +14,3 @@ export default {
     app.component(CollapseItem.name!, CollapseItem);
   }
 };
-    

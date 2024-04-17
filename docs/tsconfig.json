@@ -6,7 +6,9 @@
       "paths": {
         "@mirai-ui/vue-*": ["../packages/vue-components"],
         "@mirai-ui/theme": ["../packages/theme"]
-      }
+      },
+      "esModuleInterop": true,
+      "resolveJsonModule": true
     },
     "include": [
       "./**/*.ts",

@@ -49,7 +49,7 @@ category: common
 
 ## Props
 
-:::props-table button
+:::props button
 :::
 
 ## Types
