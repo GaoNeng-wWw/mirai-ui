@@ -9,6 +9,7 @@ import { collapseProps, CONSTANT } from './collapse.props';
 import { computed, onMounted, provide, reactive, toRefs } from 'vue';
 import { useDirty } from './useDirty';
 const COMPONENT_NAME='MCollapse';
+type Key = string|number|symbol;
 defineOptions({
   name: COMPONENT_NAME
 });
@@ -18,7 +19,8 @@ const emits = defineEmits<{
   beforeOpen: [string|number|symbol, ()=>void];
   beforeClose: [string|number|symbol, ()=>void]
 }>();
-const modelValue = defineModel<(string|number|symbol)[]>({
+
+const modelValue = defineModel<Key[]>({
   required: true,
   default: [],
 });

@@ -1,11 +1,39 @@
-import { existsSync, readdirSync, readFileSync, writeFile, writeFileSync } from "fs";
-import { basename, dirname, join, resolve } from "path";
-import { buildMsg, debug, err, info, warn } from "./log";
-import { Expression, JSDocTag, JSDocTagInfo, ObjectLiteralElementLike, Project, PropertyAssignment, SourceFile, Symbol, SyntaxKind, ts, TypeFormatFlags } from "ts-morph";
-import dashify from "dashify";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { dirname, join, resolve } from "path";
+import { buildMsg, err, info, warn } from "./log";
+import { JSDocTagInfo,Project,SourceFile, SyntaxKind,TypeFormatFlags } from "ts-morph";
 import { parse, compileScript } from 'vue/compiler-sfc';
-import {walkAST} from 'ast-kit';
-
+import { walkAST } from 'ast-kit';
+import {
+  ArrayExpression,
+  CallExpression,
+  isBooleanLiteral,
+  isIdentifier,
+  isLiteral,
+  isNumericLiteral,
+  isObjectExpression,
+  isStringLiteral,
+  isTSArrayType,
+  isTSBooleanKeyword,
+  isTSIndexSignature,
+  isTSNumberKeyword,
+  isTSPropertySignature,
+  isTSStringKeyword,
+  isTSSymbolKeyword,
+  isTSTypeAnnotation,
+  isTSTypeLiteral,
+  isTSTypeReference,
+  isTSUnionType,
+  Node,
+  TSBooleanKeyword,
+  TSNumberKeyword,
+  TSPropertySignature,
+  TSStringKeyword,
+  TSSymbolKeyword,
+  TSTypeLiteral,
+  TSTypeReference,
+  TSUnionType
+} from '@babel/types';
 
 const existsIndexFile = (path: string) => readdirSync(path).includes('index.ts');
 const ignore = ['vue'];
@@ -15,6 +43,7 @@ type PropMap = {compName: string, compFoldPath: string, propsObjectName: string,
 type PropItemData = {
   name?: string;
   type?: string;
+  required?: boolean;
   description?: {
     zh: string;
     en: string;
@@ -278,10 +307,12 @@ const collectPropsData = (sourcefile: SourceFile, propsName: string) => {
   }
   return props;
 }
-const collectPropsItem = (propsMaps: PropMap[]) => {
+const collectPropsItem = (propsMaps: PropMap[], importMaps: ImportMap[]) => {
   const propItem: PropItem = {}
   const project = new Project()
-  for (const {compName, compFoldPath, propsPath, propsObjectName} of propsMaps){ 
+  for (let i=0;i<propsMaps.length;i++){
+    const {compName, compFoldPath, propsPath, propsObjectName} = propsMaps[i];
+    const {filePath} = importMaps[i];
     if (!propsPath){
       continue;
     }
@@ -289,10 +320,206 @@ const collectPropsItem = (propsMaps: PropMap[]) => {
     propItem[compName] = [];
     const sourcefile = project.addSourceFileAtPath(`${propFilePath}.ts`);
     const propDatas = collectPropsData(sourcefile, propsObjectName);
-    propItem[compName] = propDatas;
+    propItem[compName] = [...collectModelValue(filePath), ...propDatas];
     buildMsg(`Collect ${compName}`, true)
   }
   return propItem;
+}
+
+const isNormalType = (node:Node) => isTSStringKeyword(node) || isTSBooleanKeyword(node) || isTSSymbolKeyword(node) || isTSNumberKeyword(node);
+const isLiteralType = (node:Node) => isStringLiteral(node) || isNumericLiteral(node) || isBooleanLiteral(node);
+
+const extractNormalType = (
+  node: TSStringKeyword | TSBooleanKeyword | TSSymbolKeyword | TSNumberKeyword
+) => {
+
+  return node.type.replace('TS', '').replace('Keyword', '');
+}
+
+const extractTypeReference = (node: TSTypeReference) => {
+  return node.typeName.type === 'Identifier' ? node.typeName.name : node.typeName.right.name;
+}
+const extractPropertySignature = (node: TSPropertySignature) => {
+  const {key, typeAnnotation: {typeAnnotation}} = node;
+  if (key.type !== 'Identifier'){
+    return "{}";
+  }
+  return `{"${key.name}": ${extractType(typeAnnotation)}}`;
+  // return {[key.name]: extractType(typeAnnotation)};
+}
+const extractTypeLiteral = (node: TSTypeLiteral) => {
+  const types = node.members.map((ele)=>{
+    if (isTSIndexSignature(ele)){
+      const {parameters, typeAnnotation: {typeAnnotation}} = ele;
+      const singnatureName = parameters[0].name;
+      const singnatureType = extractType(parameters[0].typeAnnotation)
+      return `{[${singnatureName}:${singnatureType}]: ${extractType(typeAnnotation)}}`;
+    }
+    if (isTSPropertySignature(ele)){
+      return extractPropertySignature(ele);
+    }
+  })
+  return types[0];
+}
+
+const extractUnionType = (node: TSUnionType) => {
+  return node.types.map((t) => {
+    return extractType(t);
+  }).join('|');
+}
+
+const extractType = (node: Node) => {
+  let typeName = '';
+  if (isTSArrayType(node)){
+    typeName = extractType(node.elementType)
+  }
+  if (isNormalType(node)){
+    typeName = extractNormalType(node);
+  }
+  if (isTSTypeReference(node)){
+    typeName = extractTypeReference(node)
+  }
+  if (isTSUnionType(node)) {
+    typeName = extractUnionType(node)
+  }
+  if (isTSTypeLiteral(node)){
+    typeName = extractTypeLiteral(node);
+  }
+  if (isTSTypeAnnotation(node)){
+    typeName = extractType(node.typeAnnotation);
+  }
+  return typeName;
+}
+
+const extractVModelName = (node: CallExpression) => {
+  const maybeName = node.arguments[0];
+  if (!maybeName || maybeName.type === 'ObjectExpression'){
+    return 'modelValue';
+  }
+  if (maybeName.type === 'StringLiteral'){
+    return maybeName.value;
+  }
+}
+const getArrayElementsContent = (node: ArrayExpression) => {
+  return node.elements.map((ele) => {
+    if (isLiteralType(ele)){
+      return ele.value;
+    }
+    if (isIdentifier(ele)){
+      return ele.name;
+    }
+    return undefined;
+  })
+  .filter((v) => v !== undefined);
+}
+const extractVModelOption = (node: CallExpression) => {
+  const option = node.arguments.filter((n) => isObjectExpression(n));
+  if (!option.length){
+    return {required: false,defaultValue: null};
+  }
+  const obj = {
+    required: false,
+    defaultValue: null
+  }
+  for (const property of option[0].properties){
+    if (property.type !== 'ObjectProperty'){
+      continue;
+    }
+    if (property.key.type !== 'Identifier'){
+      continue;
+    }
+    if (property.key.name === 'default'){
+      const value = property.value;
+      if (isLiteral(value)){
+        obj['defaultValue'] = isLiteralType(value) ? value.value : 'unknown';
+        continue;
+      }
+      if (value.type == 'Identifier'){
+        obj['defaultValue'] = value.name;
+        continue;
+      }
+      if (value.type === 'ArrayExpression'){
+        obj['defaultValue'] = `[${getArrayElementsContent(value).join(',')}]`
+        continue;
+      }
+      obj['defaultValue'] = 'unknown';
+    }
+    if (property.key.name === 'requried'){
+      obj['required'] = property.value.type === 'BooleanLiteral' ? property.value.value : false;
+      continue;
+    }
+  }
+  return obj;
+}
+
+const collectModelValue = (filePath: string) => {
+  const propMaps:PropItemData[] = [];
+  const code = readFileSync(filePath).toString();
+  const {descriptor} = parse(code);
+  const {scriptSetupAst} = compileScript(descriptor, {babelParserPlugins: ['typescript'],id:filePath});
+  for (const stmt of scriptSetupAst){
+    let comment = stmt.trailingComments;
+    let jsDocs = {};
+    walkAST(stmt, {
+      enter: (node) => {
+        if (node.type !== 'VariableDeclaration'){
+          return;
+        }
+        for (const decl of node.declarations){
+          if (decl.init.type !== 'CallExpression' || decl.init.callee.type!=='Identifier'){
+            continue;
+          }
+          if (decl.init.callee.name !== 'defineModel'){
+            continue;
+          }
+          if (node.leadingComments){
+            comment = node.leadingComments;
+          }
+          if (comment){
+            const [commenObj] = comment;
+            const {value,type} = commenObj;
+            if (type !== 'CommentBlock'){
+              return;
+            }
+            const jsDocString = value.replace(/\*/gim, '');
+            const jsDocArray = jsDocString.split('\n').map((v) => v.trim()).filter((v)=>v.length);
+            const jsDocTag: any[] = jsDocArray.map((str) => {
+              return {
+                getName: ()=>/@(\w*)\s/gim.exec(str)[1],
+                getText: ()=>[{
+                  kind: 'text',
+                  text: /@(\w*)\s(.*)/gim.exec(str)[2]
+                }],
+                compilerObject: {
+                  name: /@(\w*)\s/gim.exec(str)[1],
+                  text: [{
+                    kind: 'text',
+                    text: /@(\w*)\s(.*)/gim.exec(str)[2]
+                  }],
+                }
+              }
+            })
+            jsDocs = collectJSDocData(jsDocTag);
+            comment = [];
+          }
+          let type = '-';
+          for (const param of decl.init.typeParameters.params){
+            type = extractType(param);
+            const options = extractVModelOption(decl.init);
+            const vmodelName = extractVModelName(decl.init);
+            propMaps.push({
+              name: vmodelName, 
+              required: options.required,
+              defaultValue: options.defaultValue,
+              type,
+              ...jsDocs
+            })
+          }
+        }
+      }
+    })
+  }
+  return propMaps;
 }
 
 export const buildPropsTableData = () => {
@@ -316,7 +543,7 @@ export const buildPropsTableData = () => {
   warn('Collect Props name')
   const propMaps = collectPropsName(importMaps);
   warn('Collect Props Item')
-  const propItems = collectPropsItem(propMaps)
+  const propItems = collectPropsItem(propMaps, importMaps)
   writeFileSync(
     join(__dirname, '../../docs/.vitepress/props-table-data.json'),
     JSON.stringify(propItems, null, '  ')
