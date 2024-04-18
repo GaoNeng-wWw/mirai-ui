@@ -5,11 +5,12 @@
     "isolatedModules": true,
     "useDefineForClassFields": true,
     "outDir": "dist",
-    "lib": ["DOM","DOM.Iterable","ES2020"]
+    "lib": ["DOM","DOM.Iterable","ES2020"],
+    "strict": true
   },
   "references": [
-    { "path": "./tsconfig.src.json" },
+    { "path": "./tsconfig.build.json" },
     { "path": "./tsconfig.node.json" },
   ],
-  "exclude": ["**/node_modules", "**/__tests__"]
+  "exclude": ["**/node_modules", "**/__tests__", "__tests__"]
 }

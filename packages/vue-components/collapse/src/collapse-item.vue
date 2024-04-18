@@ -33,13 +33,13 @@ const slots = useSlots();
 defineOptions({
   name: 'MCollapseItem'
 });
-const { vnode: { key } } = getCurrentInstance();
-if (key === undefined) {
-  console.log('[Collapse-Item]: You haven\'t set the key, so you may not be able to fold it');
+const { vnode: { key } } = getCurrentInstance()!;
+if (key === undefined || key === null) {
+  throw new Error('[Collapse-Item]: You haven\'t set the key, so you may not be able to fold it');
 }
 const props = defineProps(collapseItemProps);
 const { title } = toRefs(props);
-const collapsed = inject<CollapseProvide>(CONSTANT, null);
+const collapsed = inject<CollapseProvide>(CONSTANT)!;
 const disabled = computed(() => collapsed.disabledKeys.some((k) => k.value === key) || props.disabled);
 const open = computed(() => collapsed.modelValue.includes(key));
 watch(open, () => {
