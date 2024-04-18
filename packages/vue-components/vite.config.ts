@@ -1,7 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { join } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -46,11 +45,11 @@ export default defineConfig({
     alias: [
       {
         find: /^@mirai-ui\/vue-(?!components\b)(.*)$/,
-        replacement: join(__dirname, '.')
+        replacement: new URL('./$1', import.meta.url).pathname
       },
       {
         find: /^@mirai-ui\/theme$/,
-        replacement: join(__dirname, '../theme')
+        replacement: new URL('../theme', import.meta.url).pathname
       }
     ]
   }
