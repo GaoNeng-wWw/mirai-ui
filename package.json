@@ -2,10 +2,12 @@
   "private": true,
   "packageManager": "pnpm@8.15.3",
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
     "@commitlint/config-conventional": "^19.0.3",
     "@types/node": "^20.11.25",
     "@vitest/coverage-v8": "^1.4.0",
+    "changeset": "^0.2.6",
     "commitlint": "^19.0.3",
     "concurrently": "^8.2.2",
     "esno": "^4.7.0",
@@ -31,7 +33,9 @@
     "build:lib-entry": "rimraf packages/vue-components/index.ts && esno ./internal/src/create-lib-entry.ts",
     "build:site-vue": "pnpm build:vue-props-table-data && pnpm -C docs docs:build",
     "test:unit": "pnpm -C packages/vue-components test",
-    "test:cov": "pnpm -C packages/vue-components test:cov"
+    "test:cov": "pnpm -C packages/vue-components test:cov",
+    "version": "changeset version && pnpm install",
+    "changeset": "changeset"
   },
   "dependencies": {
     "cva": "1.0.0-beta.1"
