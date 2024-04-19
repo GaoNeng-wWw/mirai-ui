@@ -7,6 +7,9 @@ on:
 
 permissions: {}
 
+env:
+  HUSKY: 0
+
 jobs:
   Release:
     if: github.repository == 'GaoNeng-wWw/mirai-ui'
