@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-tag",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "devDependencies": {
     "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.19",

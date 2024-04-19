@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-button",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
     "@miraiui-org/theme": "workspace:^",
