@@ -34,7 +34,7 @@
     "build:site-vue": "pnpm build:vue-props-table-data && pnpm -C docs docs:build",
     "test:unit": "pnpm -C packages/vue-components test",
     "test:cov": "pnpm -C packages/vue-components test:cov",
-    "version": "changeset version && pnpm install",
+    "version": "changeset version",
     "changeset": "changeset"
   },
   "dependencies": {
