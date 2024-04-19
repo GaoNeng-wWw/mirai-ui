@@ -1,5 +1,5 @@
 {
-  "name": "@mirai-ui/theme",
+  "name": "@miraiui-org/theme",
   "version": "0.0.0",
   "description": "",
   "types": "./dist/index.d.ts",

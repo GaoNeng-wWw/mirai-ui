@@ -22,5 +22,5 @@
 </template>
 
 <script setup lang="ts">
-import {Tag} from '@mirai-ui/vue-components';
+import {Tag} from '@miraiui-org/vue-components';
 </script>

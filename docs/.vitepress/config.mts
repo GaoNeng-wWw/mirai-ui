@@ -48,11 +48,11 @@ export default defineConfig({
     resolve:{
       alias: [
         {
-          find: /^@mirai-ui\/vue-(?!components\b)(.*)$/,
+          find: /^@miraiui-org\/vue-(?!components\b)(.*)$/,
           replacement: join(__dirname, '../../packages/vue-components/$1')
         },
         {
-          find: /^@mirai-ui\/theme$/,
+          find: /^@miraiui-org\/theme$/,
           replacement: join(__dirname, '../../packages/theme')
         }
       ]

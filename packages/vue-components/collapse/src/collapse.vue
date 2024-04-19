@@ -4,7 +4,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { collapse } from '@mirai-ui/theme';
+import { collapse } from '@miraiui-org/theme';
 import { collapseProps, CONSTANT } from './collapse.props';
 import { computed, onMounted, provide, reactive, toRefs } from 'vue';
 import { useDirty } from './useDirty';

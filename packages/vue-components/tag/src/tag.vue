@@ -4,7 +4,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { tag } from '@mirai-ui/theme';
+import { tag } from '@miraiui-org/theme';
 import { tagProps } from './tag.props';
 import { computed } from 'vue';
 const COMPONENT_NAME='MTag';

@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Collapse, CollapseItem} from '@mirai-ui/vue-components';
+import {Collapse, CollapseItem} from '@miraiui-org/vue-components';
 import { computed, ref } from 'vue';
 const actived = ref(['item-1']);
 const logs = ref([]);

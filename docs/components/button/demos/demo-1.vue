@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ButtonShape, Button as MButton} from '@mirai-ui/vue-components';
+import {ButtonShape, Button as MButton} from '@miraiui-org/vue-components';
 import { ref } from 'vue';
 const shape = ref<ButtonShape>('solid');
 const isDisabled = ref(false);

@@ -1,2 +1,2 @@
-# @mirai-ui/vue-components
+# @miraiui-org/vue-components
 

@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Button as MButton} from '@mirai-ui/vue-components';
+import {Button as MButton} from '@miraiui-org/vue-components';
 import { ref } from 'vue';
 const isDisabled = ref(false);
 </script>

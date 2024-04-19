@@ -1,8 +1,8 @@
 {
-  "name": "@mirai-ui/vue-transition-collapse",
+  "name": "@miraiui-org/vue-transition-collapse",
   "version": "0.0.0",
   "devDependencies": {
-    "@mirai-ui/theme": "workspace:^",
+    "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.19",
     "vue-tsc": "^1.8.27"
   },

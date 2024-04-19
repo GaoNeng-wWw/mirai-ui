@@ -48,7 +48,7 @@ describe('camelCase(name)', ()=>{
     `,
             [join(root, name, 'package.json')]: `
 {
-  "name": "@mirai-ui/vue-${name}",
+  "name": "@miraiui-org/vue-${name}",
   "version": "${packages.version}",
   "dependencies": {},
   "devDependencies": {},
@@ -93,7 +93,7 @@ describe('camelCase(name)', ()=>{
             }
         }
         shell.cd(join(root, name))
-        .exec(`pnpm i vue vue-tsc @mirai-ui/theme --save-dev --filter @mirai-ui/vue-${name}`)
+        .exec(`pnpm i vue vue-tsc @miraiui-org/theme --save-dev --filter @miraiui-org/vue-${name}`)
         return true;
     }
 } as const;

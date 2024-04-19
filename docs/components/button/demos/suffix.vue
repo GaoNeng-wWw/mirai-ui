@@ -10,5 +10,5 @@
 </template>
 
 <script setup lang="ts">
-import {Button as MButton} from '@mirai-ui/vue-components';
+import {Button as MButton} from '@miraiui-org/vue-components';
 </script>

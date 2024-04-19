@@ -1,5 +1,5 @@
 {
-  "name": "@mirai-ui/docs",
+  "name": "@miraiui-org/docs",
   "private": "true",
   "version": "1.0.0",
   "description": "",
@@ -14,8 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/types": "^7.24.0",
-    "@mirai-ui/theme": "workspace:^",
-    "@mirai-ui/vue-components": "workspace:^",
+    "@miraiui-org/theme": "workspace:^",
+    "@miraiui-org/vue-components": "workspace:^",
     "@tailwindcss/typography": "^0.5.10",
     "@types/markdown-it": "^13.0.7",
     "@types/markdown-it-container": "^2.0.9",

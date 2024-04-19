@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Collapse, CollapseItem} from '@mirai-ui/vue-components';
+import {Collapse, CollapseItem} from '@miraiui-org/vue-components';
 import { ref } from 'vue';
 const actived = ref(['item-1']);
 // const disabledKeys = ref(["item-1"]);
