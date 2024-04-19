@@ -29,7 +29,7 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm exec changeset publish
-          version: pnpm run version
+          version: pnpm exec changeset version
           commit: '[ci]: release'
           title: '[ci]: release'
         env:
