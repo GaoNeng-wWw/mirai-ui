@@ -2,14 +2,14 @@
   "mode": "pre",
   "tag": "alpha",
   "initialVersions": {
-    "@miraiui-org/docs": "1.0.0",
-    "@miraiui-org/internal": "1.0.0",
-    "@miraiui-org/theme": "1.0.0",
-    "@miraiui-org/vue-components": "1.0.0",
-    "@miraiui-org/vue-button": "1.0.0",
-    "@miraiui-org/vue-collapse": "1.0.0",
-    "@miraiui-org/vue-tag": "1.0.0",
-    "@miraiui-org/vue-transition-collapse": "1.0.0"
+    "@miraiui-org/docs": "0.0.0",
+    "@miraiui-org/internal": "0.0.0",
+    "@miraiui-org/theme": "0.0.0",
+    "@miraiui-org/vue-components": "0.0.0",
+    "@miraiui-org/vue-button": "0.0.0",
+    "@miraiui-org/vue-collapse": "0.0.0",
+    "@miraiui-org/vue-tag": "0.0.0",
+    "@miraiui-org/vue-transition-collapse": "0.0.0"
   },
   "changesets": []
 }
