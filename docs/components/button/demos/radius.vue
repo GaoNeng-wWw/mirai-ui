@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Button as MButton, ButtonRadius} from '@mirai-ui/vue-components';
+import {Button as MButton, ButtonRadius} from '@miraiui-org/vue-components';
 import { ref } from 'vue';
 
 const size = ref<ButtonRadius>('md')

@@ -13,12 +13,12 @@ export default defineConfig({
       formats: ['es', 'umd'],
     },
     rollupOptions:{
-      external: ['vue', '@mirai-ui/theme'],
+      external: ['vue', '@miraiui-org/theme'],
       output:{
         exports: 'named',
         globals:{
           vue: 'Vue',
-          '@mirai-ui/theme': '@mirai-ui/theme'
+          '@miraiui-org/theme': '@miraiui-org/theme'
         },
       },
     },
@@ -44,11 +44,11 @@ export default defineConfig({
   resolve:{
     alias: [
       {
-        find: /^@mirai-ui\/vue-(?!components\b)(.*)$/,
+        find: /^@miraiui-org\/vue-(?!components\b)(.*)$/,
         replacement: new URL('./$1', import.meta.url).pathname
       },
       {
-        find: /^@mirai-ui\/theme$/,
+        find: /^@miraiui-org\/theme$/,
         replacement: new URL('../theme', import.meta.url).pathname
       }
     ]

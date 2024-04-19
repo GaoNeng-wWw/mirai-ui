@@ -8,7 +8,7 @@
   </button>
 </template>
 <script setup lang="ts">
-import { button } from '@mirai-ui/theme';
+import { button } from '@miraiui-org/theme';
 import { computed, toRefs } from 'vue';
 import { buttonProp } from './button.props';
 import LoadingSvg from './loading.vue';

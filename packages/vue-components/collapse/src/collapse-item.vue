@@ -22,8 +22,8 @@
 </template>
 <script lang="ts" setup>
 import type { CollapseProvide } from './collapse.type';
-import { TransitionCollapse } from '@mirai-ui/vue-transition-collapse';
-import { collapseBody, collapseHeader } from '@mirai-ui/theme';
+import { TransitionCollapse } from '@miraiui-org/vue-transition-collapse';
+import { collapseBody, collapseHeader } from '@miraiui-org/theme';
 import ArrowDown from './icons/arrow-down.vue';
 import { computed, getCurrentInstance, inject, toRefs, useSlots, watch } from 'vue';
 import { collapseItemProps, CONSTANT } from './collapse.props';

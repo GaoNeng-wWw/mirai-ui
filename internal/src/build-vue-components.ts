@@ -10,11 +10,11 @@ const baseConfig = defineConfig({
 });
 
 const rollupOptions:Rollup.RollupOptions = {
-  external: ['vue', '@mirai-ui/theme', /@mirai-ui.*/],
+  external: ['vue', '@miraiui-org/theme', /@miraiui-org.*/],
   output: {
     globals: {
       vue: 'Vue',
-      '@mirai-ui/theme': '@mirai-ui/theme'
+      '@miraiui-org/theme': '@miraiui-org/theme'
     },
     extend: true,
     exports: 'named'

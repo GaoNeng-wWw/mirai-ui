@@ -4,8 +4,8 @@
       "types": [],
       "baseUrl": ".",
       "paths": {
-        "@mirai-ui/vue-*": ["../packages/vue-components"],
-        "@mirai-ui/theme": ["../packages/theme"]
+        "@miraiui-org/vue-*": ["../packages/vue-components"],
+        "@miraiui-org/theme": ["../packages/theme"]
       },
       "esModuleInterop": true,
       "resolveJsonModule": true

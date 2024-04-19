@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import {TransitionCollapse, Button} from '@mirai-ui/vue-components';
+import {TransitionCollapse, Button} from '@miraiui-org/vue-components';
 import { ref } from 'vue';
 const show = ref(true);
 </script>

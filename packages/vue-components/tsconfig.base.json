@@ -18,7 +18,7 @@
     "lib": [],
     "types": [],
     "paths": {
-      "@mirai-ui/vue-*": ["./"],
+      "@miraiui-org/vue-*": ["./"],
       "@miria-ui/theme": ["../theme"],
     }
   }
