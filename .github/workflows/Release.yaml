@@ -5,7 +5,8 @@ on:
     branches:
       - main
 
-permissions: {}
+env:
+  HUSKY: 0
 
 jobs:
   Release:
@@ -25,13 +26,14 @@ jobs:
         with:
           node-version: 16.x
       - run: pnpm install
-
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
           publish: pnpm exec changeset publish
-          version: pnpm run version
+          version: pnpm exec changeset version
+          commit: '[ci]: release'
+          title: '[ci]: release'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
