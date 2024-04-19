@@ -20,7 +20,6 @@
     "paths": {
       "@mirai-ui/vue-*": ["./"],
       "@miria-ui/theme": ["../theme"],
-      "@mirai-ui/theme/*": ["../theme/*"]
     }
   }
 }
