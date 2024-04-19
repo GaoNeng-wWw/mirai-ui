@@ -7,4 +7,4 @@
 "@miraiui-org/theme": major
 ---
 
-1.0.0 alpha is ready
+1.0.0 alpha is ready.
