@@ -11,5 +11,7 @@
     "@miraiui-org/vue-tag": "0.0.0",
     "@miraiui-org/vue-transition-collapse": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "slow-birds-knock"
+  ]
 }
