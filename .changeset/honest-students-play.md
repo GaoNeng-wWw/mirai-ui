@@ -1,10 +1,10 @@
 ---
-"@mirai-ui/vue-transition-collapse": major
-"@mirai-ui/vue-collapse": major
-"@mirai-ui/vue-button": major
-"@mirai-ui/vue-tag": major
-"@mirai-ui/vue-components": major
-"@mirai-ui/theme": major
+"@miraiui-org/vue-transition-collapse": major
+"@miraiui-org/vue-collapse": major
+"@miraiui-org/vue-button": major
+"@miraiui-org/vue-tag": major
+"@miraiui-org/vue-components": major
+"@miraiui-org/theme": major
 ---
 
 1.0.0 alpha is ready
