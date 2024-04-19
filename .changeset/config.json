@@ -7,8 +7,8 @@
   "baseBranch": "dev",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@miraiui-org/docs",
-    "@miraiui-org/internal"
+    "../docs",
+    "../internal"
   ],
   "changelog": [
     "@changesets/changelog-github",
