@@ -1,0 +1,13 @@
+# @miraiui-org/vue-collapse
+
+## 1.0.0-1.0.0.1
+
+### Major Changes
+
+- [#24](https://github.com/GaoNeng-wWw/mirai-ui/pull/24) [`fc62cae`](https://github.com/GaoNeng-wWw/mirai-ui/commit/fc62cae8af0ec06561cdcf964bdfe4733be9448b) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - 1.0.0 alpha is ready
+
+### Patch Changes
+
+- Updated dependencies [[`fc62cae`](https://github.com/GaoNeng-wWw/mirai-ui/commit/fc62cae8af0ec06561cdcf964bdfe4733be9448b)]:
+  - @miraiui-org/vue-transition-collapse@1.0.0-1.0.0.1
+  - @miraiui-org/theme@1.0.0-1.0.0.1

@@ -1,8 +1,8 @@
 {
   "name": "@miraiui-org/vue-components",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-1.0.0.1",
   "type": "module",
-  "license":"MIT",
+  "license": "MIT",
   "description": "Mirai ui vue components",
   "keywords": [
     "vue",
@@ -11,7 +11,9 @@
     "design",
     "tailwindcss"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": " vue-tsc -p tsconfig.build.json --composite false --declaration --emitDeclarationOnly && vite build",

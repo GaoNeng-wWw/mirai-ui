@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/theme",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-1.0.0.1",
   "description": "",
   "types": "./dist/index.d.ts",
   "main": "./dist",
@@ -14,7 +14,9 @@
     "tailwindcss",
     "component-library"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
