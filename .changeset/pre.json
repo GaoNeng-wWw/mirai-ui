@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "1.0.0",
+  "initialVersions": {
+    "@miraiui-org/theme": "1.0.0-alpha.0",
+    "@miraiui-org/vue-components": "1.0.0-alpha.0",
+    "@miraiui-org/vue-button": "1.0.0-alpha.0",
+    "@miraiui-org/vue-collapse": "1.0.0-alpha.0",
+    "@miraiui-org/vue-tag": "1.0.0-alpha.0",
+    "@miraiui-org/vue-transition-collapse": "1.0.0-alpha.0"
+  },
+  "changesets": []
+}

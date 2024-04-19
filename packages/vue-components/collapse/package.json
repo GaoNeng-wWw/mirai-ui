@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-collapse",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "devDependencies": {
     "vue": "^3.4.19",
     "vue-tsc": "^1.8.27"
