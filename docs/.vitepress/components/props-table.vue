@@ -96,7 +96,7 @@ const tableData = computed(() => {
   for (const item of data.value){
     const tmp:string[] = [];
     for (const {id} of index){
-      if (id === 'name' || id === 'type'){
+      if (id === 'name' || id === 'type' || id === 'defaultValue'){
         tmp.push(item[id]);
       } else {
         if (item[id]?.[shortLang.value] || item[id]?.['en']){

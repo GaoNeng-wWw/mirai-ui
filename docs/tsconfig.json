@@ -17,6 +17,7 @@
       ".vitepress/**/*.vue",
       ".vitepress/**/*.mts",
       "../packages/vue-components/**/*",
+      "../packages/theme/**/*",
       "./docs/components/**/*.md"
     ],
     "exclude": ["__tests__"]
