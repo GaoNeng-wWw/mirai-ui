@@ -12,6 +12,7 @@
     "@miraiui-org/vue-transition-collapse": "0.0.0"
   },
   "changesets": [
+    "hot-chefs-look",
     "slow-birds-knock"
   ]
 }
