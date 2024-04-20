@@ -26,3 +26,11 @@
 
 :::props collapse
 :::
+
+## Types
+
+```typescript
+export type CollapseSize = 'sm' | 'md' | 'lg';
+export type CollapseRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
+export type CollapseColor = 'default' | 'primary' | 'success'| 'danger' | 'warning';
+```
