@@ -7,7 +7,7 @@
         </div>
       </slot>
       <span>
-        {{ title }} - {{ disabled ? 'true' : 'false' }}
+        {{ title }}
       </span>
       <div class="shrink-0 basis-auto" v-if="slots.suffix">
         <slot name="suffix" />
