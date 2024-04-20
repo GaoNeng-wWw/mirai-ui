@@ -92,6 +92,5 @@ fg('**/index.ts', {
       componentName: camelcase(sourcefile.getFilePath().toString().split('/').at(-2))
     })
   }
-  console.log(entryExport)
   buildEntry(entryExport)
 })
