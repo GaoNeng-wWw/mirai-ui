@@ -4,7 +4,7 @@
       "types": [],
       "baseUrl": ".",
       "paths": {
-        "@miraiui-org/vue-*": ["../packages/vue-components"],
+        "@miraiui-org/vue-components": ["../packages/vue-components"],
         "@miraiui-org/theme": ["../packages/theme"]
       },
       "esModuleInterop": true,

@@ -54,6 +54,10 @@ export default defineConfig({
         {
           find: /^@miraiui-org\/theme$/,
           replacement: join(__dirname, '../../packages/theme')
+        },
+        {
+          find: /^@miraiui-org\/vue-components$/,
+          replacement: join(__dirname, '../../packages/vue-components/index.ts')
         }
       ]
     }
