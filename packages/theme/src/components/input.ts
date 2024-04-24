@@ -130,7 +130,7 @@ export const labelStyle = cva({
     },
     {
       labelPosition: 'top',
-      class: 'absolute'
+      class: ['absolute', 'scale-90', 'text-opacity-90']
     },
     {
       labelPosition: 'top-motion',
@@ -287,7 +287,7 @@ export const inputInnerWrapper = cva({
 
 export const input = cva({
   base: [
-    'w-full', 'h-full', 'group-data-[focus=false]:cursor-pointer'
+    'w-full', 'h-full', 'group-data-[focus=false]:cursor-pointer', 'placeholder:leading-none'
   ],
   variants:{
     labelPosition: {
@@ -296,10 +296,14 @@ export const input = cva({
       'top-motion': ['!h-auto'],
     },
     size: {
-      sm: [],
-      md: [],
-      lg: [],
+      sm: ['placeholder:text-xs'],
+      md: ['placeholder:text-sm'],
+      lg: ['placeholder:text-base'],
     },
+    error: {
+      false: [],
+      true: ['placeholder:text-danger-600']
+    }
   }
 });
 

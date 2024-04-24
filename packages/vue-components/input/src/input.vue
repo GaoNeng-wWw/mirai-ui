@@ -5,7 +5,7 @@
       <div :class="mainWrapperStyle">
         <div :class="inputInnerWrapperStyle">
           <slot name="prefix"/>
-          <input :aria-label="label" v-model="modelValue" id="test" :class="inputStyle" @focus="onFocus" @blur="onBlur" ref="inputEl" />
+          <input :aria-label="label" v-model="modelValue" id="test" :class="inputStyle" @focus="onFocus" @blur="onBlur" ref="inputEl" :placeholder="prop.placeholder" />
           <slot name="suffix"/> 
         </div>
         <div v-if="prop.error && prop.labelPosition === 'left'">
