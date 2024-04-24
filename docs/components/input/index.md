@@ -8,7 +8,6 @@
 
 ## 错误态
 
-
 通过设置`error`属性可以设置输入框的错误态. 结合`error-message`可以实现对错误数据的提示
 
 :::demo input/error
@@ -21,7 +20,12 @@
 :::demo input/variants
 :::
 
+## Label不同位置
 
+通过设置`label-position`属性，可以设置输入框label的不同位置
+
+:::demo input/different-label-position
+:::
 
 ## 多种颜色
 

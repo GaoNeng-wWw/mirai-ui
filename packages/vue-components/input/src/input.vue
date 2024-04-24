@@ -2,19 +2,26 @@
   <div>
     <div :class="inputWrapperClass" :data-focus="focus || modelValue.length > 0" @click="focusInput">
       <label role="label" :class="labelClass" id="test" v-if="prop.label.length">{{ prop.label }}</label>
-      <div :class="inputInnerWrapperStyle">
-        <slot name="prefix"/>
-        <input :aria-label="label" v-model="modelValue" id="test" :class="inputStyle" @focus="onFocus" @blur="onBlur" ref="inputEl" />
-        <slot name="suffix"/> 
+      <div :class="mainWrapperStyle">
+        <div :class="inputInnerWrapperStyle">
+          <slot name="prefix"/>
+          <input :aria-label="label" v-model="modelValue" id="test" :class="inputStyle" @focus="onFocus" @blur="onBlur" ref="inputEl" />
+          <slot name="suffix"/> 
+        </div>
+        <div v-if="prop.error && prop.labelPosition === 'left'">
+          <span class="text-danger text-sm">{{ prop.errorMessage }}</span>
+        </div>
       </div>
     </div>
-    <span v-if="prop.error" class="text-danger text-sm">{{ prop.errorMessage }}</span>
+    <div v-if="prop.error && prop.labelPosition !== 'left'">
+      <span class="text-danger text-sm">{{ prop.errorMessage }}</span>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { inputProp } from './input.props';
-import { inputWrapper, labelStyle, inputInnerWrapper, input } from '@miraiui-org/theme';
+import { inputWrapper, labelStyle, inputInnerWrapper, input, mainWrapper } from '@miraiui-org/theme';
 
 const COMPONENT_NAME='MInput';
 defineOptions({
@@ -26,6 +33,7 @@ const inputWrapperClass = computed(() => inputWrapper(prop));
 const labelClass = computed(() => labelStyle(prop));
 const inputInnerWrapperStyle = computed(() => inputInnerWrapper(prop));
 const inputStyle = computed(() => input(prop));
+const mainWrapperStyle = computed(() => mainWrapper(prop));
 const focus = ref(false);
 const inputEl = ref<HTMLInputElement | null>(null);
 const onFocus = () => {
