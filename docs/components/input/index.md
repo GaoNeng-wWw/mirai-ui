@@ -47,3 +47,8 @@
 
 :::demo input/placeholder
 :::
+
+## 插槽
+
+:::demo input/slot
+:::

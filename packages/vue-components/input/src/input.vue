@@ -4,9 +4,13 @@
       <label role="label" :class="labelClass" id="test" v-if="prop.label.length">{{ prop.label }}</label>
       <div :class="mainWrapperStyle">
         <div :class="inputInnerWrapperStyle">
-          <slot name="prefix"/>
+          <div class="grow shrink-0">
+            <slot name="prefix"/>
+          </div>
           <input :aria-label="label" v-model="modelValue" id="test" :class="inputStyle" @focus="onFocus" @blur="onBlur" ref="inputEl" :placeholder="prop.placeholder" />
-          <slot name="suffix"/> 
+          <div class="grow shrink-0">
+            <slot name="suffix" /> 
+          </div>
         </div>
         <div v-if="prop.error && prop.labelPosition === 'left'">
           <span class="text-danger text-sm">{{ prop.errorMessage }}</span>

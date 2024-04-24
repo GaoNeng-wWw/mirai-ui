@@ -6,7 +6,7 @@ export const inputWrapper = cva({
   ],
   variants: {
     labelPosition:{
-      'left': ['flex-row', 'bg-transparent hover:bg-transparent', 'items-baseline'],
+      'left': ['flex-row', 'bg-transparent hover:bg-transparent', 'items-center'],
       'top': 'flex-col',
       'top-motion': 'flex-col'
     },
@@ -168,7 +168,7 @@ export const labelStyle = cva({
 } as const);
 
 export const inputInnerWrapper = cva({
-  base: ['flex', 'w-full', ' items-end', 'cursor-pointer'],
+  base: ['flex', 'w-full', ' items-end', 'cursor-pointer', 'gap-2'],
   variants: {
     labelPosition: {
       'left': ['px-2'],
