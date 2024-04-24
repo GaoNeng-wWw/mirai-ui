@@ -68,21 +68,56 @@ export const inputWrapper = cva({
       error: false,
       class: ['bg-success-100 hover:bg-success-200', '*:text-success-600']
     },
+    {
+      variant: 'border',
+      class: ['border-2'],
+    },
+    {
+      variant: 'border',
+      error: true,
+      class: ['border-2', 'border-danger', '*:text-danger-600'],
+    },
+    {
+      variant: 'border',
+      colors: 'default',
+      error: false,
+      class: ['border-default hover:border-default-400', 'data-[focus=true]:border-default-400']
+    },
+    {
+      variant: 'border',
+      colors: 'primary',
+      error: false,
+      class: ['border-primary hover:border-primary-400 data-[focus=true]:hover:border-primary-400', '*:text-primary-600']
+    },
+    {
+      variant: 'border',
+      colors: 'warning',
+      error: false,
+      class: ['border-warning hover:border-warning-400 data-[focus=true]:hover:border-warning-400', '*:text-warning-600'],
+    },
+    {
+      variant: 'border',
+      colors: 'danger',
+      class: ['border-danger hover:border-danger-400 data-[focus=true]:hover:border-danger-400', '*:text-danger-600'],
+    },
+    {
+      variant: 'border',
+      colors: 'success',
+      error: false,
+      class: ['border-success hover:border-success-400 data-[focus=true]:hover:border-success-400', '*:text-success-600']
+    },
   ]
 });
 export const labelStyle = cva({
   base: [
-    'transition-all', 'absolute', 'z-10', 'origin-top-left', 'text-opacity-100', 'group-data-[focus=true]:text-opacity-80', 'cursor-pointer'
+    'transition-all', 'absolute', 'z-10', 'origin-top-left', 'text-opacity-100', 'group-data-[focus=true]:text-opacity-90', 'group-data-[focus=true]:scale-90', 'cursor-pointer'
   ],
   variants: {
     labelPosition:{
       'left-motion': [],
       'left': [],
       'top': [],
-      'top-motion': [
-        // 'group-data-[focus=false]:translate-y-1/4',
-        // 'group-data-[focus=true]:translate-y-0 group-data-[focus=true]:scale-[.85]'
-      ]
+      'top-motion': []
     },
     size: {
       sm: ['group-data-[focus=false]:translate-y-[calc(50%_+_calc(theme(fontSize.base)_/_2)_-_calc(theme(lineHeight[5])_/_2))]', 'text-sm'],

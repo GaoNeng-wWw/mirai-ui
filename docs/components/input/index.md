@@ -14,6 +14,15 @@
 :::demo input/error
 :::
 
+## 不同形态
+
+通过设置`variants`属性，可以设置输入框的不同形态
+
+:::demo input/variants
+:::
+
+
+
 ## 多种颜色
 
 `colors`属性支持`default | primary | danger | warning | success`颜色
