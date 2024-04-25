@@ -1,361 +1,202 @@
 import { cva, VariantProps } from 'cva';
 
-export const inputWrapper = cva({
+/**
+ <div>
+   <label></label>            <!-- outside label -->
+   <div>                      <!-- inner wrapper -->
+     <label></label>          <!-- inner label -->
+     <div>                    <!-- main component wrapper -->
+       <slot name="prefix" /> <!-- prefix slot -->
+       <input />              <!-- input -->
+       <slot name="suffix" /> <!-- suffix slot -->
+     </div>
+   </div>
+   <div>                      <!--description wrapper -->
+     <span></span>            <!-- description content -->
+   </div>
+ </div>
+ */
+export const base = cva({
   base: [
-    'relative', 'flex', 'gap-2', 'group', 'p-2', 'cursor-pointer', 'transition'
+    'w-full', 'flex', 'flex-col', 'overflow-hidden', 'group', 'relative', 'p-2'
   ],
   variants: {
-    labelPosition:{
-      'left': ['flex-row', 'bg-transparent hover:bg-transparent', 'items-center'],
-      'top': 'flex-col',
-      'top-motion': 'flex-col'
-    },
     size: {
-      sm: ['rounded-sm'],
-      md: ['rounded-md'],
-      lg: ['rounded-lg'],
+      sm: ['rounded-sm', '*:text-sm'],
+      md: ['rounded-md', '*:text-base'],
+      lg: ['rounded-lg', '*:text-lg']
     },
-    colors:{
-      default: [],
-      primary: [],
-      warning: [],
-      danger: [],
-      success: []
+    colors: {
+      default: ['bg-default', 'hover:bg-default-200', 'hover:border-default-300'],
+      primary: ['bg-primary-100', 'hover:bg-primary-200', 'hover:border-primary-500', '*:text-primary-600'],
+      warning: ['bg-warning-100', 'hover:bg-warning-200', 'hover:border-warning-200', '*:text-warning-600'],
+      danger:  ['bg-danger-100', 'hover:bg-danger-200', 'hover:border-danger-200', '*:text-danger-600'],
+      success: ['bg-success-100', 'hover:bg-success-200', 'hover:border-success-200', '*:text-success-600'],
     },
-    variant:{
-      fill: [],
-      border: [],
-    },
-    error: {
-      true: [],
-      false: []
+    labelPosition: {
+      'top-outside': 'border-none bg-transparent p-0 hover:bg-transparent',
+      'top-inside': 'border-none !bg-transparent p-0 hover:!bg-transparent',
+      'left-outside': '!flex-row items-baseline gap-2 border-none bg-transparent p-0 hover:bg-transparent',
     }
-  },
-
-  compoundVariants: [
-    {
-      variant: 'fill',
-      error: true,
-      class: ['bg-danger-100 hover:bg-danger-200', '*:text-danger-600']
-    },
-    {
-      variant: 'fill',
-      colors: 'default',
-      error: false,
-      class: ['bg-default-200 hover:bg-default-300']
-    },
-    {
-      variant: 'fill',
-      colors: 'primary',
-      error: false,
-      class: ['bg-primary-100 hover:bg-primary-200', '*:text-primary-600']
-    },
-    {
-      variant: 'fill',
-      colors: 'warning',
-      error: false,
-      class: ['bg-warning-100 hover:bg-warning-200', '*:text-warning-600'],
-    },
-    {
-      variant: 'fill',
-      colors: 'danger',
-      class: ['bg-danger-100 hover:bg-danger-200', '*:text-danger-600'],
-    },
-    {
-      variant: 'fill',
-      colors: 'success',
-      error: false,
-      class: ['bg-success-100 hover:bg-success-200', '*:text-success-600']
-    },
-    {
-      variant: 'border',
-      class: ['border-2'],
-    },
-    {
-      variant: 'border',
-      error: true,
-      class: ['border-2', 'border-danger', '*:text-danger-600'],
-    },
-    {
-      variant: 'border',
-      colors: 'default',
-      error: false,
-      class: ['border-default hover:border-default-400', 'data-[focus=true]:border-default-400']
-    },
-    {
-      variant: 'border',
-      colors: 'primary',
-      error: false,
-      class: ['border-primary hover:border-primary-400 data-[focus=true]:hover:border-primary-400', '*:text-primary-600']
-    },
-    {
-      variant: 'border',
-      colors: 'warning',
-      error: false,
-      class: ['border-warning hover:border-warning-400 data-[focus=true]:hover:border-warning-400', '*:text-warning-600'],
-    },
-    {
-      variant: 'border',
-      colors: 'danger',
-      class: ['border-danger hover:border-danger-400 data-[focus=true]:hover:border-danger-400', '*:text-danger-600'],
-    },
-    {
-      variant: 'border',
-      colors: 'success',
-      error: false,
-      class: ['border-success hover:border-success-400 data-[focus=true]:hover:border-success-400', '*:text-success-600']
-    },
-  ]
+  }
 });
-export const labelStyle = cva({
-  base: [
-    'transition-all', 'z-10', 'origin-top-left', 'text-opacity-100', 'cursor-pointer'
-  ],
+export const outsideLabel = cva({
+  base: [],
   variants: {
-    labelPosition:{
-      'left': [],
-      'top': [],
-      'top-motion': []
+    colors: {
+      default: ['text-default-foreground'],
+      primary: ['text-primary-600'],
+      warning: ['text-warning-600'],
+      danger: ['text-danger-600'],
+      success: ['text-success-600'],
     },
     size: {
       sm: ['text-sm'],
       md: ['text-base'],
-      lg: ['text-lg'],
-    }
-  },
-  compoundVariants:[
-    {
-      labelPosition: 'top-motion',
-      class: 'absolute'
+      lg: ['text-lg']
     },
-    {
-      labelPosition: 'top',
-      class: ['absolute', 'scale-90', 'text-opacity-90']
-    },
-    {
-      labelPosition: 'top-motion',
-      size: 'sm',
-      class: [
-        'group-data-[focus=true]:text-opacity-90',
-        'group-data-[focus=true]:scale-90',
-        'group-data-[focus=false]:translate-y-[calc(50%_+_calc(theme(fontSize.base)_/_2)_-_calc(theme(lineHeight[5])_/_2))]'
-      ]
-    },
-    {
-      labelPosition: 'top-motion',
-      size: 'md',
-      class:[
-        'group-data-[focus=true]:text-opacity-90',
-        'group-data-[focus=true]:scale-90',
-        'group-data-[focus=false]:translate-y-[calc(50%_+_calc(theme(fontSize.base)_/_2)_-_calc(theme(lineHeight[6])_/_2))]'
-      ]
-    },
-    {
-      labelPosition: 'top-motion',
-      size: 'lg',
-      class: [
-        'group-data-[focus=true]:text-opacity-90',
-        'group-data-[focus=true]:scale-90',
-        'group-data-[focus=false]:translate-y-[calc(50%_+_calc(theme(fontSize.lg)_/_2)_-_calc(theme(lineHeight[7])_/_2))]'
-      ]
-    },
-    {
-      labelPosition: 'left',
-      size: 'md',
-      class: 'static'
-    }
-  ]
-} as const);
-
-export const inputInnerWrapper = cva({
-  base: ['flex', 'w-full', ' items-end', 'cursor-pointer', 'gap-2'],
-  variants: {
     labelPosition: {
-      'left': ['px-2'],
-      'top': [],
-      'top-motion': []
-    },
-    size:{
-      sm: ['rounded-sm', 'h-8', 'text-sm', 'leading-none'],
-      md: ['rounded', 'h-10', 'text-base', 'leading-none'],
-      lg: ['rounded-lg', 'h-12', 'text-lg', 'leading-none'],
-    },
-    variant: {
-      fill: '',
-      border: ''
-    },
-    colors: {
-      default: '',
-      primary: '',
-      danger: '',
-      warning: '',
-      success: '',
+      'top-outside': 'origin-top-left scale-90',
+      'left-outside': '',
+      'top-inside': '',
     },
     error: {
-      false: '',
-      true: '',
-    }
-  },
-  compoundVariants: [
-    {
-      labelPosition: ['left'],
-      variant: 'fill',
-      error: true,
-      class: ['bg-danger-100 hover:bg-danger-200', '*:text-danger-600']
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'fill',
-      colors: 'default',
-      error: false,
-      class: ['bg-default-200 hover:bg-default-300']
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'fill',
-      colors: 'primary',
-      error: false,
-      class: ['bg-primary-100 hover:bg-primary-200', '*:text-primary-600']
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'fill',
-      colors: 'warning',
-      error: false,
-      class: ['bg-warning-100 hover:bg-warning-200', '*:text-warning-600'],
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'fill',
-      colors: 'danger',
-      class: ['bg-danger-100 hover:bg-danger-200', '*:text-danger-600'],
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'fill',
-      colors: 'success',
-      error: false,
-      class: ['bg-success-100 hover:bg-success-200', '*:text-success-600']
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'border',
-      class: ['border-2'],
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'border',
-      error: true,
-      class: ['border-2', 'border-danger', '*:text-danger-600'],
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'border',
-      colors: 'default',
-      error: false,
-      class: ['border-default hover:border-default-400', 'data-[focus=true]:border-default-400']
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'border',
-      colors: 'primary',
-      error: false,
-      class: ['border-primary hover:border-primary-400 data-[focus=true]:hover:border-primary-400', '*:text-primary-600']
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'border',
-      colors: 'warning',
-      error: false,
-      class: ['border-warning hover:border-warning-400 data-[focus=true]:hover:border-warning-400', '*:text-warning-600'],
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'border',
-      colors: 'danger',
-      class: ['border-danger hover:border-danger-400 data-[focus=true]:hover:border-danger-400', '*:text-danger-600'],
-    },
-    {
-      labelPosition: ['left'],
-      variant: 'border',
-      colors: 'success',
-      error: false,
-      class: ['border-success hover:border-success-400 data-[focus=true]:hover:border-success-400', '*:text-success-600']
-    },
-  ]
-});
-
-export const input = cva({
-  base: [
-    'w-full', 'h-full', 'group-data-[focus=false]:cursor-pointer', 'placeholder:leading-none'
-  ],
-  variants:{
-    labelPosition: {
-      'left': [],
-      'top': ['!h-auto'],
-      'top-motion': ['!h-auto'],
-    },
-    size: {
-      sm: ['placeholder:text-xs'],
-      md: ['placeholder:text-sm'],
-      lg: ['placeholder:text-base'],
-    },
-    error: {
-      false: [],
-      true: ['placeholder:text-danger-600']
+      true: '!text-danger-600',
+      fase: ''
     }
   }
 });
-
-export const mainWrapper = cva({
-  base: ['flex flex-col', 'w-full', 'cursor-pointer'],
+export const descriptionWrapper = cva({
+  base: ['w-full', 'group-data-[invalid=true]:!text-danger-600'],
   variants: {
-    labelPosition: {
-      'left': ['items-start'],
-      'top': [],
-      'top-motion': []
+    color: {
+      default: ['text-default-foreground'],
+      danger: ['text-danger-600']
+    }
+  }
+});
+export const innerWrapper = cva({
+  base: ['group', 'relative', 'w-full', 'transition-all'],
+  variants: {
+    variant: {
+      border: ['!bg-transparent', 'hover:!bg-transparent'],
+      fill: ['border-none']
     },
-    size:{
-      sm: [],
-      md: [],
-      lg: [],
+    labelPosition: {
+      'top-outside': '!bg-transparent hover:!bg-transparent',
+      'left-outside': '!bg-transparent hover:!bg-transparent',
+      'top-inside': 'p-2',
+    },
+    colors: {
+      default: ['bg-default-200', 'hover:bg-default-300', 'border-default', 'hover:border-default-400'],
+      primary: ['bg-primary-100', 'hover:bg-primary-200', 'border-primary', 'hover:border-primary-600', '*:text-primary-600'],
+      warning: ['bg-warning-100', 'hover:bg-warning-200', 'border-warning', 'hover:border-warning-600', '*:text-warning-600'],
+      danger:  ['bg-danger-100', 'hover:bg-danger-200', 'border-danger', 'hover:border-danger-600', '*:text-danger-600'],
+      success: ['bg-success-100', 'hover:bg-success-200', 'border-success', 'hover:border-success-600', '*:text-success-600'],
+    },
+    size: {
+      sm: ['rounded-sm'],
+      md: ['rounded'],
+      lg: ['rounded-lg'],
+    },
+  },
+  compoundVariants: [
+    {
+      variant: 'border',
+      labelPosition: ['top-inside', 'top-outside'],
+      class: 'border'
+    }
+  ]
+});
+export const innerLabel = cva({
+  base: [
+    'absolute',
+    'group-data-[focus=true]:-translate-y-1',
+    'group-data-[focus=true]:scale-90',
+    'translate-x-0',
+    'origin-top-left',
+    'transition'
+  ],
+  variants:{
+    size: {
+      sm: ['text-sm', 'translate-y-[calc(50%_-_theme(fontSize.sm)_+_calc(theme(lineHeight[5])_/_2))]'],
+      md: ['text-base', 'translate-y-[calc(50%_-_theme(fontSize.base)_+_calc(theme(lineHeight[6])_/_2))]'],
+      lg: ['text-lg', 'translate-y-[calc(50%_-_theme(fontSize.lg)_+_calc(theme(lineHeight[7])_/_2))]']
+    },
+    colors: {},
+    error: {
+      true: 'text-danger-600',
+      false: ''
+    }
+  }
+});
+export const mainComponentWrapper = cva({
+  base: [
+    'w-full', 'flex', 'transition-all'
+  ],
+  variants:{
+    size: {
+      sm: ['rounded-sm', 'h-8'],
+      md: ['rounded', 'h-10'],
+      lg: ['rounded-lg', 'h-12'],
+    },
+    labelPosition: {
+      'top-inside': ['items-end'],
+      'top-outside': ['px-2'],
+      'left-outside': ['px-2'],
+    },
+    colors: {
+      default: ['bg-default-200', 'hover:bg-default-300', 'border-default', 'hover:border-default-400'],
+      primary: ['bg-primary-100', 'hover:bg-primary-200', 'border-primary', 'hover:border-primary-200', '*:text-primary-600'],
+      warning: ['bg-warning-100', 'hover:bg-warning-200', 'border-warning', 'hover:border-warning-400', '*:text-warning-600'],
+      danger:  ['bg-danger-100', 'hover:bg-danger-200', 'border-danger', 'hover:border-danger-400', '*:text-danger-600'],
+      success: ['bg-success-100', 'hover:bg-success-200', 'border-success', 'hover:border-success-400', '*:text-success-600'],
+    },
+    error: {
+      true: [],
+      false: [],
+    },
+    variant: {
+      fill: ['!border-none'],
+      border: ['!bg-transparent', 'hover:!bg-transparent']
     }
   },
   compoundVariants: [
     {
-      labelPosition: 'top',
-      size: 'sm',
-      class: 'min-h-8'
+      labelPosition: 'left-outside',
+      variant: 'border',
+      class: ['border']
     },
     {
-      labelPosition: 'top',
-      size: 'md',
-      class: 'min-h-10'
+      labelPosition: 'top-inside',
+      error: false,
+      class: ['!bg-transparent', 'hover:!bg-transparent']
     },
     {
-      labelPosition: 'top',
-      size: 'lg',
-      class: 'min-h-12'
+      error: true,
+      variant: 'fill',
+      class: ['!bg-danger-100', 'hover:!bg-danger-200',]
     },
     {
-      labelPosition: 'top-motion',
-      size: 'sm',
-      class: 'min-h-8'
-    },
-    {
-      labelPosition: 'top-motion',
-      size: 'md',
-      class: 'min-h-10'
-    },
-    {
-      labelPosition: 'top-motion',
-      size: 'lg',
-      class: 'min-h-12'
-    },
+      error: true,
+      variant: 'border',
+      class: ['border-danger-100', 'hover:!border-danger-200', '*:!text-danger-600']
+    }
   ]
 });
-
-export type InputWrapperProp = VariantProps<typeof inputWrapper>;
-export type LabelStyleProp = VariantProps<typeof labelStyle>;
-export type InputStyleProp = VariantProps<typeof input>;
-export type MainWrapperProp = VariantProps<typeof mainWrapper>;
+export const input = cva({
+  base: ['w-full'],
+  variants: {
+    error: {
+      true: 'text-danger-600',
+      false: '',
+    }
+  }
+});
+export type Base = VariantProps<typeof base>;
+export type OutsideLabel = VariantProps<typeof outsideLabel>;
+export type DescriptionWrapper = VariantProps<typeof descriptionWrapper>;
+export type InnerWrapper = VariantProps<typeof innerWrapper>;
+export type InnerLabel = VariantProps<typeof innerLabel>;
+export type MainComponentWrapper = VariantProps<typeof mainComponentWrapper>;
+export type Input = VariantProps<typeof input>;

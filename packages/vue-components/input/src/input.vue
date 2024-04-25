@@ -1,31 +1,29 @@
 <template>
-  <div>
-    <div :class="inputWrapperClass" :data-focus="focus || modelValue.length > 0" @click="focusInput">
-      <label role="label" :class="labelClass" id="test" v-if="prop.label.length">{{ prop.label }}</label>
-      <div :class="mainWrapperStyle">
-        <div :class="inputInnerWrapperStyle">
-          <div class="grow shrink-0">
-            <slot name="prefix"/>
-          </div>
-          <input :aria-label="label" v-model="modelValue" id="test" :class="inputStyle" @focus="onFocus" @blur="onBlur" ref="inputEl" :placeholder="prop.placeholder" />
-          <div class="grow shrink-0">
-            <slot name="suffix" /> 
-          </div>
-        </div>
-        <div v-if="prop.error && prop.labelPosition === 'left'">
-          <span class="text-danger text-sm">{{ prop.errorMessage }}</span>
-        </div>
+  <div :class="baseStyle" :data-focus="focus || modelValue.length > 0" @click="focusInput" :data-invalid="prop.error">
+    <label @click="focusInput" v-if="shouldShowOutSideLabel" :class="outsideLabelStyle" :for="ariaId">
+      {{ prop.label }}
+    </label>
+    <div :class="innerWrapperStyle">
+      <label @click="focusInput" v-if="shouldShowInnerLabel" :class="innerLabelStyle" :for="ariaId">
+        {{ prop.label }}
+      </label>
+      <div :class="mainComponentStyle">
+        <input ref="inputEl" :id="ariaId" :class="inputStyle" type="text" v-model="modelValue" @focus="onFocus" @blur="onBlur">
+      </div>
+      <div :class="descriptionWrapperStyle" v-if="prop.labelPosition !== 'top-inside'">
+        <span>Description</span>
       </div>
     </div>
-    <div v-if="prop.error && prop.labelPosition !== 'left'">
-      <span class="text-danger text-sm">{{ prop.errorMessage }}</span>
+    <div :class="descriptionWrapperStyle" v-if="prop.labelPosition === 'top-inside'">
+      <span>Description</span>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { inputProp } from './input.props';
-import { inputWrapper, labelStyle, inputInnerWrapper, input, mainWrapper } from '@miraiui-org/theme';
+import { base, descriptionWrapper, innerLabel, innerWrapper, input, mainComponentWrapper, outsideLabel } from '@miraiui-org/theme';
 
 const COMPONENT_NAME='MInput';
 defineOptions({
@@ -33,13 +31,18 @@ defineOptions({
 });
 const [modelValue] = defineModel<string>({ required: true });
 const prop = defineProps(inputProp);
-const inputWrapperClass = computed(() => inputWrapper(prop));
-const labelClass = computed(() => labelStyle(prop));
-const inputInnerWrapperStyle = computed(() => inputInnerWrapper(prop));
-const inputStyle = computed(() => input(prop));
-const mainWrapperStyle = computed(() => mainWrapper(prop));
 const focus = ref(false);
 const inputEl = ref<HTMLInputElement | null>(null);
+const baseStyle = computed(() => base(prop));
+const outsideLabelStyle = computed(() => outsideLabel(prop));
+const descriptionWrapperStyle = computed(() => descriptionWrapper());
+const innerWrapperStyle = computed(() => innerWrapper(prop));
+const innerLabelStyle = computed(() => innerLabel(prop));
+const inputStyle = computed(() => input(prop));
+const mainComponentStyle = computed(() => mainComponentWrapper(prop));
+const shouldShowOutSideLabel = computed(() => prop.label && prop.labelPosition.includes('outside'));
+const shouldShowInnerLabel = computed(() => prop.label && !prop.labelPosition.includes('outside'));
+const ariaId = computed(() => prop.id ?? `aria-${new Date().getTime()}`);
 const onFocus = () => {
   focus.value = true;
 };

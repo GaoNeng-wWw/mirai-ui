@@ -3,7 +3,7 @@ import { ExtractPropTypes, PropType } from 'vue';
 export type InputSize = 'sm' | 'md' | 'lg';
 export type InputVariant = 'fill' | 'border';
 export type InputColors = 'default' | 'primary' | 'warning' | 'danger' | 'success';
-export type InputLabelPosition = 'top-motion' | 'top' | 'left';
+export type InputLabelPosition = 'top-outside' | 'top-inside' | 'left-outside';
 
 export const inputProp = {
 
@@ -70,7 +70,7 @@ export const inputProp = {
    */
   labelPosition: {
     type: String as PropType<InputLabelPosition>,
-    default: 'top-motion'
+    default: 'top-inside'
   },
 
   /**

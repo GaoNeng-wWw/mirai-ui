@@ -14,6 +14,6 @@
 import {Input as MInput, InputLabelPosition} from '@miraiui-org/vue-components';
 import { ref } from 'vue';
 const data = ref('');
-const position = ref<InputLabelPosition>('top-motion');
-const positionId = ref(['top-motion','top', 'left'])
+const position = ref<InputLabelPosition>('top-inside');
+const positionId = ref(['top-outside','top-inside', 'left-outside'])
 </script>

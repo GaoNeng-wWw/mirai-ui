@@ -1,6 +1,22 @@
 <template>
   <div class="space-y-2">
-    <m-input v-model="data" id="input" label="Email" :error="error" error-message="输入的信息不是合法的邮箱"/>
+    <m-input
+      label-position="left-outside"
+      v-model="data"
+      id="input"
+      label="Email"
+      :error="error"
+      error-message="输入的信息不是合法的邮箱"
+    />
+    <m-input
+      label-position="left-outside"
+      v-model="data"
+      id="input"
+      label="Email"
+      :error="error"
+      error-message="输入的信息不是合法的邮箱"
+      variant="border"
+    />
   </div>
 </template>
 

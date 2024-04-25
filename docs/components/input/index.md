@@ -41,14 +41,9 @@
 :::demo input/different-sizes
 :::
 
-## 占位符
-
-`placeholder`属性允许你设置占位符
-
-:::demo input/placeholder
-:::
-
 ## 插槽
+
+
 
 :::demo input/slot
 :::

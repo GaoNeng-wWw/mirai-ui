@@ -1,6 +1,7 @@
 <template>
   <div class="space-y-2">
     <m-input v-model="data" id="input" label="Email" :colors="color"/>
+    <m-input v-model="data" id="input" label="Email" :colors="color" variant="border"/>
     <div class="flex flex-col">
       <label v-for="colorId of colors" :for="colorId" >
         <input type="radio" v-model="color" :id="`${colorId}`" :value="colorId" />
