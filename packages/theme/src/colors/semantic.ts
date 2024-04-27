@@ -180,12 +180,12 @@ const dark:ThemeColors = {
     DEFAULT: commonColor.zinc[400]
   },
   success:{
-    ...colorReverse(commonColor.zinc),
+    ...colorReverse(commonColor.green),
     foreground: readableColor(commonColor.green[500]),
     DEFAULT: commonColor.green[500]
   },
   warning:{
-    ...colorReverse(commonColor.zinc),
+    ...colorReverse(commonColor.orange),
     foreground: commonColor.white,
     DEFAULT: commonColor.orange[500]
   },

@@ -503,7 +503,7 @@ const collectModelValue = (filePath: string) => {
             comment = [];
           }
           let type = '-';
-          for (const param of decl.init.typeParameters.params){
+          for (const param of decl.init.typeParameters?.params ?? []){
             type = extractType(param);
             const options = extractVModelOption(decl.init);
             const vmodelName = extractVModelName(decl.init);

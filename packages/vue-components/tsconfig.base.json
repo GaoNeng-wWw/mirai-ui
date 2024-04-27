@@ -19,7 +19,7 @@
     "types": [],
     "paths": {
       "@miraiui-org/vue-*": ["./"],
-      "@miria-ui/theme": ["../theme"],
+      "@miraiui-org/theme": ["../theme"]
     }
   }
 }
