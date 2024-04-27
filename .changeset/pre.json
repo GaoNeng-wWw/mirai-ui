@@ -9,13 +9,17 @@
     "@miraiui-org/vue-button": "0.0.0",
     "@miraiui-org/vue-collapse": "0.0.0",
     "@miraiui-org/vue-tag": "0.0.0",
-    "@miraiui-org/vue-transition-collapse": "0.0.0"
+    "@miraiui-org/vue-transition-collapse": "0.0.0",
+    "@miraiui-org/vue-input": "1.0.0-alpha.0"
   },
   "changesets": [
     "hot-chefs-look",
+    "large-masks-vanish",
     "real-dolphins-raise",
+    "slimy-seahorses-deny",
     "slow-birds-knock",
     "spicy-toes-know",
+    "tasty-carrots-study",
     "tough-donkeys-pretend"
   ]
 }
