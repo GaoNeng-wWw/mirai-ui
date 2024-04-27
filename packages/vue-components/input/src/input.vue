@@ -1,5 +1,5 @@
 <template>
-  <div :class="baseStyle" :data-focus="focus || modelValue.length > 0" @click="focusInput" :data-invalid="prop.error">
+  <div :class="baseStyle" :data-focus="focus || modelValue?.length > 0" @click="focusInput" :data-invalid="prop.error">
     <label @click="focusInput" v-if="shouldShowOutSideLabel" :class="outsideLabelStyle" :for="ariaId">
       {{ prop.label }}
     </label>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { inputProp } from './input.props';
 import { base, descriptionWrapper, innerLabel, innerWrapper, input, mainComponentWrapper, outsideLabel } from '@miraiui-org/theme';
 
@@ -29,6 +29,11 @@ const COMPONENT_NAME='MInput';
 defineOptions({
   name: COMPONENT_NAME
 });
+const emits = defineEmits<{
+  focus: [FocusEvent],
+  blur: [FocusEvent],
+  valueChange: [string]
+}>();
 const [modelValue] = defineModel<string>({ required: true });
 const prop = defineProps(inputProp);
 const focus = ref(false);
@@ -43,11 +48,14 @@ const mainComponentStyle = computed(() => mainComponentWrapper(prop));
 const shouldShowOutSideLabel = computed(() => prop.label && prop.labelPosition.includes('outside'));
 const shouldShowInnerLabel = computed(() => prop.label && !prop.labelPosition.includes('outside'));
 const ariaId = computed(() => prop.id ?? `aria-${new Date().getTime()}`);
-const onFocus = () => {
+watch(modelValue, () => emits('valueChange', modelValue.value));
+const onFocus = (e: FocusEvent) => {
   focus.value = true;
+  emits('focus', e);
 };
-const onBlur = () => {
+const onBlur = (e: FocusEvent) => {
   focus.value = false;
+  emits('blur', e);
 };
 const focusInput = () => {
   if(!inputEl.value) {
