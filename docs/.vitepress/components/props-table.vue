@@ -9,8 +9,8 @@
     </thead>
     <tbody>
       <tr v-for="row of tableData">
-        <template v-for="col of row">
-          <td v-if="col.startsWith('#')">
+        <template v-for="(col,key) of row">
+          <td v-if="col && col.startsWith('#')">
             <a :href="col">
               {{ col }}
             </a>
@@ -110,5 +110,6 @@ const tableData = computed(() => {
   }
   return res;
 })
+console.log(tableData);
 
 </script>

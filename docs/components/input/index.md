@@ -51,3 +51,16 @@
 :::demo input/description
 :::
 
+## Props
+
+:::props input
+:::
+
+## Types
+
+```typescript
+export type InputSize = 'sm' | 'md' | 'lg';
+export type InputVariant = 'fill' | 'border';
+export type InputColors = 'default' | 'primary' | 'warning' | 'danger' | 'success';
+export type InputLabelPosition = 'top-outside' | 'top-inside' | 'left-outside';
+```

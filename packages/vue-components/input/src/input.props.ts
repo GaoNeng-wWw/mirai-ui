@@ -10,8 +10,8 @@ export const inputProp = {
   /**
    * @description {zh} 输入框大小
    * @description {en} size of the input.
-   * @demo {zh} 大小
-   * @demo {en} size
+   * @demo {zh} #不同大小
+   * @demo {en} #size
    */
   size: {
     type: String as PropType<InputSize>,
@@ -21,8 +21,8 @@ export const inputProp = {
   /**
    * @description {zh} 输入框变种
    * @description {en} variant of the input.
-   * @demo {zh} 变种
-   * @demo {en} variant
+   * @demo {zh} #不同形态
+   * @demo {en} #variant
    */
   variant: {
     type: String as PropType<InputVariant>,
@@ -32,8 +32,8 @@ export const inputProp = {
   /**
    * @description {zh} 输入框主题颜色
    * @description {en} color of input
-   * @demo {zh} 多种颜色
-   * @demo {en} colors
+   * @demo {zh} #多种颜色
+   * @demo {en} #colors
    */
   colors: {
     type:String as PropType<InputColors>,
@@ -43,8 +43,8 @@ export const inputProp = {
   /**
    * @description {zh} 输入框的标签
    * @description {en} label of input
-   * @demo {zh} label
-   * @demo {en} label
+   * @demo {zh} #label不同位置
+   * @demo {en} #label
    */
   label: {
     type: String,
@@ -54,8 +54,6 @@ export const inputProp = {
   /**
    * @description {zh} 输入框占位符
    * @description {en} placholder of input
-   * @demo {zh} placeholder
-   * @demo {en} placholder
    */
   placeholder: {
     type: String,
@@ -65,8 +63,8 @@ export const inputProp = {
   /**
    * @description {zh} 输入框标签位置, 当且仅当label属性不为空字符串时才生效
    * @description {en} label position of input, Only takes effect when the label property is not an empty string
-   * @demo {zh} label-position
-   * @demo {en} label-position
+   * @demo {zh} #label不同位置
+   * @demo {en} #label-position
    */
   labelPosition: {
     type: String as PropType<InputLabelPosition>,
@@ -76,8 +74,8 @@ export const inputProp = {
   /**
    * @description {zh} 当error属性为true时, 显示的内容
    * @description {en} When the error attribute is true, the displayed content
-   * @demo {zh} errorMessage
-   * @demo {en} errorMessage
+   * @demo {zh} #错误态
+   * @demo {en} #errorMessage
    */
   errorMessage: {
     type: String,
@@ -87,8 +85,8 @@ export const inputProp = {
   /**
    * @description {zh} 错误态
    * @description {en} Error state
-   * @demo {zh} errorMessage
-   * @demo {en} errorMessage
+   * @demo {zh} #错误态
+   * @demo {en} #errorMessage
    */
   error: {
     type: Boolean,
@@ -98,8 +96,8 @@ export const inputProp = {
   /**
    * @description {zh} 输入框id
    * @description {en} Input id
-   * @demo {zh} basic-usage
-   * @demo {en} basic-usage
+   * @demo {zh} #基本用法
+   * @demo {en} #basic-usage
    */
   id: {
     type: String,
@@ -109,8 +107,8 @@ export const inputProp = {
   /**
    * @description {zh} 描述, 一般位于input的最底部. 优先级比errorMessage低
    * @description {en} Description, usually located at the bottom of the input Priority is lower than errorMessage
-   * @demo {zh} description
-   * @demo {en} description
+   * @demo {zh} #描述
+   * @demo {en} #description
    */
   description: {
     type: String,
@@ -120,8 +118,8 @@ export const inputProp = {
   /**
    * @description {zh} 是否冻结label, 不产生位移.
    * @description {en} Whether to freeze the label without causing displacement
-   * @demo {zh} slot
-   * @demo {en} slot
+   * @demo {zh} #插槽
+   * @demo {en} #slot
    */
   freezeLabelPosition: {
     type: Boolean,
