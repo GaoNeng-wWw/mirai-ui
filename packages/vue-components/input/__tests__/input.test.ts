@@ -1,10 +1,15 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import input from '../src/input.vue';
-import { ref } from 'vue';
+
 describe('input', () => {
   it('should to be defined', () => {
-    expect(mount(input)).toBeDefined();
+    expect(mount(input, {
+      props: {
+        id:'',
+        modelValue: ''
+      }
+    })).toBeDefined();
   });
   it('focus', async () => {
     const f = vi.fn();
@@ -69,6 +74,33 @@ describe('input', () => {
       }
     });
     expect(wrapper.findAll('label')).toHaveLength(1);
+  });
+  it('description', () => {
+    const wrapper = mount(input, {
+      props: {
+        id:'',
+        modelValue: '',
+        label: 'label',
+        labelPosition: 'top-inside',
+        description: 'this is description'
+      }
+    });
+    expect(wrapper.findAll('span')[0].classes().join(' ')).not.contain('danger');
+  });
+  it('error message', () => {
+    const wrapper = mount(input, {
+      props: {
+        id:'',
+        modelValue: '',
+        label: 'label',
+        labelPosition: 'top-inside',
+        error: true,
+        description: 'this is description',
+        errorMessage: 'this is errorMessage'
+      }
+    });
+    const [span] = wrapper.findAll('span');
+    expect(span.text()).toBe('this is errorMessage');
   });
 });
     

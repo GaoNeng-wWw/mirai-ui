@@ -10,12 +10,12 @@
       <div :class="mainComponentStyle">
         <input ref="inputEl" :id="ariaId" :class="inputStyle" type="text" v-model="modelValue" @focus="onFocus" @blur="onBlur">
       </div>
-      <div :class="descriptionWrapperStyle" v-if="prop.labelPosition !== 'top-inside'">
-        <span>Description</span>
+      <div :class="descriptionWrapperStyle" v-if="prop.labelPosition !== 'top-inside' && prop.description || prop.error">
+        <span>{{ descriptionMessage }}</span>
       </div>
     </div>
-    <div :class="descriptionWrapperStyle" v-if="prop.labelPosition === 'top-inside'">
-      <span>Description</span>
+    <div :class="descriptionWrapperStyle" v-if="prop.labelPosition === 'top-inside' && prop.description || prop.error">
+      <span>{{ descriptionMessage }}</span>
     </div>
   </div>
 </template>
@@ -48,6 +48,7 @@ const mainComponentStyle = computed(() => mainComponentWrapper(prop));
 const shouldShowOutSideLabel = computed(() => prop.label && prop.labelPosition.includes('outside'));
 const shouldShowInnerLabel = computed(() => prop.label && !prop.labelPosition.includes('outside'));
 const ariaId = computed(() => prop.id ?? `aria-${new Date().getTime()}`);
+const descriptionMessage = computed(() => prop.error ? prop.errorMessage : prop.description);
 watch(modelValue, () => emits('valueChange', modelValue.value));
 const onFocus = (e: FocusEvent) => {
   focus.value = true;
