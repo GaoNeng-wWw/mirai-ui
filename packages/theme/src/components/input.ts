@@ -123,7 +123,13 @@ export const innerLabel = cva({
       md: ['text-base', 'translate-y-[calc(50%_-_theme(fontSize.base)_+_calc(theme(lineHeight[6])_/_2))]'],
       lg: ['text-lg', 'translate-y-[calc(50%_-_theme(fontSize.lg)_+_calc(theme(lineHeight[7])_/_2))]']
     },
-    colors: {},
+    colors: {
+      default: '',
+      primary: '',
+      warning: '',
+      danger: '',
+      success: '',
+    },
     error: {
       true: 'text-danger-600',
       false: ''
