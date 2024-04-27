@@ -27,6 +27,13 @@ jobs:
           node-version: 16.x
       - run: pnpm install
       - run: pnpm clean && pnpm build:vue
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
