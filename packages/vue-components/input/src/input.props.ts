@@ -105,9 +105,27 @@ export const inputProp = {
     type: String,
     required: true,
   },
+
+  /**
+   * @description {zh} 描述, 一般位于input的最底部. 优先级比errorMessage低
+   * @description {en} Description, usually located at the bottom of the input Priority is lower than errorMessage
+   * @demo {zh} description
+   * @demo {en} description
+   */
   description: {
     type: String,
     default: '',
+  },
+
+  /**
+   * @description {zh} 是否冻结label, 不产生位移.
+   * @description {en} Whether to freeze the label without causing displacement
+   * @demo {zh} slot
+   * @demo {en} slot
+   */
+  freezeLabelPosition: {
+    type: Boolean,
+    default: false
   }
 } as const;
 

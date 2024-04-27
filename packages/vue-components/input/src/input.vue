@@ -8,13 +8,15 @@
         {{ prop.label }}
       </label>
       <div :class="mainComponentStyle">
+        <slot name="prefix"/>
         <input ref="inputEl" :id="ariaId" :class="inputStyle" type="text" v-model="modelValue" @focus="onFocus" @blur="onBlur">
+        <slot name="suffix"/>
       </div>
-      <div :class="descriptionWrapperStyle" v-if="prop.labelPosition !== 'top-inside' && prop.description || prop.error">
+      <div :class="descriptionWrapperStyle" v-if="prop.labelPosition !== 'top-inside'">
         <span>{{ descriptionMessage }}</span>
       </div>
     </div>
-    <div :class="descriptionWrapperStyle" v-if="prop.labelPosition === 'top-inside' && prop.description || prop.error">
+    <div :class="descriptionWrapperStyle" v-if="prop.labelPosition === 'top-inside'">
       <span>{{ descriptionMessage }}</span>
     </div>
   </div>

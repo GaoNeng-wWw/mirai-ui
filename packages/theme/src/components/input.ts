@@ -67,7 +67,7 @@ export const outsideLabel = cva({
   }
 });
 export const descriptionWrapper = cva({
-  base: ['w-full', 'group-data-[invalid=true]:!text-danger-600'],
+  base: ['w-full', 'group-data-[invalid=true]:!text-danger-600', '!text-sm'],
   variants: {
     color: {
       default: ['text-default-foreground'],
@@ -127,8 +127,12 @@ export const innerLabel = cva({
     error: {
       true: 'text-danger-600',
       false: ''
+    },
+    freezeLabelPosition: {
+      true: '!-translate-y-1',
+      false: ''
     }
-  }
+  },
 });
 export const mainComponentWrapper = cva({
   base: [
