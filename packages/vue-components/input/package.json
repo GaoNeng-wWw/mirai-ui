@@ -2,7 +2,7 @@
   "name": "@miraiui-org/vue-input",
   "version": "1.0.0-alpha.0",
   "devDependencies": {
-    "@miraiui-org/theme": "workspace:1.0.0-alpha.0",
+    "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.19",
     "vue-tsc": "^1.8.27"
   },
