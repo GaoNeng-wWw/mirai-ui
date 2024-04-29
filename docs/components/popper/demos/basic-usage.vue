@@ -1,8 +1,8 @@
 <template>
-  <popper :show="show">
+  <popper>
     <template #reference>
-      <m-button @click="show = !show">
-        Trigger
+      <m-button>
+        点击我
       </m-button>
     </template>
     <template #floating>
