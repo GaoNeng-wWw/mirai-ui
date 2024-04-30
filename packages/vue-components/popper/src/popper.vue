@@ -11,7 +11,7 @@
     >
       <slot name="reference" />
     </div>
-    <div ref="floating" class="w-fit" :style="floatingStyles"
+    <div ref="floating" class="w-fit z-10" :style="floatingStyles"
       @mouseenter="onContentMouseEnter"
       @mouseleave="onContentMouseLeave"
     >
@@ -29,7 +29,7 @@ import {
   Middleware,
   shift as Shift,
 } from '@floating-ui/vue';
-import { ref, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { PopperEvent, PopperProps } from './popper.props';
 import { useTrigger } from './useTrigger';
 
@@ -62,15 +62,13 @@ const emit = defineEmits<{
   afterClose: [PopperEvent]
 }
 >();
-const middlewares = ref(
-  [
-    autoPlacement.value ? AutoPlacement() : emptyMiddleware,
-    middlewareOffset(offset.value),
-    flip.value ? Flip(flipOption.value) : emptyMiddleware,
-    shift.value ? Shift(shiftOption.value) : emptyMiddleware,
-    ...externalMiddleware.value,
-  ]
-);
+const middlewares = computed(() => [
+  autoPlacement.value ? AutoPlacement() : emptyMiddleware,
+  middlewareOffset(offset.value),
+  flip.value ? Flip(flipOption.value) : emptyMiddleware,
+  shift.value ? Shift(shiftOption.value) : emptyMiddleware,
+  ...externalMiddleware.value,
+]);
 const { visible, toggleVisible, closeFloating, onContentMouseEnter, onContentMouseLeave } = useTrigger(props, emit);
 const { floatingStyles } = useFloating(reference, floating, {
   open: visible,
@@ -79,6 +77,5 @@ const { floatingStyles } = useFloating(reference, floating, {
   placement,
   transform: false,
 });
-
 
 </script>

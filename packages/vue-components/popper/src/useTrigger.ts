@@ -47,6 +47,9 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     emit('afterClose', { visible: visible.value, controller: controller.value, e });
   };
   const onContentMouseLeave = (e:MouseEvent) => {
+    if (trigger.value !== 'hover') {
+      return;
+    }
     emit('beforeClose', { visible: visible.value, controller: controller.value, e });
     if (controller.value) {
       return;
@@ -55,6 +58,9 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     emit('afterClose', { visible: visible.value, controller: controller.value, e });
   };
   const onContentMouseEnter = (e:MouseEvent) => {
+    if (trigger.value !== 'hover') {
+      return;
+    }
     emit('beforeOpen', { visible: visible.value, controller: controller.value, e });
     if (controller.value) {
       return;

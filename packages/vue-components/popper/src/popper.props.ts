@@ -8,34 +8,74 @@ export interface PopperEvent {
 }
 
 export type PopperTrigger = 'click' | 'hover' | 'contextmenu' | 'focus'
+export type PopperPlacement = Placement;
+export type PopperFlipOptions = FlipOptions;
+export type PopperShiftOptions = ShiftOptions;
+export type PopperMiddlewares = Middleware[]
 
 export const PopperProps = {
+
+  /**
+   * @description {zh} 受控模式
+   * @description {en} visibility
+   * @demo {zh} #基本用法
+   */
   show: {
     type: Boolean,
     default: undefined
   },
+
+  /**
+   * @description {zh} 触发方法
+   * @description {en} Trigger method
+   * @demo {zh} #不同的触发方式
+   */
   trigger: {
     type: String as PropType<PopperTrigger>,
     default: 'click'
   },
+
+  /**
+   * @description {zh} 是否自动设置位置
+   * @description {en} Is the position automatically set
+   * @demo {zh} #autoplacement
+   */
   autoPlacement: {
     type: Boolean,
     default: false,
   },
+
+  /**
+   * @description {zh} 位置
+   * @description {en} placement
+   * @demo {zh} #基本用法
+   */
   placement: {
-    type: String as PropType<Placement>,
+    type: String as PropType<PopperPlacement>,
     default: 'bottom'
   },
+
+  /**
+   * @description {zh} 悬浮元素与trigger之间的偏移量
+   * @description {en} The offset between suspended elements and triggers
+   * @demo {zh} #偏移量
+   */
   offset: {
     type: Number,
     default: 4
   },
+
+  /**
+   * @description {zh} 反转
+   * @description {en} flip
+   * @demo {zh} #反转
+   */
   flip: {
     type: Boolean,
-    default: true
+    default: false
   },
   flipOption: {
-    type: Boolean as PropType<FlipOptions>,
+    type: Object as PropType<PopperFlipOptions>,
     default: {}
   },
   shift: {
@@ -43,11 +83,11 @@ export const PopperProps = {
     default: false,
   },
   shiftOption: {
-    type: Object as PropType<ShiftOptions>,
+    type: Object as PropType<PopperShiftOptions>,
     default: {}
   },
   externalMiddleware: {
-    type: Array as PropType<Middleware[]>,
+    type: Array as PropType<PopperMiddlewares>,
     default: []
   }
 };

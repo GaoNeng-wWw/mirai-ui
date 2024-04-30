@@ -12,7 +12,7 @@
         </div>
       </template>
     </popper>
-    <!-- <popper trigger="focus">
+    <popper trigger="focus">
       <template #reference>
         <m-button>
           聚焦触发
@@ -35,7 +35,7 @@
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aut dicta expedita unde? Ex, facilis? Aut velit ullam temporibus omnis? Temporibus culpa dicta odio eligendi doloremque voluptas nobis esse laborum.
         </div>
       </template>
-    </popper> -->
+    </popper>
   </div>
 </template>
 
