@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { buildMsg, err, info, warn } from "./log";
-import { JSDocTagInfo,Project,SourceFile, SyntaxKind,TypeFormatFlags } from "ts-morph";
+import { JSDocTagInfo,Project,SourceFile, SyntaxKind,ts,Type,TypeChecker,TypeFormatFlags } from "ts-morph";
 import { parse, compileScript } from 'vue/compiler-sfc';
 import { walkAST } from 'ast-kit';
 import {
@@ -276,14 +276,19 @@ const collectPropsData = (sourcefile: SourceFile, propsName: string) => {
       if (typeSymbol.getName() === 'PropType'){
         const [typeArgument] = type.getAliasTypeArguments();
         if (!typeArgument.isArray()){
-          typeName = typeArgument.getText(typeMember)
-        } else {
-          const elementType = typeArgument.getArrayElementType();
-          if (!elementType.isUnion()){
-            typeName = typeArgument.getText(typeMember)
+          if (typeArgument.isObject()){
+            const typeRef = typeInitializer.getChildrenOfKind(SyntaxKind.TypeReference);
+            if (!typeRef){
+              typeName = ''
+            } else {
+              typeName = typeRef[0].getTypeArguments()[0].getText();
+            }
           } else {
-            typeName = elementType.getText(typeMember, TypeFormatFlags.None);
+            typeName = typeArgument.getText(typeMember, TypeFormatFlags.None)
           }
+        } else {
+          typeName = typeArgument.getText(typeMember, TypeFormatFlags.None);
+          
         }
       } else {
         typeName = typeSymbol.getName();
