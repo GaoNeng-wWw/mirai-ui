@@ -278,10 +278,11 @@ const collectPropsData = (sourcefile: SourceFile, propsName: string) => {
         if (!typeArgument.isArray()){
           if (typeArgument.isObject()){
             const typeRef = typeInitializer.getChildrenOfKind(SyntaxKind.TypeReference);
-            console.log(typeRef[0].getTypeArguments()[0].getText())
-            // console.log(typeArgument.getText(null, TypeFormatFlags.GenerateNamesForShadowedTypeParams))
-            // console.log(type.getAliasSymbol().getDeclaredType().getText());
-            typeName = '';
+            if (!typeRef){
+              typeName = ''
+            } else {
+              typeName = typeRef[0].getTypeArguments()[0].getText();
+            }
           } else {
             typeName = typeArgument.getText(typeMember, TypeFormatFlags.None)
           }
