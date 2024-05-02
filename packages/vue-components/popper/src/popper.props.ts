@@ -1,4 +1,4 @@
-import { FlipOptions, Middleware, Placement, ShiftOptions } from '@floating-ui/vue';
+import { FlipOptions, Middleware, Placement, ShiftOptions } from '@floating-ui/core';
 import { ExtractPropTypes, PropType } from 'vue';
 
 export interface PopperEvent {
@@ -90,6 +90,6 @@ export const PopperProps = {
     type: Array as PropType<PopperMiddlewares>,
     default: []
   }
-};
+} as const;
 
 export type PopperPropsType = ExtractPropTypes<typeof PopperProps>;

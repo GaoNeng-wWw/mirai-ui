@@ -12,5 +12,5 @@
     { "path": "./tsconfig.build.json" },
     { "path": "./tsconfig.node.json" },
   ],
-  "exclude": ["**/node_modules", "**/__tests__", "__tests__"]
+  "exclude": ["**/node_modules", "**/__tests__", "__tests__", "node_modules"]
 }

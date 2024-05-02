@@ -13,7 +13,12 @@ export default defineConfig({
       formats: ['es', 'umd'],
     },
     rollupOptions:{
-      external: ['vue', '@miraiui-org/theme'],
+      external: [
+        'vue', '@miraiui-org/theme',
+        '@floating-ui/vue',
+        '@floating-ui/dom',
+        '@floating-ui/core'
+      ],
       output:{
         exports: 'named',
         globals:{
