@@ -1,19 +1,19 @@
 <template>
   <div>
     <div ref="reference" class="w-fit"
-      @mouseenter="(e)=>toggleVisible('hover',e)"
-      @mouseleave="closeFloating"
-      @click="(e)=>toggleVisible('click',e)"
-      @focus="(e)=>toggleVisible('focus',e)"
-      @blur="closeFloating"
-      @contextmenu="(e)=>toggleVisible('contextmenu',e)"
+      @mouseenter="open"
+      @mouseleave="close"
+      @click="onClick"
+      @focus="open"
+      @blur="close"
+      @contextmenu="onClick"
       :tabindex=0
     >
       <slot name="reference" />
     </div>
     <div ref="floating" class="w-fit z-10" :style="floatingStyles"
-      @mouseenter="onContentMouseEnter"
-      @mouseleave="onContentMouseLeave"
+      @mouseenter="open"
+      @mouseleave="close"
     >
       <slot name="floating" v-if="visible" />
     </div>
@@ -69,7 +69,7 @@ const middlewares = computed(() => [
   shift.value ? Shift(shiftOption.value) : emptyMiddleware,
   ...externalMiddleware.value,
 ]);
-const { visible, toggleVisible, closeFloating, onContentMouseEnter, onContentMouseLeave } = useTrigger(props, emit);
+const { open, close, onClick, visible } = useTrigger(props, emit);
 const { floatingStyles } = useFloating(reference, floating, {
   open: visible,
   middleware: middlewares,
