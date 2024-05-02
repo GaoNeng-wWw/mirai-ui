@@ -2,6 +2,7 @@
   "name": "@miraiui-org/vue-popper",
   "version": "1.0.0-alpha.0",
   "devDependencies": {
+    "@floating-ui/core": "^1.6.1",
     "@floating-ui/dom": "^1.6.3",
     "@floating-ui/vue": "^1.0.6",
     "@miraiui-org/theme": "workspace:^",
