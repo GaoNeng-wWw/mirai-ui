@@ -1,6 +1,6 @@
 
 <template>
-  <transition v-on="events" class="transition-all">
+  <transition v-on="events" class=" transition-all duration-[2000ms]">
     <slot />
   </transition>
 </template>
