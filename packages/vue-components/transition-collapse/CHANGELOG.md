@@ -1,5 +1,11 @@
 # @miraiui-org/vue-transition-collapse
 
+## 1.0.0-alpha.3
+
+### Patch Changes
+
+- [#55](https://github.com/GaoNeng-wWw/mirai-ui/pull/55) [`e63a54a`](https://github.com/GaoNeng-wWw/mirai-ui/commit/e63a54a41e30fb24d993fea48c959516ca050019) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - smooth animation
+
 ## 1.0.0-alpha.2
 
 ### Patch Changes
