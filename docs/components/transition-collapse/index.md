@@ -10,4 +10,3 @@ category: transition
 
 :::demo transition-collapse/basic
 :::
-
