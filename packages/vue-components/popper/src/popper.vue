@@ -1,8 +1,6 @@
 <template>
   <div>
     <div ref="reference" class="w-fit"
-      @mouseenter="open"
-      @mouseleave="close"
       @click="onClick"
       @focus="open"
       @blur="close"
@@ -12,9 +10,8 @@
       <slot name="reference" />
     </div>
     <div ref="floating" class="w-fit z-10" :style="floatingStyles"
-      @mouseenter="open"
-      @mouseleave="close"
     >
+      <div ref="safepoly" class="bg-red-500 absolute" v-if="visible"></div>
       <slot name="floating" v-if="visible" />
     </div>
   </div>
@@ -32,6 +29,7 @@ import {
 import { computed, ref, toRefs } from 'vue';
 import { PopperEvent, PopperProps } from './popper.props';
 import { useTrigger } from './useTrigger';
+import { useSafePolygon } from './useSafePolygon';
 
 const COMPONENT_NAME='MPopper';
 defineOptions({
@@ -47,6 +45,7 @@ const {
   shift,
   shiftOption,
   externalMiddleware,
+  safePolygon
 } = toRefs(props);
 const reference = ref<null | HTMLElement>(null);
 const floating = ref<null | HTMLElement>(null);
@@ -62,11 +61,19 @@ const emit = defineEmits<{
   afterClose: [PopperEvent]
 }
 >();
+const safepoly = ref<HTMLElement | null>(null);
+const safePolygonMiddleware = computed(() => (safePolygon.value && reference.value && safepoly.value)
+  ? useSafePolygon(
+    reference,
+    safepoly,
+    offset
+  ) : emptyMiddleware,);
 const middlewares = computed(() => [
   autoPlacement.value ? AutoPlacement() : emptyMiddleware,
   middlewareOffset(offset.value),
   flip.value ? Flip(flipOption.value) : emptyMiddleware,
   shift.value ? Shift(shiftOption.value) : emptyMiddleware,
+  safePolygonMiddleware.value,
   ...externalMiddleware.value,
 ]);
 const { open, close, onClick, visible } = useTrigger(props, emit);
@@ -75,7 +82,7 @@ const { floatingStyles } = useFloating(reference, floating, {
   middleware: middlewares,
   whileElementsMounted: autoUpdate,
   placement,
-  transform: false,
+  transform: false
 });
 
 </script>

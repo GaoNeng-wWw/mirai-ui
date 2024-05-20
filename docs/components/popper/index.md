@@ -27,6 +27,11 @@ Popper 是 `floating-ui` 的高阶封装, 不存在太多的自定义样式. 当
 :::demo popper/flip
 :::
 
+## 安全区域
+
+:::demo popper/safe-polygon
+:::
+
 ## 反转和AutoPlacement有什么区别
 
 `flip`与`auto-placement`最本质的区别就是, `auto-placement`并不一定是反方向的，但`flip`一般会在空间不足时反转到另一侧。
@@ -35,7 +40,6 @@ Popper 是 `floating-ui` 的高阶封装, 不存在太多的自定义样式. 当
 
 :::props popper
 :::
-
 
 ## Event
 
