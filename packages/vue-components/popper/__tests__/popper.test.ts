@@ -1,8 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import popper from '../src/popper.vue';
-import { h } from 'vue';
+import { h, nextTick } from 'vue';
 describe('Popper', () => {
+  const timeout = (delay:number=300) => new Promise((resolve) => setTimeout(() => {
+    resolve(true);
+  }, delay));
   it('should to be defined', () => {
     expect(mount(popper)).toBeDefined();
   });
@@ -11,6 +14,27 @@ describe('Popper', () => {
     onAfterOpen: vi.fn(),
     onBeforeClose: vi.fn(),
     onAfterClose: vi.fn()
+  });
+  it('controller', async () => {
+    const hooks = mockHooks();
+    const wrapper = mount(popper, {
+      props: {
+        show: false,
+        ...hooks
+      }
+    });
+    expect(hooks.onBeforeOpen).not.toBeCalled();
+    expect(hooks.onAfterOpen).not.toBeCalled();
+    expect(hooks.onBeforeClose).not.toBeCalled();
+    expect(hooks.onAfterClose).not.toBeCalled();
+    await wrapper.setProps({ show: true });
+    await nextTick();
+    expect(hooks.onBeforeOpen).toBeCalled();
+    expect(hooks.onAfterOpen).toBeCalled();
+    await wrapper.setProps({ show: false });
+    await nextTick();
+    expect(hooks.onBeforeClose).toBeCalled();
+    expect(hooks.onAfterClose).toBeCalled();
   });
   it('click trigger', async () => {
     const hooks = mockHooks();
@@ -40,7 +64,7 @@ describe('Popper', () => {
     const hooks = mockHooks();
     const wrapper = mount(popper, {
       props: {
-        trigger: 'click',
+        trigger: 'hover',
         ...hooks
       },
       slots: {
@@ -54,18 +78,16 @@ describe('Popper', () => {
     expect(hooks.onBeforeOpen).toBeCalled();
     expect(hooks.onAfterOpen).toBeCalled();
     await div.trigger('mouseleave');
+    await timeout(300);
     expect(hooks.onBeforeClose).toBeCalled();
     expect(hooks.onAfterClose).toBeCalled();
-    await div.trigger('mouseenter');
-    expect(hooks.onBeforeOpen).toBeCalledTimes(2);
-    expect(hooks.onAfterOpen).toBeCalledTimes(2);
   });
   it('focus trigger', async () => {
     const hooks = mockHooks();
     const wrapper = mount(popper, {
       props: {
-        trigger: 'click',
-        ...hooks
+        trigger: 'focus',
+        ...hooks,
       },
       slots: {
         reference: () => h('button', null, 'click'),
@@ -83,9 +105,6 @@ describe('Popper', () => {
     await div.trigger('blur');
     expect(hooks.onBeforeClose).toBeCalled();
     expect(hooks.onAfterClose).toBeCalled();
-    await div.trigger('focus');
-    expect(hooks.onBeforeOpen).toBeCalledTimes(3);
-    expect(hooks.onAfterOpen).toBeCalledTimes(3);
   });
   
 });

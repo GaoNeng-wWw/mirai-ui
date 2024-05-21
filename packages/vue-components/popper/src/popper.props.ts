@@ -89,6 +89,18 @@ export const PopperProps = {
   externalMiddleware: {
     type: Array as PropType<PopperMiddlewares>,
     default: []
+  },
+  safePolygon: {
+    type: Boolean,
+    default: false
+  },
+  safePolygonDebug: {
+    type: Boolean,
+    default: false,
+  },
+  safePolygonClass: {
+    type: String,
+    default :''
   }
 } as const;
 
