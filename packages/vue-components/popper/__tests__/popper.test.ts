@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import popper from '../src/popper.vue';
-import { h } from 'vue';
+import { h, nextTick } from 'vue';
 describe('Popper', () => {
   const timeout = (delay:number=300) => new Promise((resolve) => setTimeout(() => {
     resolve(true);
@@ -14,6 +14,27 @@ describe('Popper', () => {
     onAfterOpen: vi.fn(),
     onBeforeClose: vi.fn(),
     onAfterClose: vi.fn()
+  });
+  it('controller', async () => {
+    const hooks = mockHooks();
+    const wrapper = mount(popper, {
+      props: {
+        show: false,
+        ...hooks
+      }
+    });
+    expect(hooks.onBeforeOpen).not.toBeCalled();
+    expect(hooks.onAfterOpen).not.toBeCalled();
+    expect(hooks.onBeforeClose).not.toBeCalled();
+    expect(hooks.onAfterClose).not.toBeCalled();
+    await wrapper.setProps({ show: true });
+    await nextTick();
+    expect(hooks.onBeforeOpen).toBeCalled();
+    expect(hooks.onAfterOpen).toBeCalled();
+    await wrapper.setProps({ show: false });
+    await nextTick();
+    expect(hooks.onBeforeClose).toBeCalled();
+    expect(hooks.onAfterClose).toBeCalled();
   });
   it('click trigger', async () => {
     const hooks = mockHooks();

@@ -8,7 +8,17 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
   let timer: null | NodeJS.Timeout = null;
   if (controller.value) {
     watch(show!, () => {
+      if (!visible.value) {
+        emit('beforeOpen', { visible: visible.value, controller: controller.value, e: null });
+      } else {
+        emit('beforeClose', { visible: visible.value, controller: controller.value, e: null });
+      }
       visible.value = show!.value!;
+      if (!visible.value) {
+        emit('afterClose', { visible: visible.value, controller: controller.value, e: null });
+      } else {
+        emit('afterOpen', { visible: visible.value, controller: controller.value, e: null });
+      }
     });
   }
   const toggleVisible = () => {
@@ -18,6 +28,9 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     visible.value = !visible.value;
   };
   const onClick = (e:MouseEvent | FocusEvent) => {
+    if (controller.value) {
+      return;
+    }
     if (props.trigger !== 'click') {
       return;
     }
@@ -34,6 +47,9 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     }
   };
   const onFocus = (e: FocusEvent) => {
+    if (controller.value) {
+      return;
+    }
     if (props.trigger !== 'focus') {
       return; 
     }
@@ -50,6 +66,9 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     }
   };
   const onContext = (e: MouseEvent) => {
+    if (controller.value) {
+      return;
+    }
     if (props.trigger !== 'contextmenu') {
       return;
     }
@@ -66,6 +85,9 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     }
   };
   const onHover = (e:MouseEvent) => {
+    if (controller.value) {
+      return;
+    }
     if (timer) {
       clearTimeout(timer);
       timer = null;
@@ -75,6 +97,9 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     }
   };
   const onHoverLeave = (e:MouseEvent) => {
+    if (controller.value) {
+      return;
+    }
     if (props.trigger === 'hover') {
       timer = setTimeout(() => {
         close(e);
