@@ -93,6 +93,14 @@ export const PopperProps = {
   safePolygon: {
     type: Boolean,
     default: false
+  },
+  safePolygonDebug: {
+    type: Boolean,
+    default: false,
+  },
+  safePolygonClass: {
+    type: String,
+    default :''
   }
 } as const;
 

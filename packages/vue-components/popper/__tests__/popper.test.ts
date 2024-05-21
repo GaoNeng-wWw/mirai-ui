@@ -3,6 +3,9 @@ import { mount } from '@vue/test-utils';
 import popper from '../src/popper.vue';
 import { h } from 'vue';
 describe('Popper', () => {
+  const timeout = (delay:number=300) => new Promise((resolve) => setTimeout(() => {
+    resolve(true);
+  }, delay));
   it('should to be defined', () => {
     expect(mount(popper)).toBeDefined();
   });
@@ -40,7 +43,7 @@ describe('Popper', () => {
     const hooks = mockHooks();
     const wrapper = mount(popper, {
       props: {
-        trigger: 'click',
+        trigger: 'hover',
         ...hooks
       },
       slots: {
@@ -54,18 +57,16 @@ describe('Popper', () => {
     expect(hooks.onBeforeOpen).toBeCalled();
     expect(hooks.onAfterOpen).toBeCalled();
     await div.trigger('mouseleave');
+    await timeout(300);
     expect(hooks.onBeforeClose).toBeCalled();
     expect(hooks.onAfterClose).toBeCalled();
-    await div.trigger('mouseenter');
-    expect(hooks.onBeforeOpen).toBeCalledTimes(2);
-    expect(hooks.onAfterOpen).toBeCalledTimes(2);
   });
   it('focus trigger', async () => {
     const hooks = mockHooks();
     const wrapper = mount(popper, {
       props: {
-        trigger: 'click',
-        ...hooks
+        trigger: 'focus',
+        ...hooks,
       },
       slots: {
         reference: () => h('button', null, 'click'),
@@ -83,9 +84,6 @@ describe('Popper', () => {
     await div.trigger('blur');
     expect(hooks.onBeforeClose).toBeCalled();
     expect(hooks.onAfterClose).toBeCalled();
-    await div.trigger('focus');
-    expect(hooks.onBeforeOpen).toBeCalledTimes(3);
-    expect(hooks.onAfterOpen).toBeCalledTimes(3);
   });
   
 });

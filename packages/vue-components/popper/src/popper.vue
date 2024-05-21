@@ -1,17 +1,18 @@
 <template>
   <div>
     <div ref="reference" class="w-fit"
+      @mouseenter="onHover"
+      @mouseleave="onHoverLeave"
       @click="onClick"
-      @focus="open"
+      @focus="onFocus"
       @blur="close"
-      @contextmenu="onClick"
+      @contextmenu="onContext"
       :tabindex=0
     >
       <slot name="reference" />
     </div>
-    <div ref="floating" class="w-fit z-10" :style="floatingStyles"
-    >
-      <div ref="safepoly" class="bg-red-500 absolute" v-if="visible"></div>
+    <div ref="floating" class="w-fit z-10" :style="floatingStyles" @mouseover="onHover" @mouseleave="onHoverLeave">
+      <div ref="safepoly" class="absolute" :class="safePolygonDebug ? safePolygonClass : ''" v-if="visible"></div>
       <slot name="floating" v-if="visible" />
     </div>
   </div>
@@ -45,7 +46,9 @@ const {
   shift,
   shiftOption,
   externalMiddleware,
-  safePolygon
+  safePolygon,
+  safePolygonClass,
+  safePolygonDebug
 } = toRefs(props);
 const reference = ref<null | HTMLElement>(null);
 const floating = ref<null | HTMLElement>(null);
@@ -66,6 +69,7 @@ const safePolygonMiddleware = computed(() => (safePolygon.value && reference.val
   ? useSafePolygon(
     reference,
     safepoly,
+    floating,
     offset
   ) : emptyMiddleware,);
 const middlewares = computed(() => [
@@ -76,7 +80,7 @@ const middlewares = computed(() => [
   safePolygonMiddleware.value,
   ...externalMiddleware.value,
 ]);
-const { open, close, onClick, visible } = useTrigger(props, emit);
+const { close, onClick, onHover, onHoverLeave, onContext, onFocus, visible } = useTrigger(props, emit);
 const { floatingStyles } = useFloating(reference, floating, {
   open: visible,
   middleware: middlewares,
