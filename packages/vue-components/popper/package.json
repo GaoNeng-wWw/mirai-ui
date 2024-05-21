@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-popper",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "devDependencies": {
     "@floating-ui/core": "^1.6.1",
     "@floating-ui/dom": "^1.6.3",

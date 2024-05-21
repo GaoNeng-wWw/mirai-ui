@@ -14,6 +14,7 @@
     "@miraiui-org/vue-popper": "1.0.0-alpha.0"
   },
   "changesets": [
+    "cuddly-roses-fetch",
     "dry-jars-develop",
     "hot-chefs-look",
     "large-masks-vanish",
