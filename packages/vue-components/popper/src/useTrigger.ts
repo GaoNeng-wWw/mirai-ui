@@ -5,9 +5,20 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
   const { show } = toRefs(props);
   const visible = ref(show?.value ?? false);
   const controller = computed(() => show?.value !== undefined);
+  let timer: null | NodeJS.Timeout = null;
   if (controller.value) {
     watch(show!, () => {
+      if (!visible.value) {
+        emit('beforeOpen', { visible: visible.value, controller: controller.value, e: null });
+      } else {
+        emit('beforeClose', { visible: visible.value, controller: controller.value, e: null });
+      }
       visible.value = show!.value!;
+      if (!visible.value) {
+        emit('afterClose', { visible: visible.value, controller: controller.value, e: null });
+      } else {
+        emit('afterOpen', { visible: visible.value, controller: controller.value, e: null });
+      }
     });
   }
   const toggleVisible = () => {
@@ -17,6 +28,12 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     visible.value = !visible.value;
   };
   const onClick = (e:MouseEvent | FocusEvent) => {
+    if (controller.value) {
+      return;
+    }
+    if (props.trigger !== 'click') {
+      return;
+    }
     if (!visible.value) {
       emit('beforeOpen', { visible: visible.value, controller: controller.value, e });
     } else {
@@ -29,7 +46,66 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
       emit('afterOpen', { visible: visible.value, controller: controller.value, e });
     }
   };
-
+  const onFocus = (e: FocusEvent) => {
+    if (controller.value) {
+      return;
+    }
+    if (props.trigger !== 'focus') {
+      return; 
+    }
+    if (!visible.value) {
+      emit('beforeOpen', { visible: visible.value, controller: controller.value, e });
+    } else {
+      emit('beforeClose', { visible: visible.value, controller: controller.value, e });
+    }
+    toggleVisible();
+    if (!visible.value) {
+      emit('afterClose', { visible: visible.value, controller: controller.value, e });
+    } else {
+      emit('afterOpen', { visible: visible.value, controller: controller.value, e });
+    }
+  };
+  const onContext = (e: MouseEvent) => {
+    if (controller.value) {
+      return;
+    }
+    if (props.trigger !== 'contextmenu') {
+      return;
+    }
+    if (!visible.value) {
+      emit('beforeOpen', { visible: visible.value, controller: controller.value, e });
+    } else {
+      emit('beforeClose', { visible: visible.value, controller: controller.value, e });
+    }
+    toggleVisible();
+    if (!visible.value) {
+      emit('afterClose', { visible: visible.value, controller: controller.value, e });
+    } else {
+      emit('afterOpen', { visible: visible.value, controller: controller.value, e });
+    }
+  };
+  const onHover = (e:MouseEvent) => {
+    if (controller.value) {
+      return;
+    }
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    if (props.trigger === 'hover') {
+      open(e);
+    }
+  };
+  const onHoverLeave = (e:MouseEvent) => {
+    if (controller.value) {
+      return;
+    }
+    if (props.trigger === 'hover') {
+      timer = setTimeout(() => {
+        close(e);
+      }, 300);
+    }
+  };
   const open = (e: MouseEvent | FocusEvent) => {
     emit('beforeOpen', { visible: visible.value, controller: controller.value, e });
     visible.value = true;
@@ -45,6 +121,10 @@ export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) 
     open,
     close,
     onClick,
+    onHover,
+    onHoverLeave,
+    onContext,
+    onFocus,
     visible,
   };
 };
