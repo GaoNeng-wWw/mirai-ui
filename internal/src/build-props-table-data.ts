@@ -1,7 +1,21 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { buildMsg, err, info, warn } from "./log";
-import { JSDocTagInfo,Project,SourceFile, SyntaxKind,ts,Type,TypeChecker,TypeFormatFlags } from "ts-morph";
+import { 
+  BooleanLiteral,
+  JSDocTagInfo,
+  LiteralExpression,
+  LiteralLikeNode,
+  NumericLiteral,
+  Project,
+  SourceFile,
+  StringLiteral,
+  SyntaxKind,
+  ts,
+  Type,
+  TypeChecker,
+  TypeFormatFlags,
+} from "ts-morph";
 import { parse, compileScript } from 'vue/compiler-sfc';
 import { walkAST } from 'ast-kit';
 import {
@@ -32,7 +46,12 @@ import {
   TSSymbolKeyword,
   TSTypeLiteral,
   TSTypeReference,
-  TSUnionType
+  TSUnionType,
+  StringLiteral as BStringLiteral,
+  NumericLiteral as BNumericLiteral,
+  BooleanLiteral as BBooleanLiteral,
+  isObjectProperty,
+  ObjectExpression
 } from '@babel/types';
 
 const existsIndexFile = (path: string) => readdirSync(path).includes('index.ts');
@@ -138,6 +157,9 @@ const collectComponents = (path: string,compName: string, componentPath: string)
   .filter(v => typeof v !== 'boolean')
   .flat()
   const registeredItem = stmts.map((s) => {
+    if (!s){
+      return;
+    }
     const symbol = s.getSymbol();
     const valueDecl = symbol.getValueDeclaration();
     if (!valueDecl || !valueDecl.isKind(SyntaxKind.VariableDeclaration)){
@@ -153,7 +175,8 @@ const collectComponents = (path: string,compName: string, componentPath: string)
         return exp.compilerNode.escapedText.toString();
       }
     }
-  });
+  })
+  .filter((v) => v)
   const paths = registeredItem.map(name => ({
     name,
     relativePath: importMap[name],
@@ -331,8 +354,8 @@ const collectPropsItem = (propsMaps: PropMap[], importMaps: ImportMap[]) => {
   return propItem;
 }
 
-const isNormalType = (node:Node) => isTSStringKeyword(node) || isTSBooleanKeyword(node) || isTSSymbolKeyword(node) || isTSNumberKeyword(node);
-const isLiteralType = (node:Node) => isStringLiteral(node) || isNumericLiteral(node) || isBooleanLiteral(node);
+const isNormalType = (node:Node): node is TSStringKeyword | TSBooleanKeyword | TSSymbolKeyword | TSNumberKeyword => isTSStringKeyword(node) || isTSBooleanKeyword(node) || isTSSymbolKeyword(node) || isTSNumberKeyword(node);
+const isLiteralType = (node: Node): node is BStringLiteral | BNumericLiteral | BBooleanLiteral => isStringLiteral(node) || isNumericLiteral(node) || isBooleanLiteral(node);
 
 const extractNormalType = (
   node: TSStringKeyword | TSBooleanKeyword | TSSymbolKeyword | TSNumberKeyword
@@ -407,7 +430,9 @@ const extractVModelName = (node: CallExpression) => {
 }
 const getArrayElementsContent = (node: ArrayExpression) => {
   return node.elements.map((ele) => {
-    if (isLiteralType(ele)){
+    if (
+      isLiteralType(ele)
+    ){
       return ele.value;
     }
     if (isIdentifier(ele)){
@@ -418,7 +443,7 @@ const getArrayElementsContent = (node: ArrayExpression) => {
   .filter((v) => v !== undefined);
 }
 const extractVModelOption = (node: CallExpression) => {
-  const option = node.arguments.filter((n) => isObjectExpression(n));
+  const option = node.arguments.map((n) => n.type === 'ObjectExpression' ? n : null).filter((v) => v !== null)
   if (!option.length){
     return {required: false,defaultValue: null};
   }
