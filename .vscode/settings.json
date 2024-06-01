@@ -16,4 +16,7 @@
       "tsconfig.json": "tsconfig.*.json, jsconfig.json",
       "package.json": ".npmrc, pnpm-workspace.yaml, logo.svg, lerna.json"
     },
+    "yaml.schemas": {
+      "https://json.schemastore.org/github-workflow.json": "file:///d%3A/code/mirai-ui/.github/workflows/Site.yaml"
+    },
 }
