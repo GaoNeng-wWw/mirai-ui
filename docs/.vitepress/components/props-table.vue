@@ -110,6 +110,5 @@ const tableData = computed(() => {
   }
   return res;
 })
-console.log(tableData);
 
 </script>
