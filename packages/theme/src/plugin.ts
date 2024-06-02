@@ -4,6 +4,7 @@ import { ConfigTheme } from './types';
 import flatten from 'flat';
 import Color from 'color';
 import { commonColor } from './colors/common';
+import transition from './utils/transition';
 
 interface Config {
   prefix?: string;
@@ -147,7 +148,8 @@ export const miraiUiPlugin = (
   const resolved = resolve(theme, 'light', prefix);
   
   return plugin((api) => {
-    api.addUtilities({ ...resolved?.utilities });
+    api.addUtilities({ ...resolved?.utilities, ...transition });
+    console.log(resolved?.variants);
     resolved?.variants.forEach((variant) => {
       api.addVariant(variant.name, variant.definition);
     });
@@ -159,7 +161,18 @@ export const miraiUiPlugin = (
           ...(addCommonColor ? commonColor : {}),
           ...resolved?.colors
         },
-      }
+        transitionDuration: {
+          'fast': '300ms',
+          'normal': '450ms',
+          'slow': '500ms'
+        },
+        transitionTimingFunction: {
+          'quint': 'cubic-bezier(0.860, 0.000, 0.070, 1.000)',
+          'quart': 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
+          'epic': 'cubic-bezier(0.750, 0.250, 0.250, 0.750)',
+          'out-cubic': 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
+        }
+      },
     }
   });
 };
