@@ -10,5 +10,3 @@ category: transition
 
 :::demo transition-fade/basic
 :::
-
-
