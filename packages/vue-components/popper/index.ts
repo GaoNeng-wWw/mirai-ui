@@ -1,6 +1,7 @@
 import type { App } from 'vue';
 import Popper from './src/popper.vue';
 
+
 export { Popper };
 export * from './src/popper.props';
 
