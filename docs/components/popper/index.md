@@ -7,6 +7,8 @@ Popper 是 `floating-ui` 的高阶封装, 不存在太多的自定义样式. 当
 :::demo popper/basic-usage
 :::
 
+
+<!-- 
 ## 不同的触发方式
 
 :::demo popper/trigger
@@ -53,4 +55,4 @@ export type PopperPlacement = Placement;
 export type PopperFlipOptions = FlipOptions;
 export type PopperShiftOptions = ShiftOptions;
 export type PopperMiddlewares = Middleware[]
-```
+``` -->

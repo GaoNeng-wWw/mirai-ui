@@ -24,6 +24,7 @@
     "test:cov": "vitest --coverage"
   },
   "dependencies": {
+    "@vueuse/core": "^10.10.0",
     "vue": "^3.4.19"
   },
   "devDependencies": {
