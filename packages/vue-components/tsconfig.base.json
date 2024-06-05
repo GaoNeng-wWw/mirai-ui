@@ -19,7 +19,8 @@
     "types": [],
     "paths": {
       "@miraiui-org/vue-*": ["./"],
-      "@miraiui-org/theme": ["../theme"]
+      "@miraiui-org/theme": ["../theme"],
+      "@miraiui-org/hooks": ["../hooks"]
     }
   }
 }

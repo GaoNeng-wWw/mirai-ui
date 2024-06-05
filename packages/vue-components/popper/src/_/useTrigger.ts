@@ -1,5 +1,5 @@
 import { computed, ref, toRefs, watch } from 'vue';
-import { PopperPropsType } from './popper.props';
+import { PopperPropsType } from '../popper.props';
 
 export const useTrigger = <T extends Function>(props: PopperPropsType, emit: T) => {
   const { show } = toRefs(props);

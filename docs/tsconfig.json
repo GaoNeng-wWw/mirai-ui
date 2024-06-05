@@ -5,7 +5,8 @@
       "baseUrl": ".",
       "paths": {
         "@miraiui-org/vue-components": ["../packages/vue-components"],
-        "@miraiui-org/theme": ["../packages/theme"]
+        "@miraiui-org/theme": ["../packages/theme"],
+        "@miraiui-org/hooks": ["../packages/hooks"],
       },
       "esModuleInterop": true,
       "resolveJsonModule": true
