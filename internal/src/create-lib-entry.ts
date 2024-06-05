@@ -14,6 +14,7 @@ type EntryExport = {
 const isSyntaxList = (node: ts.Node): node is ts.SyntaxList => {
   return node.kind === SyntaxKind.SyntaxList;
 }
+const ignore = ['helper'];
 
 const buildEntry = (metas: EntryExport[]) => {
   const project = new Project();
@@ -26,6 +27,9 @@ const buildEntry = (metas: EntryExport[]) => {
   })
   metas.forEach((meta)=>{
     const {componentName, installName, exportDeclaration} = meta;
+    if (ignore.includes(componentName)){
+      return;
+    }
     sourcefile.addImportDeclaration({
       isTypeOnly: false,
       moduleSpecifier: `./${dashify(componentName, {condense: true})}`,

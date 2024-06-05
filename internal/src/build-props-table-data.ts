@@ -119,6 +119,9 @@ const collectComponents = (path: string,compName: string, componentPath: string)
   const sourcefile = project.addSourceFileAtPath(entryFilePath);
   const importMap = collectEntryImport(sourcefile);
   const exportSymbol = sourcefile.getDefaultExportSymbol();
+  if (!exportSymbol){
+    return [];
+  }
   const decl = exportSymbol.getValueDeclaration();
   if (!decl.isKind(SyntaxKind.ExportAssignment)){
     return [];
