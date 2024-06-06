@@ -7,6 +7,17 @@ Popper 是 `floating-ui` 的高阶封装, 不存在太多的自定义样式. 当
 :::demo popper/basic-usage
 :::
 
+## 响应式
+
+popper的所有参数都是响应式的
+
+:::demo popper/offset
+:::
+
+## 虚拟触发
+
+:::demo popper/virtual-trigger
+:::
 
 <!-- 
 ## 不同的触发方式

@@ -1,32 +1,51 @@
 <template>
   <div ref="contentRef" :style="floatingStyles">
-    <div class=" w-8 h-8 bg-red-500 absolute" ref="safePoly"></div>
+    <div class="absolute" :class="{
+      'bg-red-500':safepolyDebug
+    }" ref="safePoly" v-if="safepoly"></div>
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { inject, ref } from 'vue';
+import { computed, inject, ref, watch } from 'vue';
 import { KEY, PopperContext } from './popper.props';
-import { flip, offset, useFloating, autoUpdate } from '@floating-ui/vue';
+import { flip, offset, useFloating, autoUpdate, Middleware, autoPlacement } from '@floating-ui/vue';
 import { useSafePoly } from './useSafepoly';
 
 const name = 'MPopperContent';
 defineOptions({ name });
-const { trigger, safePoly } = inject<PopperContext>(KEY)!;
+const noop:Middleware = {
+  fn: (state) => state,
+  name: '',
+  options: {}
+};
+const {
+  trigger,
+  safePoly,
+  flip:useFlip,
+  autoPlacement: useAutoPlacement,
+  offset: offsetVal,
+  middlewares,
+  placement,
+  safepoly,
+  safepolyDebug
+} = inject<PopperContext>(KEY)!;
 const contentRef = ref();
-const { floatingStyles } = useFloating(trigger, contentRef, {
-  middleware:[
-    flip(),
-    offset(10),
-    useSafePoly(safePoly),
-  ],
-  placement: 'top',
-  whileElementsMounted: (trigger, content, update) => {
-    const cleanup = autoUpdate(trigger, content, update, {
-      animationFrame: true
-    });
-    return cleanup;
-  },
+const middleware = computed(() => [
+  useFlip.value ? flip() : noop,
+  useAutoPlacement.value ? autoPlacement() : noop,
+  offset(offsetVal.value),
+  useSafePoly(safePoly),
+  ...middlewares.value
+]);
+const { floatingStyles, update } = useFloating(trigger, contentRef, {
+  middleware,
+  placement: placement.value,
+  whileElementsMounted: autoUpdate
+});
+watch(() => trigger.value?.getBoundingClientRect(), (val) => {
+  console.log(val);
+  update();
 });
 </script>
