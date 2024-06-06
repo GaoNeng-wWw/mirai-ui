@@ -11,5 +11,7 @@ export default {
   name: 'Popper',
   install: (app:App) => {
     app.component(Popper.name!, Popper);
+    app.component(PopperTrigger.name!, PopperTrigger);
+    app.component(PopperContent.name!, PopperContent);
   }
 };

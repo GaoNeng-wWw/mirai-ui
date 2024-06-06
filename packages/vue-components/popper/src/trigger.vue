@@ -33,9 +33,11 @@ onMounted(() => {
       'contextMenu',
     ] as const)
       .forEach((name) => {
-        el?.addEventListener(name.toLowerCase(), (ev) => {
-          emits(name as any, ev);
-        });
+        if (el instanceof Element) {
+          el?.addEventListener(name.toLowerCase(), (ev) => {
+            emits(name as any, ev);
+          });
+        }
       });
   }, { immediate: true });
 });
