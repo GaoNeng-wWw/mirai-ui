@@ -1,5 +1,5 @@
 <template>
-  <div ref="contentRef" :style="floatingStyles">
+  <div ref="contentRef" :style="floatingStyles" class="w-max">
     <div class="absolute" :class="{
       'bg-red-500':safepolyDebug
     }" ref="safePoly" v-if="safepoly"></div>
