@@ -1,8 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { clean, useClamp, useSafePoly } from '../src/useSafepoly';
-import { mock } from 'node:test';
 import { ref } from 'vue';
-import { Dimensions, ElementRects, FloatingElement, Rect, ReferenceElement, RootBoundary, Strategy } from '@floating-ui/vue';
+import { Dimensions, ElementRects, FloatingElement, Rect, ReferenceElement } from '@floating-ui/vue';
 
 describe('useSafePoly', () => {
   it('clamp', () => {

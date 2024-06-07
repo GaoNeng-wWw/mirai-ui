@@ -55,7 +55,12 @@ export default defineConfig({
       {
         find: /^@miraiui-org\/theme$/,
         replacement: new URL('../theme', import.meta.url).pathname
+      },
+      {
+        find: /^@miraiui-org\/hooks$/,
+        replacement: new URL('../hooks', import.meta.url).pathname
       }
+
     ]
   }
 });

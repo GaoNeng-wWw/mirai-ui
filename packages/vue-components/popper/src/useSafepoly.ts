@@ -18,9 +18,9 @@ export const clean = (el: HTMLElement) => {
   el.style.bottom = '';
   el.style.left = '';
 };
-export const useSafePoly = (
+export const useSafePolygon = (
   safePoly: Ref<HTMLElement | undefined>,
-) => {
+):Middleware => {
   let safePolyEl: HTMLElement | null = null;
   let hasListener = false;
   const x = ref('50%');
