@@ -102,7 +102,7 @@ export interface PopperContext {
   trigger: Ref<HTMLElement | VirtualTrigger | undefined>,
   content: Ref<HTMLElement | undefined>,
   safePoly: Ref<HTMLElement | undefined>,
-  virtualTrigger: Ref<boolean>,
+  virtualTrigger: ComputedRef<boolean>,
   placement: ComputedRef<PopperPlacement>,
   autoPlacement: ComputedRef<boolean>,
   offset: ComputedRef<number>,

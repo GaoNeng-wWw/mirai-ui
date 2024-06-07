@@ -1,7 +1,7 @@
 import { Middleware } from '@floating-ui/vue';
 import { computed, ref, Ref, watch } from 'vue';
 
-const useClap = (min: number, max: number) => (val: number) => {
+export const useClamp = (min: number, max: number) => (val: number) => {
   if (val <= min) {
     return min;
   }
@@ -12,7 +12,7 @@ const useClap = (min: number, max: number) => (val: number) => {
 };
 
 
-const clean = (el: HTMLElement) => {
+export const clean = (el: HTMLElement) => {
   el.style.top = '';
   el.style.right = '';
   el.style.bottom = '';
@@ -78,8 +78,8 @@ export const useSafePoly = (
       clean(safePolyEl);
       if (trigger instanceof HTMLElement) {
         if (!mouseMoveListener) {
-          const clampY = useClap(0, trigger.offsetHeight);
-          const clampX = useClap(0, trigger.offsetWidth);
+          const clampY = useClamp(0, trigger.offsetHeight);
+          const clampX = useClamp(0, trigger.offsetWidth);
           mouseMoveListener = onMouseMove(
             state.elements.floating,
             trigger,
