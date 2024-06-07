@@ -24,6 +24,7 @@
   ],
   "dependencies": {
     "@miraiui-org/hooks": "workspace:^",
-    "@miraiui-org/vue-helper": "workspace:1.0.0-alpha.2"
+    "@miraiui-org/vue-helper": "workspace:1.0.0-alpha.2",
+    "@vueuse/core": "^10.10.0"
   }
 }

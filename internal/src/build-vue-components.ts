@@ -10,7 +10,7 @@ const baseConfig = defineConfig({
 });
 
 const rollupOptions:Rollup.RollupOptions = {
-  external: ['vue', '@miraiui-org/theme', /@miraiui-org.*/],
+  external: ['vue', '@miraiui-org/theme', /@miraiui-org\/([^hooks,helper].*)/],
   output: {
     globals: {
       vue: 'Vue',

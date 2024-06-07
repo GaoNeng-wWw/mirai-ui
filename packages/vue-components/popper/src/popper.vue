@@ -9,6 +9,9 @@ import { computed, onMounted, provide, ref, watch } from 'vue';
 import { KEY, PopperContext, PopperProp } from './popper.props';
 import { unrefElement } from '@vueuse/core';
 
+const name = 'MPopper';
+defineOptions({ name });
+
 const props = defineProps(PopperProp);
 const context: PopperContext = {
   trigger: ref(props.virtualTrigger ? props.triggerRef : undefined),

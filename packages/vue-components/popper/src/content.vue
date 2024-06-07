@@ -11,7 +11,7 @@
 import { computed, inject, ref, watch } from 'vue';
 import { KEY, PopperContext } from './popper.props';
 import { flip, offset, useFloating, autoUpdate, Middleware, autoPlacement } from '@floating-ui/vue';
-import { useSafePoly } from './useSafepoly';
+import { useSafePolygon } from './useSafepoly';
 
 const name = 'MPopperContent';
 defineOptions({ name });
@@ -36,7 +36,7 @@ const middleware = computed(() => [
   useFlip.value ? flip() : noop,
   useAutoPlacement.value ? autoPlacement() : noop,
   offset(offsetVal.value),
-  useSafePoly(safePoly),
+  useSafePolygon(safePoly),
   ...middlewares.value
 ]);
 const { floatingStyles, update } = useFloating(trigger, contentRef, {

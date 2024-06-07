@@ -6,7 +6,8 @@
     "useDefineForClassFields": true,
     "outDir": "dist",
     "lib": ["DOM","DOM.Iterable","ES2020"],
-    "strict": true
+    "strict": true,
+    "skipDefaultLibCheck": true
   },
   "references": [
     { "path": "./tsconfig.build.json" },
