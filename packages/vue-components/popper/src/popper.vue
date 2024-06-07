@@ -14,7 +14,7 @@ const context: PopperContext = {
   trigger: ref(props.virtualTrigger ? props.triggerRef : undefined),
   content: ref(),
   safePoly: ref(),
-  virtualTrigger: ref(props.virtualTrigger),
+  virtualTrigger: computed(() => props.virtualTrigger),
   placement: computed(() => props.placement),
   autoPlacement: computed(() => props.autoPlacement),
   offset: computed(() => props.offset),
