@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" class="transition duration-normal ease-in-out"
+  <transition name="fade" class="transition-opacity duration-normal ease-in-out"
     @before-enter="beforeEnter"
     @before-leave="beforeLeave"
     @enter="onEnter"
