@@ -44,7 +44,7 @@ const { floatingStyles, update } = useFloating(trigger, contentRef, {
   placement: placement.value,
   whileElementsMounted: autoUpdate
 });
-watch(() => trigger.value?.getBoundingClientRect(), (val) => {
+watch(() => trigger.value?.getBoundingClientRect(), () => {
   update();
 });
 </script>
