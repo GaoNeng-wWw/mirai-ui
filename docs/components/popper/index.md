@@ -19,6 +19,12 @@ popper的所有参数都是响应式的
 :::demo popper/virtual-trigger
 :::
 
+## 右键菜单
+
+:::demo popper/context-menu
+:::
+
+
 ## 反转和AutoPlacement有什么区别
 
 `flip`与`auto-placement`最本质的区别就是, `auto-placement`并不一定是反方向的，但`flip`一般会在空间不足时反转到另一侧。
