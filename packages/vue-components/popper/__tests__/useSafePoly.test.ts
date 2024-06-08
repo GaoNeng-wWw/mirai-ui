@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { clean, useClamp, useSafePoly } from '../src/useSafepoly';
+import { clean, useClamp, useSafePolygon } from '../src/useSafepoly';
 import { ref } from 'vue';
 import { Dimensions, ElementRects, FloatingElement, Rect, ReferenceElement } from '@floating-ui/vue';
 
@@ -29,7 +29,7 @@ describe('useSafePoly', () => {
         clipPath: ''
       }
     } as HTMLElement);
-    const { fn } = useSafePoly(safePoly);
+    const { fn } = useSafePolygon(safePoly);
     fn({
       x: 0,
       y: 0,
