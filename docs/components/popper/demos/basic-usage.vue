@@ -1,7 +1,7 @@
 <template>
   <div class="h-48 overflow-auto">
     <div class="h-96 w-full flex items-center justify-center">
-      <popper v-model="show">
+      <popper>
         <popper-trigger @click="show = !show">
           <m-button ref="btn">Show</m-button>
         </popper-trigger>

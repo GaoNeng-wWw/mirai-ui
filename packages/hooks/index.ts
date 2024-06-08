@@ -1,1 +1,1 @@
-export * from './useForward';
+export * from './src/useForward';

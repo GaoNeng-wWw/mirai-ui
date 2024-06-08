@@ -1,16 +1,7 @@
 {
+  "extends": "../vue-components/tsconfig.json",
   "compilerOptions": {
-    "target": "ES2020",
-    "moduleResolution": "Node",
-    "isolatedModules": true,
-    "useDefineForClassFields": true,
     "outDir": "./dist",
-    "lib": ["DOM","DOM.Iterable","ES2020"],
-    "strict": true,
-    "skipLibCheck": true,
-    "rootDir": ".",
-    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules"],
-  "include": ["./*.ts"]
 }

@@ -1,7 +1,9 @@
 <template>
     <div class="w-full h-fit border border-foreground-300 p-2 rounded flex flex-col gap-2 mt-2">
         <div class="w-full h-fit rounded-md px-4 py-2">
+          <client-only>
             <component :is="component" />
+          </client-only>
         </div>
         <div class="">
             <p class="m-0 text-center cursor-pointer dark:text-default-700 dark:hover:text-default-800" @click="changeExpand">
