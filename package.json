@@ -31,7 +31,7 @@
     "create:components": "esno ./internal/src/create-components.ts",
     "create:side-bar": "esno ./internal/src/auto-generate-side-bar.ts",
     "build:lib-entry": "rimraf packages/vue-components/index.ts && esno ./internal/src/create-lib-entry.ts",
-    "build:site-vue": "pnpm -C docs docs:build",
+    "build:site-vue": "pnpm build:lib-entry && pnpm -C docs docs:build",
     "test:unit": "pnpm -C packages/vue-components test",
     "test:cov": "pnpm -C packages/vue-components test:cov",
     "version": "pnpm install && changeset version",
