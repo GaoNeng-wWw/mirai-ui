@@ -57,11 +57,11 @@ export default defineConfig({
         },
         {
           find: /^@miraiui-org\/vue-components$/,
-          replacement: join(__dirname, '../../packages/vue-components/index.ts')
+          replacement: join(__dirname, '../../packages/vue-components')
         },
         {
           find: /^@miraiui-org\/hooks$/,
-          replacement: join(__dirname, '../../packages/hooks/index.ts')
+          replacement: join(__dirname, '../../packages/hooks')
         }
       ]
     }

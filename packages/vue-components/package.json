@@ -18,7 +18,8 @@
   "main": "dist/vue-components.js",
   "scripts": {
     "dev": "vite",
-    "build": " vue-tsc -p tsconfig.build.json --composite false --declaration --emitDeclarationOnly && vite build",
+    "#build": " vue-tsc -p tsconfig.build.json --composite false --declaration --emitDeclarationOnly && vite build",
+    "build": "vue-tsc -p tsconfig.build.json --composite false --declaration --emitDeclarationOnly && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:cov": "vitest --coverage"

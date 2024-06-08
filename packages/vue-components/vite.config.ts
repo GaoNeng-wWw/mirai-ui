@@ -15,9 +15,9 @@ export default defineConfig({
     rollupOptions:{
       external: [
         'vue', '@miraiui-org/theme',
-        '@floating-ui/vue',
-        '@floating-ui/dom',
-        '@floating-ui/core'
+        // '@floating-ui/vue',
+        // '@floating-ui/dom',
+        // '@floating-ui/core'
       ],
       output:{
         exports: 'named',
@@ -43,7 +43,7 @@ export default defineConfig({
         '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*',
         '**/index.ts',
         '.eslintrc.cjs'
-      ],
+      ], 
     },
   },
   resolve:{

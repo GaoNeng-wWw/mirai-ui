@@ -2,7 +2,22 @@
   "name": "@miraiui-org/hooks",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "index.ts",
-  "module": "index.ts",
-  "types": "index.d.ts"
+  "types": "./dist/index.d.ts",
+  "main": "./dist",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "tsup": "^8.0.2"
+  },
+  "scripts": {
+    "build": "tsup"
+  }
 }
