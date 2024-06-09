@@ -1,7 +1,7 @@
 import { defineConfig, build, Rollup } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import fg from 'fast-glob';
-import { dirname, join, resolve } from 'path';
+import { resolve } from 'path';
 import camelcase from 'camelcase';
 
 const baseConfig = defineConfig({

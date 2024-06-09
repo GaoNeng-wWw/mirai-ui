@@ -39,7 +39,9 @@
     "test:unit": "pnpm -C packages/vue-components test",
     "test:cov": "pnpm -C packages/vue-components test:cov",
     "version": "pnpm install && changeset version",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "cva": "1.0.0-beta.1"
