@@ -1,4 +1,4 @@
-import {defineConfig, build, Rollup} from 'vite';
+import { defineConfig, build, Rollup } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import fg from 'fast-glob';
 import { dirname, join, resolve } from 'path';
@@ -26,9 +26,9 @@ const buildComponent = async () => {
   const components = fg.sync(['packages/vue-components/*'], {
     ignore: ['**/node_modules'],
     onlyDirectories: true
-  })
+  });
   // buildSingle
-  for (const component of components){
+  for (const component of components) {
     const entryPath = resolve(component, 'index.ts');
     const outputDir = resolve(component, 'dist');
     await build(
@@ -38,7 +38,7 @@ const buildComponent = async () => {
 
           rollupOptions,
           lib:{
-            name: `M${camelcase(component.split('/').at(-1), {pascalCase: true})}`,
+            name: `M${camelcase(component.split('/').at(-1), { pascalCase: true })}`,
             entry: entryPath,
             fileName: 'index',
             formats: ['es', 'umd', 'cjs'],
@@ -47,11 +47,11 @@ const buildComponent = async () => {
           emptyOutDir: false,
         },
       })
-    )
+    );
   }
-}
+};
 
 buildComponent()
-.then(()=>{
-  process.exit()
-})
+  .then(() => {
+    process.exit();
+  });

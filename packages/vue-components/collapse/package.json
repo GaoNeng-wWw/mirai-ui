@@ -19,7 +19,8 @@
     "dist"
   ],
   "dependencies": {
+    "@miraiui-org/theme": "workspace:^",
     "@miraiui-org/vue-transition-collapse": "workspace:^",
-    "@miraiui-org/theme": "workspace:^"
+    "vite": "^5.1.4"
   }
 }

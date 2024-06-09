@@ -1,0 +1,7 @@
+{
+  "extends": "../vue-components/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true
+  },
+}
