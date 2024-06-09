@@ -1,4 +1,4 @@
-import { FlipOptions, Middleware, Placement, ShiftOptions, VirtualElement } from '@floating-ui/vue';
+import { FlipOptions, Middleware, Placement, ShiftOptions } from '@floating-ui/vue';
 import { ComputedRef, ExtractPropTypes, PropType, Ref } from 'vue';
 
 export type PopperTrigger = 'click' | 'hover' | 'contextmenu' | 'focus'
@@ -7,7 +7,9 @@ export type PopperFlipOptions = FlipOptions;
 export type PopperShiftOptions = ShiftOptions;
 export type PopperMiddlewares = Middleware[]
 
-export type VirtualTrigger = VirtualElement;
+export type VirtualTrigger = {
+  getBoundingClientRect: ()=>Omit<DOMRect, 'toJSON'>
+};
 
 export const PopperProp = {
 
