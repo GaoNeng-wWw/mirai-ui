@@ -10,7 +10,7 @@
                 {{expandTip}}
             </p>
             <div class="w-full p-2 bg-foreground-100" v-if="expand">
-    <pre v-html="highLightCode" class="*:!bg-transparent"></pre>
+              <pre v-html="highLightCode" class="*:!bg-transparent overflow-auto"></pre>
             </div>
         </div>
     </div>
