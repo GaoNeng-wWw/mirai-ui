@@ -7,11 +7,12 @@
     "outDir": "dist",
     "lib": ["DOM","DOM.Iterable","ES2020"],
     "strict": true,
-    "skipDefaultLibCheck": true
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
   "references": [
     { "path": "./tsconfig.build.json" },
     { "path": "./tsconfig.node.json" },
   ],
-  "exclude": ["**/node_modules", "**/__tests__", "__tests__", "node_modules"]
+  "exclude": ["**/node_modules", "**/__tests__", "__tests__", "node_modules", "**/vite.config.ts"]
 }

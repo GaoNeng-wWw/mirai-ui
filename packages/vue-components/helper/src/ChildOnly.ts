@@ -1,4 +1,4 @@
-import { FORWARD_REF_INJECTION_KEY, useForwardRefDirective } from '@miraiui-org/hooks';
+import { FORWARD_REF_INJECTION_KEY, useForwardRefDirective } from '@miraiui-org/vue-hooks';
 import { defineComponent, inject, VNode, Fragment, createVNode, cloneVNode, withDirectives, warn } from 'vue';
 import { NOOP, isObject } from '@vue/shared';
 

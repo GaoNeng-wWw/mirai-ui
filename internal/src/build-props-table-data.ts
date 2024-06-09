@@ -1,21 +1,13 @@
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
-import { dirname, join, resolve } from "path";
-import { buildMsg, err, info, warn } from "./log";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
+import { dirname, join, resolve } from 'path';
+import { buildMsg, err, info, warn } from './log';
 import { 
-  BooleanLiteral,
   JSDocTagInfo,
-  LiteralExpression,
-  LiteralLikeNode,
-  NumericLiteral,
   Project,
   SourceFile,
-  StringLiteral,
   SyntaxKind,
-  ts,
-  Type,
-  TypeChecker,
   TypeFormatFlags,
-} from "ts-morph";
+} from 'ts-morph';
 import { parse, compileScript } from 'vue/compiler-sfc';
 import { walkAST } from 'ast-kit';
 import {
@@ -25,7 +17,6 @@ import {
   isIdentifier,
   isLiteral,
   isNumericLiteral,
-  isObjectExpression,
   isStringLiteral,
   isTSArrayType,
   isTSBooleanKeyword,
@@ -50,13 +41,10 @@ import {
   StringLiteral as BStringLiteral,
   NumericLiteral as BNumericLiteral,
   BooleanLiteral as BBooleanLiteral,
-  isObjectProperty,
-  ObjectExpression
 } from '@babel/types';
 
 const existsIndexFile = (path: string) => readdirSync(path).includes('index.ts');
-const ignore = ['vue'];
-const ignoreFold = ['node_modules','.vscode','shared']
+const ignoreFold = ['node_modules', '.vscode', 'shared'];
 type ImportMap = {name: string, relativePath: string, filePath: string, basePath: string}
 type PropMap = {compName: string, compFoldPath: string, propsObjectName: string, propsPath: string};
 type PropItemData = {
@@ -77,27 +65,27 @@ type PropItem = {
   [componentName: string]: PropItemData[]
 }
 const collectEntryImport = (sourcefile: SourceFile): {[x:string]: string} => {
-  const res:{[x:string]: string} = {}
+  const res:{[x:string]: string} = {};
   const importDecls = sourcefile.getImportDeclarations();
-  importDecls.forEach((decl)=>{
+  importDecls.forEach((decl) => {
     const [importClause, moduleSpecifier] = [decl.getImportClause(), decl.getModuleSpecifier()];
     let name: string;
-    let path = moduleSpecifier.getLiteralText();
-    if (importClause.isTypeOnly()){
+    const path = moduleSpecifier.getLiteralText();
+    if (importClause.isTypeOnly()) {
       const namedBindings = importClause.getNamedBindings();
-      if (namedBindings.isKind(SyntaxKind.NamedImports)){
+      if (namedBindings.isKind(SyntaxKind.NamedImports)) {
         const elements = namedBindings.getElements();
-        for (const el of elements){
+        for (const el of elements) {
           name = el.getName();
           res[name]=path;
         }
       }
     } else {
       const namedBindings = importClause.getNamedBindings();
-      if (namedBindings){
-        if (namedBindings.isKind(SyntaxKind.NamedImports)){
+      if (namedBindings) {
+        if (namedBindings.isKind(SyntaxKind.NamedImports)) {
           const elements = namedBindings.getElements();
-          for (const el of elements){
+          for (const el of elements) {
             name = el.getName();
             res[name]=path;
           }
@@ -107,10 +95,10 @@ const collectEntryImport = (sourcefile: SourceFile): {[x:string]: string} => {
       }
     }
     res[name] = path;
-  })
+  });
   return res;
-}
-const collectComponents = (path: string,compName: string, componentPath: string):ImportMap[] => {
+};
+const collectComponents = (path: string, compName: string, componentPath: string):ImportMap[] => {
   const entryFilePath = path;
   if (!existsSync(entryFilePath)) {
     return [];
@@ -119,67 +107,67 @@ const collectComponents = (path: string,compName: string, componentPath: string)
   const sourcefile = project.addSourceFileAtPath(entryFilePath);
   const importMap = collectEntryImport(sourcefile);
   const exportSymbol = sourcefile.getDefaultExportSymbol();
-  if (!exportSymbol){
+  if (!exportSymbol) {
     return [];
   }
   const decl = exportSymbol.getValueDeclaration();
-  if (!decl.isKind(SyntaxKind.ExportAssignment)){
+  if (!decl.isKind(SyntaxKind.ExportAssignment)) {
     return [];
   }
   const exp = decl.getExpression();
-  if (!exp.isKind(SyntaxKind.ObjectLiteralExpression)){
+  if (!exp.isKind(SyntaxKind.ObjectLiteralExpression)) {
     return [];
   }
   const installSymbol = exp.getSymbol().getMember('install');
   const valueDecl = installSymbol.getValueDeclaration();
-  if (!valueDecl.isKind(SyntaxKind.PropertyAssignment)){
+  if (!valueDecl.isKind(SyntaxKind.PropertyAssignment)) {
     return [];
   }
   const initializer = valueDecl.getInitializer();
-  if (!initializer.isKind(SyntaxKind.ArrowFunction)){
+  if (!initializer.isKind(SyntaxKind.ArrowFunction)) {
     return [];
   }
   const fn = initializer.getBody();
-  if (!fn.isKind(SyntaxKind.Block)){
+  if (!fn.isKind(SyntaxKind.Block)) {
     return [];
   }
   const stmts = fn.getStatements().map((stmt) => {
-    if (!stmt.isKind(SyntaxKind.ExpressionStatement)){
+    if (!stmt.isKind(SyntaxKind.ExpressionStatement)) {
       return false;
     }
-    if (!stmt.getExpression().isKind(SyntaxKind.CallExpression)){
+    if (!stmt.getExpression().isKind(SyntaxKind.CallExpression)) {
       return false;
     }
     const exp = stmt.getExpression();
-    if (!exp.isKind(SyntaxKind.CallExpression)){
+    if (!exp.isKind(SyntaxKind.CallExpression)) {
       return false;
     }
     const fArguments = exp.getArguments().filter((v) => v.isKind(SyntaxKind.Identifier));
-    return fArguments
+    return fArguments;
   })
-  .filter(v => typeof v !== 'boolean')
-  .flat()
+    .filter(v => typeof v !== 'boolean')
+    .flat();
   const registeredItem = stmts.map((s) => {
-    if (!s){
+    if (!s) {
       return;
     }
     const symbol = s.getSymbol();
     const valueDecl = symbol.getValueDeclaration();
-    if (!valueDecl || !valueDecl.isKind(SyntaxKind.VariableDeclaration)){
+    if (!valueDecl || !valueDecl.isKind(SyntaxKind.VariableDeclaration)) {
       return s.getText();
     }
     const initializer = valueDecl.getInitializer();
-    if (initializer.isKind(SyntaxKind.Identifier)){
-      return initializer.compilerNode.escapedText.toString()
+    if (initializer.isKind(SyntaxKind.Identifier)) {
+      return initializer.compilerNode.escapedText.toString();
     }
-    if (initializer.isKind(SyntaxKind.AsExpression)){
+    if (initializer.isKind(SyntaxKind.AsExpression)) {
       const exp = initializer.getExpression();
-      if (exp.isKind(SyntaxKind.Identifier)){
+      if (exp.isKind(SyntaxKind.Identifier)) {
         return exp.compilerNode.escapedText.toString();
       }
     }
   })
-  .filter((v) => v)
+    .filter((v) => v);
   const paths = registeredItem.map(name => ({
     name,
     relativePath: importMap[name],
@@ -187,62 +175,62 @@ const collectComponents = (path: string,compName: string, componentPath: string)
     basePath: dirname(join(componentPath, importMap[name]))
   })).filter(value => value.name);
   return paths;
-}
+};
 
 const collectPropsName = (importMaps: ImportMap[]) => {
   const propMaps:PropMap[] = [];
-  for (const m of importMaps){
+  for (const m of importMaps) {
     const code = readFileSync(m.filePath).toString();
-    const {descriptor} = parse(code);
-    const {scriptSetupAst} = compileScript(descriptor, {babelParserPlugins: ['typescript'],id:m.name})
+    const { descriptor } = parse(code);
+    const { scriptSetupAst } = compileScript(descriptor, { babelParserPlugins: ['typescript'], id:m.name });
     const propMap:PropMap = {
       compName: m.name,
       compFoldPath: m.basePath,
       propsObjectName: '',
       propsPath: '',
-    }
-    for (const stmt of scriptSetupAst){
+    };
+    for (const stmt of scriptSetupAst) {
       walkAST(stmt, {
         enter: (node) => {
-          if (node.type !== 'VariableDeclaration'){
+          if (node.type !== 'VariableDeclaration') {
             return;
           }
-          for (const decl of node.declarations){
-            if(decl.init.type !== 'CallExpression' || decl.init.callee.type !== 'Identifier'){
+          for (const decl of node.declarations) {
+            if(decl.init.type !== 'CallExpression' || decl.init.callee.type !== 'Identifier') {
               continue;
             }
-            if (decl.init.callee.name !== 'defineProps'){
+            if (decl.init.callee.name !== 'defineProps') {
               continue;
             }
-            if (decl.init.arguments[0].type !== 'Identifier'){
+            if (decl.init.arguments[0].type !== 'Identifier') {
               return;
             }
-            propMap.propsObjectName=decl.init.arguments[0].name
+            propMap.propsObjectName=decl.init.arguments[0].name;
           }
         }
-      })
+      });
     }
-    for (const stmt of scriptSetupAst){
+    for (const stmt of scriptSetupAst) {
       walkAST(stmt, {
         enter: (node) => {
-          if (node.type !== 'ImportDeclaration'){
+          if (node.type !== 'ImportDeclaration') {
             return;
           }
-          const {specifiers, source} = node;
-          for (const specifier of specifiers){
-            if (specifier.local.name === propMap.propsObjectName){
+          const { specifiers, source } = node;
+          for (const specifier of specifiers) {
+            if (specifier.local.name === propMap.propsObjectName) {
               propMap.propsPath = source.value;
               return;
             }
           }
         }
-      })
+      });
     }
     propMaps.push(propMap);
-    buildMsg(`Collect ${m.name}`, true)
+    buildMsg(`Collect ${m.name}`, true);
   }
   return propMaps;
-}
+};
 
 type JSDocData = {
   [lang: string]: string;
@@ -250,8 +238,8 @@ type JSDocData = {
 
 const collectJSDocData = (jsDocTags: JSDocTagInfo[]) => {
   const jsDocDatas:{[x:string]: JSDocData} = {};
-  for (const tag of jsDocTags){
-    if (!tag){
+  for (const tag of jsDocTags) {
+    if (!tag) {
       continue;
     }
     const regexp = /\{(?<lang>\w+)\}\s?(?<content>.*)/gim;
@@ -263,10 +251,10 @@ const collectJSDocData = (jsDocTags: JSDocTagInfo[]) => {
     jsDocDatas[tag.getName()] = {
       ...jsDocDatas[tag.getName()],
       [lang]: content
-    }
+    };
   }
   return jsDocDatas;
-}
+};
 
 const collectPropsData = (sourcefile: SourceFile, propsName: string) => {
   const varibleStatement = sourcefile.getVariableDeclaration(propsName);
@@ -274,43 +262,43 @@ const collectPropsData = (sourcefile: SourceFile, propsName: string) => {
   const expression = initializer.isKind(SyntaxKind.AsExpression) ?
     initializer.getExpression() :
     initializer;
-  if (!expression.isKind(SyntaxKind.ObjectLiteralExpression)){
+  if (!expression.isKind(SyntaxKind.ObjectLiteralExpression)) {
     return null;
   }
   const properties = expression.getProperties();
   const props = [];
-  for (const property of properties){
-    if (!property.isKind(SyntaxKind.PropertyAssignment)){
+  for (const property of properties) {
+    if (!property.isKind(SyntaxKind.PropertyAssignment)) {
       continue;
     }
     const propName = property.getName();
     let typeName = '';
     let defaultValue = '';
-    const propObject = property.getInitializer()
-    if (!propObject.isKind(SyntaxKind.ObjectLiteralExpression)){
+    const propObject = property.getInitializer();
+    if (!propObject.isKind(SyntaxKind.ObjectLiteralExpression)) {
       continue;
     }
     const typeMember = propObject.getProperty('type');
     const defaultValueObject = propObject.getProperty('default');
-    if (!typeMember.isKind(SyntaxKind.PropertyAssignment)){
+    if (!typeMember.isKind(SyntaxKind.PropertyAssignment)) {
       continue;
     }
     const typeInitializer = typeMember.getInitializer();
-    if (typeInitializer.isKind(SyntaxKind.AsExpression)){
-      const type = typeInitializer.getType()
+    if (typeInitializer.isKind(SyntaxKind.AsExpression)) {
+      const type = typeInitializer.getType();
       const typeSymbol = type.getAliasSymbol();
-      if (typeSymbol.getName() === 'PropType'){
+      if (typeSymbol.getName() === 'PropType') {
         const [typeArgument] = type.getAliasTypeArguments();
-        if (!typeArgument.isArray()){
-          if (typeArgument.isObject()){
+        if (!typeArgument.isArray()) {
+          if (typeArgument.isObject()) {
             const typeRef = typeInitializer.getChildrenOfKind(SyntaxKind.TypeReference);
-            if (!typeRef){
-              typeName = ''
+            if (!typeRef) {
+              typeName = '';
             } else {
               typeName = typeRef[0].getTypeArguments()[0].getText();
             }
           } else {
-            typeName = typeArgument.getText(typeMember, TypeFormatFlags.None)
+            typeName = typeArgument.getText(typeMember, TypeFormatFlags.None);
           }
         } else {
           typeName = typeArgument.getText(typeMember, TypeFormatFlags.None);
@@ -323,7 +311,7 @@ const collectPropsData = (sourcefile: SourceFile, propsName: string) => {
       typeName = typeInitializer.getText();
     }
     const jsDocDatas = collectJSDocData(property.getSymbol().getJsDocTags());
-    if (defaultValueObject && defaultValueObject.isKind(SyntaxKind.PropertyAssignment)){
+    if (defaultValueObject && defaultValueObject.isKind(SyntaxKind.PropertyAssignment)) {
       defaultValue = defaultValueObject.getInitializer().getText();
     } else {
       defaultValue = '-';
@@ -337,14 +325,14 @@ const collectPropsData = (sourcefile: SourceFile, propsName: string) => {
     props.push(obj);
   }
   return props;
-}
+};
 const collectPropsItem = (propsMaps: PropMap[], importMaps: ImportMap[]) => {
-  const propItem: PropItem = {}
-  const project = new Project()
-  for (let i=0;i<propsMaps.length;i++){
-    const {compName, compFoldPath, propsPath, propsObjectName} = propsMaps[i];
-    const {filePath} = importMaps[i];
-    if (!propsPath){
+  const propItem: PropItem = {};
+  const project = new Project();
+  for (let i=0;i<propsMaps.length;i++) {
+    const { compName, compFoldPath, propsPath, propsObjectName } = propsMaps[i];
+    const { filePath } = importMaps[i];
+    if (!propsPath) {
       continue;
     }
     const propFilePath = join(compFoldPath, propsPath);
@@ -352,191 +340,181 @@ const collectPropsItem = (propsMaps: PropMap[], importMaps: ImportMap[]) => {
     const sourcefile = project.addSourceFileAtPath(`${propFilePath}.ts`);
     const propDatas = collectPropsData(sourcefile, propsObjectName);
     propItem[compName] = [...collectModelValue(filePath), ...propDatas];
-    buildMsg(`Collect ${compName}`, true)
+    buildMsg(`Collect ${compName}`, true);
   }
   return propItem;
-}
+};
 
-const isNormalType = (node:Node): node is TSStringKeyword | TSBooleanKeyword | TSSymbolKeyword | TSNumberKeyword => isTSStringKeyword(node) || isTSBooleanKeyword(node) || isTSSymbolKeyword(node) || isTSNumberKeyword(node);
+const isNormalType = (node:Node): node is TSStringKeyword
+| TSBooleanKeyword
+| TSSymbolKeyword
+| TSNumberKeyword => isTSStringKeyword(node) || isTSBooleanKeyword(node) || isTSSymbolKeyword(node) || isTSNumberKeyword(node);
 const isLiteralType = (node: Node): node is BStringLiteral | BNumericLiteral | BBooleanLiteral => isStringLiteral(node) || isNumericLiteral(node) || isBooleanLiteral(node);
 
 const extractNormalType = (
   node: TSStringKeyword | TSBooleanKeyword | TSSymbolKeyword | TSNumberKeyword
-) => {
+) => node.type.replace('TS', '').replace('Keyword', '');
 
-  return node.type.replace('TS', '').replace('Keyword', '');
-}
-
-const extractTypeReference = (node: TSTypeReference) => {
-  return node.typeName.type === 'Identifier' ? node.typeName.name : node.typeName.right.name;
-}
+const extractTypeReference = (node: TSTypeReference) => node.typeName.type === 'Identifier' ? node.typeName.name : node.typeName.right.name;
 const extractPropertySignature = (node: TSPropertySignature) => {
-  const {key, typeAnnotation: {typeAnnotation}} = node;
-  if (key.type !== 'Identifier'){
-    return "{}";
+  const { key, typeAnnotation: { typeAnnotation } } = node;
+  if (key.type !== 'Identifier') {
+    return '{}';
   }
   return `{"${key.name}": ${extractType(typeAnnotation)}}`;
   // return {[key.name]: extractType(typeAnnotation)};
-}
+};
 const extractTypeLiteral = (node: TSTypeLiteral) => {
-  const types = node.members.map((ele)=>{
-    if (isTSIndexSignature(ele)){
-      const {parameters, typeAnnotation: {typeAnnotation}} = ele;
+  const types = node.members.map((ele) => {
+    if (isTSIndexSignature(ele)) {
+      const { parameters, typeAnnotation: { typeAnnotation } } = ele;
       const singnatureName = parameters[0].name;
-      const singnatureType = extractType(parameters[0].typeAnnotation)
+      const singnatureType = extractType(parameters[0].typeAnnotation);
       return `{[${singnatureName}:${singnatureType}]: ${extractType(typeAnnotation)}}`;
     }
-    if (isTSPropertySignature(ele)){
+    if (isTSPropertySignature(ele)) {
       return extractPropertySignature(ele);
     }
-  })
+  });
   return types[0];
-}
+};
 
-const extractUnionType = (node: TSUnionType) => {
-  return node.types.map((t) => {
-    return extractType(t);
-  }).join('|');
-}
+const extractUnionType = (node: TSUnionType) => node.types.map((t) => extractType(t)).join('|');
 
 const extractType = (node: Node) => {
   let typeName = '';
-  if (isTSArrayType(node)){
-    typeName = extractType(node.elementType)
+  if (isTSArrayType(node)) {
+    typeName = extractType(node.elementType);
   }
-  if (isNormalType(node)){
+  if (isNormalType(node)) {
     typeName = extractNormalType(node);
   }
-  if (isTSTypeReference(node)){
-    typeName = extractTypeReference(node)
+  if (isTSTypeReference(node)) {
+    typeName = extractTypeReference(node);
   }
   if (isTSUnionType(node)) {
-    typeName = extractUnionType(node)
+    typeName = extractUnionType(node);
   }
-  if (isTSTypeLiteral(node)){
+  if (isTSTypeLiteral(node)) {
     typeName = extractTypeLiteral(node);
   }
-  if (isTSTypeAnnotation(node)){
+  if (isTSTypeAnnotation(node)) {
     typeName = extractType(node.typeAnnotation);
   }
   return typeName;
-}
+};
 
 const extractVModelName = (node: CallExpression) => {
-  const maybeName = node.arguments[0];
-  if (!maybeName || maybeName.type === 'ObjectExpression'){
+  const [maybeName] = node.arguments;
+  if (!maybeName || maybeName.type === 'ObjectExpression') {
     return 'modelValue';
   }
-  if (maybeName.type === 'StringLiteral'){
+  if (maybeName.type === 'StringLiteral') {
     return maybeName.value;
   }
-}
-const getArrayElementsContent = (node: ArrayExpression) => {
-  return node.elements.map((ele) => {
-    if (
-      isLiteralType(ele)
-    ){
-      return ele.value;
-    }
-    if (isIdentifier(ele)){
-      return ele.name;
-    }
-    return undefined;
-  })
+};
+const getArrayElementsContent = (node: ArrayExpression) => node.elements.map((ele) => {
+  if (
+    isLiteralType(ele)
+  ) {
+    return ele.value;
+  }
+  if (isIdentifier(ele)) {
+    return ele.name;
+  }
+  return undefined;
+})
   .filter((v) => v !== undefined);
-}
 const extractVModelOption = (node: CallExpression) => {
-  const option = node.arguments.map((n) => n.type === 'ObjectExpression' ? n : null).filter((v) => v !== null)
-  if (!option.length){
-    return {required: false,defaultValue: null};
+  const option = node.arguments.map((n) => n.type === 'ObjectExpression' ? n : null).filter((v) => v !== null);
+  if (!option.length) {
+    return { required: false, defaultValue: null };
   }
   const obj = {
     required: false,
     defaultValue: null
-  }
-  for (const property of option[0].properties){
-    if (property.type !== 'ObjectProperty'){
+  };
+  for (const property of option[0].properties) {
+    if (property.type !== 'ObjectProperty') {
       continue;
     }
-    if (property.key.type !== 'Identifier'){
+    if (property.key.type !== 'Identifier') {
       continue;
     }
-    if (property.key.name === 'default'){
-      const value = property.value;
-      if (isLiteral(value)){
+    if (property.key.name === 'default') {
+      const { value } = property;
+      if (isLiteral(value)) {
         obj['defaultValue'] = isLiteralType(value) ? value.value : 'unknown';
         continue;
       }
-      if (value.type == 'Identifier'){
+      if (value.type === 'Identifier') {
         obj['defaultValue'] = value.name;
         continue;
       }
-      if (value.type === 'ArrayExpression'){
-        obj['defaultValue'] = `[${getArrayElementsContent(value).join(',')}]`
+      if (value.type === 'ArrayExpression') {
+        obj['defaultValue'] = `[${getArrayElementsContent(value).join(',')}]`;
         continue;
       }
       obj['defaultValue'] = 'unknown';
     }
-    if (property.key.name === 'requried'){
+    if (property.key.name === 'requried') {
       obj['required'] = property.value.type === 'BooleanLiteral' ? property.value.value : false;
       continue;
     }
   }
   return obj;
-}
+};
 
 const collectModelValue = (filePath: string) => {
   const propMaps:PropItemData[] = [];
   const code = readFileSync(filePath).toString();
-  const {descriptor} = parse(code);
-  const {scriptSetupAst} = compileScript(descriptor, {babelParserPlugins: ['typescript'],id:filePath});
-  for (const stmt of scriptSetupAst){
+  const { descriptor } = parse(code);
+  const { scriptSetupAst } = compileScript(descriptor, { babelParserPlugins: ['typescript'], id:filePath });
+  for (const stmt of scriptSetupAst) {
     let comment = stmt.trailingComments;
     let jsDocs = {};
     walkAST(stmt, {
       enter: (node) => {
-        if (node.type !== 'VariableDeclaration'){
+        if (node.type !== 'VariableDeclaration') {
           return;
         }
-        for (const decl of node.declarations){
-          if (decl.init.type !== 'CallExpression' || decl.init.callee.type!=='Identifier'){
+        for (const decl of node.declarations) {
+          if (decl.init.type !== 'CallExpression' || decl.init.callee.type!=='Identifier') {
             continue;
           }
-          if (decl.init.callee.name !== 'defineModel'){
+          if (decl.init.callee.name !== 'defineModel') {
             continue;
           }
-          if (node.leadingComments){
+          if (node.leadingComments) {
             comment = node.leadingComments;
           }
-          if (comment){
+          if (comment) {
             const [commenObj] = comment;
-            const {value,type} = commenObj;
-            if (type !== 'CommentBlock'){
+            const { value, type } = commenObj;
+            if (type !== 'CommentBlock') {
               return;
             }
             const jsDocString = value.replace(/\*/gim, '');
-            const jsDocArray = jsDocString.split('\n').map((v) => v.trim()).filter((v)=>v.length);
-            const jsDocTag: any[] = jsDocArray.map((str) => {
-              return {
-                getName: ()=>/@(\w*)\s/gim.exec(str)[1],
-                getText: ()=>[{
+            const jsDocArray = jsDocString.split('\n').map((v) => v.trim()).filter((v) => v.length);
+            const jsDocTag: any[] = jsDocArray.map((str) => ({
+              getName: () => /@(\w*)\s/gim.exec(str)[1],
+              getText: () => [{
+                kind: 'text',
+                text: /@(\w*)\s(.*)/gim.exec(str)[2]
+              }],
+              compilerObject: {
+                name: /@(\w*)\s/gim.exec(str)[1],
+                text: [{
                   kind: 'text',
                   text: /@(\w*)\s(.*)/gim.exec(str)[2]
                 }],
-                compilerObject: {
-                  name: /@(\w*)\s/gim.exec(str)[1],
-                  text: [{
-                    kind: 'text',
-                    text: /@(\w*)\s(.*)/gim.exec(str)[2]
-                  }],
-                }
               }
-            })
+            }));
             jsDocs = collectJSDocData(jsDocTag);
             comment = [];
           }
           let type = '-';
-          for (const param of decl.init.typeParameters?.params ?? []){
+          for (const param of decl.init.typeParameters?.params ?? []) {
             type = extractType(param);
             const options = extractVModelOption(decl.init);
             const vmodelName = extractVModelName(decl.init);
@@ -546,41 +524,41 @@ const collectModelValue = (filePath: string) => {
               defaultValue: options.defaultValue,
               type,
               ...jsDocs
-            })
+            });
           }
         }
       }
-    })
+    });
   }
   return propMaps;
-}
+};
 
 export const buildPropsTableData = () => {
   const ROOT = resolve(__dirname, '../../packages');
   const vueComponentPath = join(ROOT, 'vue-components');
-  if (!existsIndexFile(vueComponentPath)){
+  if (!existsIndexFile(vueComponentPath)) {
     err(`Can not find index.ts at ${vueComponentPath}`);
     return;
   }
-  info('founded entry file')
-  const components = readdirSync(vueComponentPath, {withFileTypes: true})
+  info('founded entry file');
+  const components = readdirSync(vueComponentPath, { withFileTypes: true })
     .filter((dirent) => !dirent.isFile() && !ignoreFold.includes(dirent.name))
-    .map((dirent) => dirent.name)
-  info(`Component total: ${components.length}`)
-  const entryFilePath = components.map((v)=>join(vueComponentPath, v, 'index.ts'))
+    .map((dirent) => dirent.name);
+  info(`Component total: ${components.length}`);
+  const entryFilePath = components.map((v) => join(vueComponentPath, v, 'index.ts'));
   const componentPath = components.map((v) => join(vueComponentPath, v));
   const importMaps:ImportMap[] = [];
-  for (let i=0;i<componentPath.length;i++){
-    importMaps.push(...collectComponents(entryFilePath[i],components[i], componentPath[i]));
+  for (let i=0;i<componentPath.length;i++) {
+    importMaps.push(...collectComponents(entryFilePath[i], components[i], componentPath[i]));
   }
-  warn('Collect Props name')
+  warn('Collect Props name');
   const propMaps = collectPropsName(importMaps);
-  warn('Collect Props Item')
-  const propItems = collectPropsItem(propMaps, importMaps)
+  warn('Collect Props Item');
+  const propItems = collectPropsItem(propMaps, importMaps);
   writeFileSync(
     join(__dirname, '../../docs/.vitepress/props-table-data.json'),
     JSON.stringify(propItems, null, '  ')
-  )
-}
+  );
+};
 
-buildPropsTableData()
+buildPropsTableData();

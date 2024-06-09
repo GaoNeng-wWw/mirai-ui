@@ -1,4 +1,5 @@
-import {miraiUiPlugin}  from '@miraiui-org/theme';
+import { miraiUiPlugin } from '@miraiui-org/theme';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -14,4 +15,4 @@ module.exports = {
     require('@tailwindcss/typography')
   ],
   darkMode: 'class',
-}
+};
