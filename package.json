@@ -38,7 +38,7 @@
     "build:site-vue": "pnpm build:lib-entry && pnpm build:vue-props-table-data && pnpm -C docs docs:build",
     "test:unit": "pnpm -C packages/vue-components test",
     "test:cov": "pnpm -C packages/vue-components test:cov",
-    "test:type": "pnpm -C packages/vue-components test:type",
+    "test:type": "pnpm -C packages/theme build &&  pnpm -C packages/vue-components test:type",
     "version": "pnpm install && changeset version",
     "changeset": "changeset",
     "lint": "eslint .",
