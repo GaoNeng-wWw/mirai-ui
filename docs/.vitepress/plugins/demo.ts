@@ -40,7 +40,6 @@ export const blockPlugin:MarkdownIt.PluginSimple = (md: MarkdownIt) => {
                 `
             }
             return `</demo></suspense>`
-            // console.log(tokens);
         }
     })
 }

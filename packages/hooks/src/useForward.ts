@@ -14,7 +14,6 @@ export const FORWARD_REF_INJECTION_KEY: InjectionKey<ForwardRefInjectionContext>
 export const useForwardRef = <T>(forwardRef: Ref<T | null>) => {
   const setForwardRef = (el: T) => {
     forwardRef.value = el;
-    console.log(forwardRef.value);
   };
 
   provide(FORWARD_REF_INJECTION_KEY, {

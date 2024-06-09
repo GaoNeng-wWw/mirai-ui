@@ -149,7 +149,6 @@ export const miraiUiPlugin = (
   
   return plugin((api) => {
     api.addUtilities({ ...resolved?.utilities, ...transition });
-    console.log(resolved?.variants);
     resolved?.variants.forEach((variant) => {
       api.addVariant(variant.name, variant.definition);
     });
