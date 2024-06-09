@@ -7,7 +7,7 @@ on:
 
 jobs:
   unit-test:
-    name: Unit test
+    name: 🧪 Unit test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -21,3 +21,17 @@ jobs:
 
       - name: Unit Test
         run: pnpm test:unit
+  TypeTest:
+    name: 🧪 Type test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3.0.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.x
+      - run: pnpm install
+      - name: Type Test
+        run: pnpm test:type
