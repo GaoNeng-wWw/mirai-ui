@@ -34,23 +34,3 @@ const show = ref(false);
 const offset = ref(8);
 const offsetNumber = computed(() => Number(offset.value));
 </script>
-
-<!-- <template>
-  <div class="flex gap-4">
-    <popper :show="show" :offset="offsetNumber">
-      <template #reference>
-        <m-button @click="()=>show=!show">
-          点击我
-        </m-button>
-      </template>
-      <template #floating>
-        <div class="p-4 rounded-md bg-default max-w-60 break-words">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aut dicta expedita unde? Ex, facilis? Aut velit ullam temporibus omnis? Temporibus culpa dicta odio eligendi doloremque voluptas nobis esse laborum.
-        </div>
-      </template>
-    </popper>
-    
-  </div>
-</template>
-
- -->
