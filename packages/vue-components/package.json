@@ -21,7 +21,8 @@
     "build": "vue-tsc -p tsconfig.build.json --composite false --declaration --emitDeclarationOnly && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:cov": "vitest --coverage"
+    "test:cov": "vitest --coverage",
+    "test:type": "vue-tsc -p tsconfig.build.json --composite false --declaration --noEmit"
   },
   "dependencies": {
     "@miraiui-org/build": "workspace:^",
