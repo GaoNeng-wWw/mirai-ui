@@ -14,7 +14,7 @@ type EntryExport = {
 const isSyntaxList = (node: ts.Node): node is ts.SyntaxList => {
   return node.kind === SyntaxKind.SyntaxList;
 }
-const ignore = ['helper'];
+const ignore = ['helper','hooks'];
 
 const buildEntry = (metas: EntryExport[]) => {
   const project = new Project();

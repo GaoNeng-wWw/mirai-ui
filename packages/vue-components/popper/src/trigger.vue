@@ -8,7 +8,7 @@
 import { ChildOnly } from '@miraiui-org/vue-helper';
 import { inject, onMounted, watch } from 'vue';
 import { KEY, PopperContext } from './popper.props';
-import { useForwardRef } from '@miraiui-org/hooks';
+import { useForwardRef } from '@miraiui-org/vue-hooks';
 const name = 'MPopperTrigger';
 
 defineOptions({ name, inheritAttrs: false });

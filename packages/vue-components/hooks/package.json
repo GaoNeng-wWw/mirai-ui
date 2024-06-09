@@ -1,0 +1,20 @@
+{
+  "name": "@miraiui-org/vue-hooks",
+  "version": "1.0.0-alpha.2",
+  "scripts": {
+    "build": "tsup"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "tsup": "^8.0.2"
+  }
+}
