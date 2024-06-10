@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="w-full h-full fixed top-0 left-0 bg-black/30 z-50"
+    class="w-full h-full top-0 left-0 bg-black/30 z-50"
     :class="{
       'fixed': fullScreen,
       'absolute': !fullScreen
