@@ -27,6 +27,13 @@
 :::demo mask/click-destory
 :::
 
+## 不同类型
+
+:::demo mask/types
+:::
+
+
+
 ## Props
 
 :::props mask
