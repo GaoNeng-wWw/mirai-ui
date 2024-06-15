@@ -49,36 +49,38 @@ watch(modelValue, () => {
 </script>
 
 <template>
-  <transition name="modal-transition">
-    <m-mask v-if="visible" @click="handleCancel">
-      <div :class="className" :style="{
-        'width': `${props.width ? `${props.width}px` : '300px'}`
-      }">
-          <div :class="headerStyle">
-            <span>
-              <slot name="header">
-                {{ props.title }}
-              </slot>
-            </span>
+  <teleport to="body">
+    <transition name="modal-transition">
+      <m-mask v-if="visible" @click="handleCancel">
+        <div :class="className" :style="{
+          'width': `${props.width ? `${props.width}px` : '300px'}`
+        }">
+            <div :class="headerStyle">
+              <span>
+                <slot name="header">
+                  {{ props.title }}
+                </slot>
+              </span>
+            </div>
+          <div :class="contentStyle">
+            <slot>
+              {{ props.content }}
+            </slot>
           </div>
-        <div :class="contentStyle">
-          <slot>
-            {{ props.content }}
-          </slot>
+          <div :class="footerStyle">
+            <slot name="footer">
+              <m-button @click="handleCancel">
+                取消
+              </m-button>
+              <m-button type="primary" @click="handleOk">
+                确认
+              </m-button>
+            </slot>
+          </div>
         </div>
-        <div :class="footerStyle">
-          <slot name="footer">
-            <m-button @click="handleCancel">
-              取消
-            </m-button>
-            <m-button type="primary" @click="handleOk">
-              确认
-            </m-button>
-          </slot>
-        </div>
-      </div>
-    </m-mask>
-  </transition>
+      </m-mask>
+    </transition>
+  </teleport>
 </template>
 
 <style>
