@@ -50,7 +50,7 @@ watch(modelValue, () => {
 
 <template>
   <transition name="modal-transition">
-    <m-mask v-if="visible">
+    <m-mask v-if="visible" @click="handleCancel">
       <div :class="className" :style="{
         'width': `${props.width ? `${props.width}px` : '300px'}`
       }">
