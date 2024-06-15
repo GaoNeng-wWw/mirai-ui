@@ -13,7 +13,7 @@ export const ModalFooter = cva({
 });
 
 export const Modal = cva({
-  base: 'bg-content1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border border-white/5',
+  base: 'bg-content1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border border-white/5 modal transform-gpu origin-top-left',
   variants: {
     rounded:{
       none: 'rounded-none',
