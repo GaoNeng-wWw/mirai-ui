@@ -27,7 +27,21 @@
 :::demo mask/click-destory
 :::
 
+## 不同类型
+
+:::demo mask/types
+:::
+
+
+
 ## Props
 
 :::props mask
 :::
+
+## Types
+
+```ts
+export type MaskTypeItem = 'blur' | 'fill' | 'transparent'
+export type MaskType = `${MaskTypeItem}-${MaskTypeItem}` | `${MaskTypeItem} ${MaskTypeItem}` | MaskTypeItem | MaskTypeItem[]
+```

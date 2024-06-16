@@ -1,4 +1,7 @@
-import { ExtractPropTypes } from 'vue';
+import { ExtractPropTypes, PropType } from 'vue';
+
+export type MaskTypeItem = 'blur' | 'fill' | 'transparent'
+export type MaskType = `${MaskTypeItem}-${MaskTypeItem}` | `${MaskTypeItem} ${MaskTypeItem}` | MaskTypeItem | MaskTypeItem[]
 
 export const maskProps = {
 
@@ -20,6 +23,16 @@ export const maskProps = {
   lockScroll: {
     type: Boolean,
     default: false
+  },
+
+  /**
+   * @description {zh} 遮罩类型
+   * @description {en} mask type
+   * @demo {zh} #不同类型
+   */
+  type: {
+    type: Object as PropType<MaskType>,
+    default: 'fill'
   }
 };
 
