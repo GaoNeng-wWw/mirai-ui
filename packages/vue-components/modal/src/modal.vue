@@ -50,11 +50,11 @@ watch(modelValue, () => {
 
 <template>
   <teleport to="body">
-    <transition name="modal-transition">
+    <transition name="modal-transition" appear>
       <m-mask v-if="visible" @click="handleCancel">
         <div :class="className" :style="{
           'width': `${props.width ? `${props.width}px` : '300px'}`
-        }">
+        }" @click.stop>
             <div :class="headerStyle">
               <span>
                 <slot name="header">
@@ -68,7 +68,7 @@ watch(modelValue, () => {
             </slot>
           </div>
           <div :class="footerStyle">
-            <slot name="footer">
+            <slot name="footer" :cancel="handleCancel" :ok="handleOk">
               <m-button @click="handleCancel">
                 取消
               </m-button>

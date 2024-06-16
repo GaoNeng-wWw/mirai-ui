@@ -1,7 +1,8 @@
 import type { App } from 'vue';
 import Modal from './src/modal.vue';
+import { useModal } from './src/useModal';
 
-export { Modal };
+export { Modal, useModal };
 
 export default {
   name: 'Modal',
