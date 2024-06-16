@@ -38,3 +38,10 @@
 
 :::props mask
 :::
+
+## Types
+
+```ts
+export type MaskTypeItem = 'blur' | 'fill' | 'transparent'
+export type MaskType = `${MaskTypeItem}-${MaskTypeItem}` | `${MaskTypeItem} ${MaskTypeItem}` | MaskTypeItem | MaskTypeItem[]
+```
