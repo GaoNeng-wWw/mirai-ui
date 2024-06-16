@@ -94,7 +94,7 @@ watch(modelValue, () => {
 }
 @keyframes zoom {
   0% {
-    scale: 2;
+    scale: 1.5;
   }
   100% {
     scale: 1;
