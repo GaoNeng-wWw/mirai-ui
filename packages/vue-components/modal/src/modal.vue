@@ -6,6 +6,12 @@ import { computed, watch } from 'vue';
 import { Modal, ModalContent, ModalFooter, ModalHeader } from '@miraiui-org/theme';
 import { useVisible } from '@miraiui-org/vue-hooks';
 const COMPONENT_NAME='MModal';
+
+/**
+ * @description {zh} 是否打开Modal
+ * @description {en} Used to control whether Modal is turned on or not
+ * @demo {zh} #基本用法
+ */
 const modelValue = defineModel<boolean>({ default: false, required: true });
 const emits = defineEmits<{
   open: [],
@@ -51,9 +57,9 @@ watch(modelValue, () => {
 <template>
   <teleport to="body">
     <transition name="modal-transition" appear>
-      <m-mask v-if="visible" @click="handleCancel">
+      <m-mask v-if="visible" @click="handleCancel" :type="props.maskType">
         <div :class="className" :style="{
-          'width': `${props.width ? `${props.width}px` : '300px'}`
+          'min-width': `${props.width ? `${props.width}px` : '300px'}`
         }" @click.stop>
             <div :class="headerStyle">
               <span>

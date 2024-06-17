@@ -1,7 +1,7 @@
 import { cva } from 'cva';
 
 export const ModalHeader = cva({
-  base: 'flex w-full gap-2 px-4 pb-0 pt-4 text-xl leading-none',
+  base: 'flex w-full gap-2 px-4 pb-0 pt-4 text-2xl leading-none font-medium',
 });
 
 export const ModalContent = cva({
