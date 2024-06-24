@@ -38,6 +38,9 @@ export const useMessage = (
     onClose: () => {
       userClose?.();
       closeMessage(instance);
+    },
+    onDestory: () => {
+      render(null, container);
     }
   };
   const container = document.createElement('div');
@@ -48,9 +51,8 @@ export const useMessage = (
       default: isFunction(props.content) ? props.content : () => props.content
     } : null
   );
-  const component = vnode.component!;
   const close = () => {
-    component.exposed!.visible.value = false;
+    vnode.component!.exposed!.visible.value = false;
   };
   render(vnode, container);
   const instance: InstanceContext = {
@@ -62,6 +64,6 @@ export const useMessage = (
   };
   instances.push(instance);
   const appendTo = isString(options.appendTo) ? document.querySelector(options.appendTo) ?? document.body : document.body;
-  appendTo.appendChild(container);
+  appendTo.appendChild(container.firstElementChild!);
   return instance.handle;
 };

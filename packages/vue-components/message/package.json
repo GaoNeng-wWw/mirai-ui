@@ -20,6 +20,7 @@
     "dist"
   ],
   "dependencies": {
-    "@miraiui-org/vue-hooks": "workspace:1.0.0-alpha.2"
+    "@miraiui-org/vue-hooks": "workspace:1.0.0-alpha.2",
+    "@miraiui-org/vue-transition-fade": "workspace:1.0.0-alpha.2"
   }
 }
