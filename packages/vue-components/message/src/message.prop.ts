@@ -8,7 +8,7 @@ export type MessageEvents = {
   onClose: ()=>void
 }
 
-export type MessageType = 'info' | 'success' | 'warning' | 'danger';
+export type MessageType = 'info' | 'success' | 'warning' | 'danger' | 'primary';
 
 export const messageProps = {
   content: {
@@ -33,6 +33,9 @@ export const messageProps = {
   },
   onClose: {
     type: Function as PropType<MessageEvents['onClose']>
+  },
+  onDestory: {
+    type:Function
   }
 };
 
