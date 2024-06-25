@@ -36,6 +36,10 @@ export const messageProps = {
   },
   onDestory: {
     type:Function
+  },
+  duration: {
+    type: Number,
+    default: 2000
   }
 };
 

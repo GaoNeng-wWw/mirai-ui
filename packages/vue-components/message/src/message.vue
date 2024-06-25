@@ -23,13 +23,13 @@ defineOptions({
 const props = defineProps(messageProps);
 const styles = message(props);
 const closeIconStyle = closeIcon();
-const { content, gap, id } = toRefs(props);
+const { content, gap, id, duration } = toRefs(props);
 const msg = ref<HTMLDivElement | null>(null);
 const visible = ref(true);
 const h = computed(() => msg.value?.getBoundingClientRect().height ?? 0);
 const close = () => {
   visible.value = false;
-  props.onClose?.();
+  // props.onClose?.();
 };
 const top = computed(() => getOffset(id.value, h.value, gap.value));
 const bottom = computed(() => h.value + top.value);
@@ -38,8 +38,7 @@ const externalStyle = computed(() => ({
 }));
 const stop = useTimeoutFn(() => {
   close();
-}, 3000);
-
+}, duration);
 
 onUnmounted(() => {
   stop.stop();
