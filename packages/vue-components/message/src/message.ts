@@ -16,6 +16,7 @@ const DEFAULT: MessageProps = {
   appendTo: 'body',
   id: '',
   onClose: () => {},
+  duration: 3000,
 } as const;
 
 const closeMessage = (instance:InstanceContext) => {
