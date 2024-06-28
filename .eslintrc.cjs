@@ -60,7 +60,7 @@ module.exports = {
     'no-undef-init': 2,
     'lines-around-comment': 2,
     'lines-between-class-members': 2,
-    'max-len': ['error', { code: 180 }],
+    'max-len': ['error', { code: 180, ignoreComments: true }],
     'no-mixed-spaces-and-tabs': 2,
     'no-multiple-empty-lines': 2,
     'space-before-blocks': 2,
