@@ -15,9 +15,9 @@
     "dist"
   ],
   "devDependencies": {
-    "tsup": "^8.0.2"
+    "tsup": "^8.1.0"
   },
   "dependencies": {
-    "vite": "^5.1.4"
+    "vite": "^5.3.2"
   }
 }

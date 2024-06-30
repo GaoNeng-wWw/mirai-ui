@@ -3,8 +3,8 @@
   "version": "1.0.0-alpha.3",
   "devDependencies": {
     "@miraiui-org/theme": "workspace:^",
-    "vue": "^3.4.19",
-    "vue-tsc": "^1.8.27"
+    "vue": "^3.4.31",
+    "vue-tsc": "^2.0.22"
   },
   "scripts": {
     "build:dts": "vue-tsc --declaration --emitDeclarationOnly",
@@ -21,6 +21,6 @@
     "dist"
   ],
   "dependencies": {
-    "vite": "^5.1.4"
+    "vite": "^5.3.2"
   }
 }
