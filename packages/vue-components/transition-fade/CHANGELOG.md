@@ -1,5 +1,11 @@
 # @miraiui-org/vue-transition-fade
 
+## 1.0.0-alpha.4
+
+### Patch Changes
+
+- [#82](https://github.com/GaoNeng-wWw/mirai-ui/pull/82) [`d45e3a3`](https://github.com/GaoNeng-wWw/mirai-ui/commit/d45e3a39c1fe2bf2bb5b4730769628051abd540e) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - Force publishing of all components
+
 ## 1.0.0-alpha.3
 
 ### Patch Changes
