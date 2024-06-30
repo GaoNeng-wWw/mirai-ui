@@ -2,9 +2,9 @@
   "name": "@miraiui-org/vue-helper",
   "version": "1.0.0-alpha.2",
   "devDependencies": {
-    "vite": "^5.2.9",
-    "vue": "^3.4.19",
-    "vue-tsc": "^1.8.27"
+    "vite": "^5.3.2",
+    "vue": "^3.4.31",
+    "vue-tsc": "^2.0.22"
   },
   "scripts": {
     "build:dts": "vue-tsc --declaration --emitDeclarationOnly",
@@ -22,6 +22,6 @@
   ],
   "dependencies": {
     "@miraiui-org/vue-hooks": "workspace:1.0.0-alpha.2",
-    "@vue/shared": "^3.4.27"
+    "@vue/shared": "^3.4.31"
   }
 }
