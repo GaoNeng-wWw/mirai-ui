@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-input",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "devDependencies": {
     "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.31",

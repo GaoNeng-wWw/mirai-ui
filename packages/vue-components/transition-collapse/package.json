@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-transition-collapse",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "devDependencies": {
     "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.31",
