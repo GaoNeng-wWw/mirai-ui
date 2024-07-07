@@ -1,0 +1,22 @@
+{
+  "name": "@miraiui-org/vue-transition-slide-fade",
+  "version": "1.0.0-alpha.2",
+  "devDependencies": {
+    "@miraiui-org/theme": "workspace:1.0.0-alpha.2",
+    "vue": "^3.4.31",
+    "vue-tsc": "^2.0.26"
+  },
+  "scripts": {
+    "build:dts": "vue-tsc --declaration --emitDeclarationOnly"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}
