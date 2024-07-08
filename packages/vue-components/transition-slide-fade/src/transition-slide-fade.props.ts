@@ -1,6 +1,7 @@
 import { ExtractPropTypes, PropType } from 'vue';
 
 export type Direction = 'top' | 'left' | 'right' | 'bottom';
+export type Hook<T = () => void> = T | T[];
 
 export const transitionSlideFadeProps = {
   from: {
@@ -14,6 +15,18 @@ export const transitionSlideFadeProps = {
   offset: {
     type: Number,
     default: 8
+  },
+  onBeforeEnter: {
+    type: Function,
+    default: () => {}
+  },
+  onEnter: {
+    type: Function,
+    default: () => {}
+  },
+  onLeave: {
+    type: Function,
+    default: () => {}
   }
 };
 
