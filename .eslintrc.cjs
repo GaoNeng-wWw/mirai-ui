@@ -36,10 +36,6 @@ module.exports = {
       'error',
       2
     ],
-    'linebreak-style': [
-      'error',
-      'windows'
-    ],
     'quotes': ['error', 'single'],
     'semi': ['error', 'always'],
     'no-dupe-args': 2,
@@ -82,6 +78,5 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     'vue/multi-word-component-names': 0,
     'vue/prefer-import-from-vue': 0,
-
   }
 };
