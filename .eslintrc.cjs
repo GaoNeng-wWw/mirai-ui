@@ -78,6 +78,5 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     'vue/multi-word-component-names': 0,
     'vue/prefer-import-from-vue': 0,
-
   }
 };
