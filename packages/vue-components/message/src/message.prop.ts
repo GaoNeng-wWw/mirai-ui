@@ -7,7 +7,8 @@ export type MessageHandle = {
 }
 
 export type MessageEvents = {
-  onClose: ()=>void
+  onClose: ()=>void;
+  onDestory: ()=>void;
 }
 
 export type MessageType = 'info' | 'success' | 'warning' | 'danger' | 'primary';
@@ -77,7 +78,7 @@ export const messageProps = {
    * @demo {zh} #事件
    */
   onDestory: {
-    type:Function
+    type:Function as PropType<MessageEvents['onDestory']>
   },
 
   /**

@@ -26,6 +26,7 @@
   "scripts": {
     "prepare": "husky",
     "clean": "rimraf -g **/dist",
+    "clean:dev": "rimraf -g **/node_modules",
     "dev:vue": "pnpm clean && pnpm build:lib-entry && pnpm build:vue-props-table-data && pnpm -C docs docs:dev",
     "build:vue-props-table-data": "esno ./internal/src/build-props-table-data.ts",
     "build:vue-components": "pnpm clean && pnpm postinstall && pnpm --filter @miraiui-org/vue-* build",

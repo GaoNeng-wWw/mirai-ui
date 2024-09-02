@@ -5,6 +5,7 @@ import flatten from 'flat';
 import Color from 'color';
 import { commonColor } from './colors/common';
 import transition from './utils/transition';
+import { PluginAPI } from 'tailwindcss/types/config';
 
 interface Config {
   prefix?: string;
@@ -147,7 +148,7 @@ export const miraiUiPlugin = (
   };
   const resolved = resolve(theme, 'light', prefix);
   
-  return plugin((api) => {
+  return plugin((api:PluginAPI) => {
     api.addUtilities({ ...resolved?.utilities, ...transition });
     resolved?.variants.forEach((variant) => {
       api.addVariant(variant.name, variant.definition);
