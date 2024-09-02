@@ -8,7 +8,9 @@
     "lib": ["DOM","DOM.Iterable","ES2020"],
     "strict": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitOverride": true
   },
   "references": [
     { "path": "./tsconfig.build.json" },
