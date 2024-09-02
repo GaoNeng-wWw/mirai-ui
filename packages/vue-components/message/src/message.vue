@@ -1,5 +1,9 @@
 <template>
-  <transition-fade appear @before-leave="props.onClose" @after-leave="props.onDestory">
+  <transition-fade
+    appear
+    @before-leave="props.onClose"
+    @after-leave="props.onDestory"
+  >
     <div v-if="visible" :class="styles" ref="msg" :style="externalStyle">
       <slot>
         <p>{{content}}</p>
