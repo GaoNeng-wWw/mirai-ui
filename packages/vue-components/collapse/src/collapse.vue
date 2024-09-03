@@ -27,16 +27,15 @@ const collapseWrapperStyle = computed(() => collapse({
   size: size.value,
   radius: radius.value
 }));
-const isDisabled = (key: string|number|symbol) => props.disabledKeys.includes(key);
+const disabledKeys = computed(() => props.disabledKeys);
+const isDisabled = (key: string|number|symbol) => disabledKeys.value.includes(key);
 const open = (key: string|number|symbol) => {
-  if (isDisabled(key)) {
-    return ;
-  }
   let actived = [...modelValue.value];
   if (props.accordion) {
     if (!modelValue.value.includes(key)) {
       actived = [key];
     }
+    modelValue.value.forEach((key) => emits('close', key));
     modelValue.value = actived;
   }
   const idx = actived.indexOf(key);
@@ -48,10 +47,13 @@ const open = (key: string|number|symbol) => {
   emits('open', key);
 };
 const close = (key: string | number | symbol) => {
-  if (isDisabled(key)) {
+  const actived = [...modelValue.value];
+  if (props.accordion) {
+    if (modelValue.value.includes(key)) {
+      modelValue.value = modelValue.value.filter((v) => v !== key);
+    }
     return;
   }
-  const actived = [...modelValue.value];
   const idx = actived.indexOf(key);
   if (idx > -1) {
     actived.splice(idx, 1);
@@ -60,6 +62,9 @@ const close = (key: string | number | symbol) => {
   emits('close', key);
 };
 const onItemClick = (key: string|number|symbol) => {
+  if (isDisabled(key)) {
+    return;
+  }
   if (modelValue.value.includes(key)) {
     if (props.onBeforeClose) {
       props.onBeforeClose?.(key, () => {
@@ -87,7 +92,7 @@ onMounted(() => {
 });
 provide(CONSTANT, reactive({
   modelValue: modelValue,
-  disabledKeys: toRefs(props.disabledKeys),
+  disabledKeys,
   onItemClick,
   open: (key: string | number | symbol) => open(key),
   close: (key: string | number | symbol) => close(key),

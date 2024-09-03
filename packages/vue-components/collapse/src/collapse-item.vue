@@ -27,6 +27,7 @@ import { collapseBody, collapseHeader } from '@miraiui-org/theme';
 import ArrowDown from './icons/arrow-down.vue';
 import { computed, getCurrentInstance, inject, toRefs, useSlots, watch } from 'vue';
 import { collapseItemProps, CONSTANT } from './collapse.props';
+import { Key } from './collapse.vue';
 const headerClass = collapseHeader();
 const bodyClass = collapseBody();
 const slots = useSlots();
@@ -40,15 +41,8 @@ if (key === undefined || key === null) {
 const props = defineProps(collapseItemProps);
 const { title } = toRefs(props);
 const collapsed = inject<CollapseProvide>(CONSTANT)!;
-const disabled = computed(() => collapsed.disabledKeys.some((k) => k.value === key) || props.disabled);
+const disabled = computed(() => collapsed.disabledKeys.includes(key.toString() as Key) || props.disabled);
 const open = computed(() => collapsed.modelValue.includes(key));
-watch(open, () => {
-  if (open.value) {
-    collapsed.open(key);
-  } else {
-    collapsed.close(key);
-  }
-});
 const onHandleClick = () => {
   collapsed.onItemClick(key);
 };

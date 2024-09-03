@@ -1,6 +1,7 @@
 
 import type { App } from 'vue';
-import Collapse, { Key } from './src/collapse.vue';
+import type { Key } from './src/collapse.vue';
+import Collapse from './src/collapse.vue';
 import CollapseItem from './src/collapse-item.vue';
 
 export * from './src/collapse.props';

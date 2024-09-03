@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Collapse, CollapseItem, CollapseColor} from '@miraiui-org/vue-components';
+import { Collapse, CollapseItem, CollapseColor } from '@miraiui-org/vue-components';
 import { Ref, ref } from 'vue';
 const actived = ref(['item-1']);
 const colors: Ref<CollapseColor[]> = ref(
@@ -37,6 +37,6 @@ const colors: Ref<CollapseColor[]> = ref(
     'danger',
     'warning'
   ]
-)
+);
 const color = ref(colors.value[0]);
 </script>

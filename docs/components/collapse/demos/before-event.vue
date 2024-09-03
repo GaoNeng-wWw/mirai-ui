@@ -13,18 +13,19 @@
 </template>
 
 <script lang="ts" setup>
-import {Collapse, CollapseItem} from '@miraiui-org/vue-components';
+import { Collapse, CollapseItem } from '@miraiui-org/vue-components';
 import { ref } from 'vue';
 const actived = ref(['item-1']);
-const count = ref(0)
-const beforeOpen = (key, f) => {
+const beforeOpen = (key: string, f: () => void) => {
   if (key === 'prevent-open') {
-    f()
+    return;
   }
-}
-const beforeClose = (key, f) => {
+  f();
+};
+const beforeClose = (key: string, f: () => void) => {
   if (key === 'prevent-close') {
-    f()
+    return;
   }
-}
+  f();
+};
 </script>
