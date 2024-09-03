@@ -3,6 +3,8 @@ import { ExtractPropTypes, PropType } from 'vue';
 export type CollapseSize = 'sm' | 'md' | 'lg';
 export type CollapseRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
 export type CollapseColor = 'default' | 'primary' | 'success'| 'danger' | 'warning';
+export type CollapseFunction = (key: string | number | symbol, done: ()=>void) => void
+
 export const collapseProps = {
 
   /**
@@ -61,11 +63,20 @@ export const collapseProps = {
     default: false
   },
 
+  /**
+   * @description {zh} 关闭前触发的事件
+   * @description {en} Is it allowed to run Open events during initialization
+   */
   onBeforeClose: {
-    type: Function as PropType<(key: string | number | symbol, done: ()=>void)=>void>,
+    type: Function as PropType<CollapseFunction>,
   },
+
+  /**
+   * @description {zh} 打开前触发的事件
+   * @description {en} Is it allowed to run Open events during initialization
+   */
   onBeforeOpen: {
-    type: Function as PropType<(key: string | number | symbol, done: ()=>void)=>void>,
+    type: Function as PropType<CollapseFunction>,
   }
 } as const;
 
