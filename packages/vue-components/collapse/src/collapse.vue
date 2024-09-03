@@ -7,17 +7,14 @@
 import { collapse } from '@miraiui-org/theme';
 import { collapseProps, CONSTANT } from './collapse.props';
 import { computed, onMounted, provide, reactive, toRefs } from 'vue';
-import { useDirty } from './useDirty';
 const COMPONENT_NAME='MCollapse';
-type Key = string|number|symbol;
+export type Key = string|number|symbol;
 defineOptions({
   name: COMPONENT_NAME
 });
 const emits = defineEmits<{
   open: [string|number|symbol];
   close: [string|number|symbol];
-  beforeOpen: [string|number|symbol, ()=>void];
-  beforeClose: [string|number|symbol, ()=>void]
 }>();
 
 const modelValue = defineModel<Key[]>({
@@ -31,23 +28,7 @@ const collapseWrapperStyle = computed(() => collapse({
   radius: radius.value
 }));
 const isDisabled = (key: string|number|symbol) => props.disabledKeys.includes(key);
-const { isPreventClose, isPreventOpen, setPreventOpen, setPreventClose, cleanOpenPrevent, cleanClosePrevent } = useDirty();
-const beforeOpen = (key: string | number | symbol) => {
-  emits('beforeOpen', key, () => {
-    setPreventOpen(key);
-  });
-};
-const beforeClose = (key: string | number | symbol) => {
-  emits('beforeClose', key, () => {
-    setPreventClose(key);
-  });
-};
 const open = (key: string|number|symbol) => {
-  beforeOpen(key);
-  if (isPreventOpen(key)) {
-    cleanOpenPrevent(key);
-    return;
-  }
   if (isDisabled(key)) {
     return ;
   }
@@ -67,11 +48,6 @@ const open = (key: string|number|symbol) => {
   emits('open', key);
 };
 const close = (key: string | number | symbol) => {
-  beforeClose(key);
-  if (isPreventClose(key)) {
-    cleanClosePrevent(key);
-    return;
-  }
   if (isDisabled(key)) {
     return;
   }
@@ -85,8 +61,20 @@ const close = (key: string | number | symbol) => {
 };
 const onItemClick = (key: string|number|symbol) => {
   if (modelValue.value.includes(key)) {
+    if (props.onBeforeClose) {
+      props.onBeforeClose?.(key, () => {
+        close(key);
+      });
+      return;
+    }
     close(key);
   } else {
+    if (props.onBeforeOpen) {
+      props.onBeforeOpen?.(key, () => {
+        open(key);
+      });
+      return;
+    }
     open(key);
   }
 };

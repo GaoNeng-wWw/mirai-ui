@@ -59,6 +59,13 @@ export const collapseProps = {
   allowInitOpenEvent: {
     type: Boolean,
     default: false
+  },
+
+  onBeforeClose: {
+    type: Function as PropType<(key: string | number | symbol, done: ()=>void)=>void>,
+  },
+  onBeforeOpen: {
+    type: Function as PropType<(key: string | number | symbol, done: ()=>void)=>void>,
   }
 } as const;
 
