@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import Collapse, { Key } from '../src/collapse.vue';
 import { mount } from '@vue/test-utils';
 import CollapseItem from '../src/collapse-item.vue';
-import { h, nextTick, ref } from 'vue';
+import { h, ref } from 'vue';
 
 describe(CollapseItem.name!, () => {
   it('event', async () => {
@@ -292,11 +292,20 @@ describe(Collapse.name!, () => {
       h(CollapseItem, { title:'Item-5', key: 'Item-5' }, () => h('p', 'item-5'))
     ];
     const modelValue:Key[] = [];
+    const onClose = vi.fn();
+    const onBeforeOpen = (key: string | number | symbol, done: ()=>void) => {
+      if (key === 'Item-2') {
+        return;
+      }
+      done();
+    };
     const wrapper = mount(Collapse, {
       props: {
         color: 'primary',
         modelValue,
-        accordion:true
+        accordion:true,
+        onClose,
+        onBeforeOpen
       },
       slots: {
         default: collapseItems
@@ -304,10 +313,38 @@ describe(Collapse.name!, () => {
     });
     expect(wrapper.text()).not.contain('item-1');
     await wrapper.findAll('span')[1].trigger('click');
-    expect(wrapper.text()).contain('item-2').and.not.contain('item-1');
+    expect(wrapper.text()).not.contain('item-1').and.not.contain('item-2');
     await wrapper.findAll('span')[0].trigger('click');
     expect(wrapper.text()).contain('item-1').and.not.contain('item-2');
+  });
+  it('disabled', async () => {
+    const collapseItems = [
+      h(CollapseItem, { title:'Item-1', key: 'Item-1', disabled:true }, () => h('p', 'item-1')),
+      h(CollapseItem, { title:'Item-2', key: 'Item-2' }, () => h('p', 'item-2')),
+      h(CollapseItem, { title:'Item-3', key: 'Item-3' }, () => h('p', 'item-3')),
+      h(CollapseItem, { title:'Item-4', key: 'Item-4' }, () => h('p', 'item-4')),
+      h(CollapseItem, { title:'Item-5', key: 'Item-5' }, () => h('p', 'item-5'))
+    ];
+    const modelValue:Key[] = [];
+    const disabledKeys:Key[] = [];
+    const onOpen = vi.fn();
+    const wrapper = mount(Collapse, {
+      props: {
+        color: 'primary',
+        modelValue,
+        onOpen,
+        disabledKeys
+      },
+      slots: {
+        default: collapseItems
+      }
+    });
+    const keys = wrapper.getCurrentComponent().exposed?.getDisabledKeys();
+    expect(keys).toContain('Item-1');
     await wrapper.findAll('span')[0].trigger('click');
-    expect(wrapper.text()).not.contain('item-1').and.not.contain('item-2');
+    expect(onOpen).not.toBeCalled();
+    await wrapper.findAll('span')[1].trigger('click');
+    expect(onOpen).toBeCalled();
+    onOpen.mockClear();
   });
 });

@@ -46,5 +46,9 @@ const open = computed(() => collapsed.modelValue.includes(key));
 const onHandleClick = () => {
   collapsed.onItemClick(key);
 };
-
+watch(props, () => {
+  if (props.disabled && !collapsed.disabledKeys.includes(key)) {
+    collapsed.disabledKeys.push(key);
+  }
+}, { immediate:true, deep:true });
 </script>

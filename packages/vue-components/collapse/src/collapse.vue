@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import { collapse } from '@miraiui-org/theme';
 import { collapseProps, CONSTANT } from './collapse.props';
-import { computed, onMounted, provide, reactive, toRefs } from 'vue';
+import { computed, onMounted, provide, reactive, ref, toRefs } from 'vue';
 const COMPONENT_NAME='MCollapse';
 export type Key = string|number|symbol;
 defineOptions({
@@ -27,7 +27,8 @@ const collapseWrapperStyle = computed(() => collapse({
   size: size.value,
   radius: radius.value
 }));
-const disabledKeys = computed(() => props.disabledKeys);
+const collapseItemDisabledKeys = ref<Key[]>([]);
+const disabledKeys = computed(() => [...props.disabledKeys, ...collapseItemDisabledKeys.value]);
 const isDisabled = (key: string|number|symbol) => disabledKeys.value.includes(key);
 const open = (key: string|number|symbol) => {
   let actived = [...modelValue.value];
@@ -35,8 +36,9 @@ const open = (key: string|number|symbol) => {
     if (!modelValue.value.includes(key)) {
       actived = [key];
     }
-    modelValue.value.forEach((key) => emits('close', key));
     modelValue.value = actived;
+    emits('open', key);
+    return;
   }
   const idx = actived.indexOf(key);
   if (idx > -1) {
@@ -96,5 +98,11 @@ provide(CONSTANT, reactive({
   onItemClick,
   open: (key: string | number | symbol) => open(key),
   close: (key: string | number | symbol) => close(key),
+  collapseItemDisabledKeys
 }));
+
+defineExpose({
+  getDisabledKeys:() => disabledKeys.value
+});
+
 </script>
