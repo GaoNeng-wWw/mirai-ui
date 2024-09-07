@@ -31,6 +31,16 @@ describe(CollapseItem.name!, () => {
     await wrapper.findAll('span')[0].trigger('click');
     expect(wrapper.findAll('span')[1].html()).contain('hello-world');
   });
+  it('if not set key should tobe throw Error', () => {
+    const wrapper = () => mount(
+      CollapseItem, {
+        props:{
+          title:'Item-1'
+        }
+      }
+    );
+    expect(wrapper).toThrow('[Collapse-Item]: You haven\'t set the key, so you may not be able to fold it');
+  });
 });
 
 describe(Collapse.name!, () => {
@@ -291,7 +301,7 @@ describe(Collapse.name!, () => {
       h(CollapseItem, { title:'Item-4', key: 'Item-4' }, () => h('p', 'item-4')),
       h(CollapseItem, { title:'Item-5', key: 'Item-5' }, () => h('p', 'item-5'))
     ];
-    const modelValue:Key[] = [];
+    const modelValue:Key[] = ['Item-1'];
     const onClose = vi.fn();
     const onBeforeOpen = (key: string | number | symbol, done: ()=>void) => {
       if (key === 'Item-2') {
@@ -311,11 +321,11 @@ describe(Collapse.name!, () => {
         default: collapseItems
       }
     });
-    expect(wrapper.text()).not.contain('item-1');
-    await wrapper.findAll('span')[1].trigger('click');
-    expect(wrapper.text()).not.contain('item-1').and.not.contain('item-2');
+    expect(wrapper.text()).contain('item-1');
     await wrapper.findAll('span')[0].trigger('click');
-    expect(wrapper.text()).contain('item-1').and.not.contain('item-2');
+    expect(wrapper.text()).not.contain('item-1').and.not.contain('item-2');
+    await wrapper.findAll('span')[1].trigger('click');
+    expect(wrapper.text()).not.contain('item-1').contain('item-2');
   });
   it('disabled', async () => {
     const collapseItems = [
@@ -346,5 +356,32 @@ describe(Collapse.name!, () => {
     await wrapper.findAll('span')[1].trigger('click');
     expect(onOpen).toBeCalled();
     onOpen.mockClear();
+  });
+  it('allowInitOpenEvent', () => {
+    const f = vi.fn();
+    const collapseItems = [
+      h(CollapseItem, { title:'Item-1', key: 'Item-1' }, () => h('p', 'item-1')),
+      h(CollapseItem, { title:'Item-2', key: 'Item-2' }, () => h('p', 'item-2')),
+      h(CollapseItem, { title:'Item-3', key: 'Item-3' }, () => h('p', 'item-3')),
+      h(CollapseItem, { title:'Item-4', key: 'Item-4' }, () => h('p', 'item-4')),
+      h(CollapseItem, { title:'Item-5', key: 'Item-5' }, () => h('p', 'item-5'))
+    ];
+    const modelValue:Key[] = ['Item-1', 'Item-2'];
+    const disabledKeys:Key[] = [];
+    const onOpen = vi.fn();
+    mount(Collapse, {
+      props: {
+        color: 'primary',
+        modelValue,
+        onOpen,
+        disabledKeys,
+        allowInitOpenEvent: true
+      },
+      slots: {
+        default: collapseItems
+      }
+    });
+    expect(onOpen).toBeCalled();
+    expect(onOpen).toHaveBeenCalledTimes(2);
   });
 });
