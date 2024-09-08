@@ -168,12 +168,15 @@ const collectComponents = (path: string, compName: string, componentPath: string
     }
   })
     .filter((v) => v);
-  const paths = registeredItem.map(name => ({
-    name,
-    relativePath: importMap[name],
-    filePath: join(componentPath, importMap[name]),
-    basePath: dirname(join(componentPath, importMap[name]))
-  })).filter(value => value.name);
+  const paths = registeredItem.map(name => {
+    info(`${name} Start`);
+    return {
+      name,
+      relativePath: importMap[name],
+      filePath: join(componentPath, importMap[name]),
+      basePath: dirname(join(componentPath, importMap[name]))
+    };
+  }).filter(value => value.name);
   return paths;
 };
 

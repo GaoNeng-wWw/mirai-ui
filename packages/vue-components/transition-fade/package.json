@@ -1,8 +1,8 @@
 {
   "name": "@miraiui-org/vue-transition-fade",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.4",
   "devDependencies": {
-    "@miraiui-org/theme": "1.0.0-alpha.3",
+    "@miraiui-org/theme": "1.0.0-alpha.4",
     "vue": "^3.4.31",
     "vue-tsc": "^2.0.22"
   },

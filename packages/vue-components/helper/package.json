@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-helper",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.4",
   "devDependencies": {
     "vite": "^5.3.2",
     "vue": "^3.4.31",
@@ -21,7 +21,7 @@
     "dist"
   ],
   "dependencies": {
-    "@miraiui-org/vue-hooks": "workspace:1.0.0-alpha.2",
+    "@miraiui-org/vue-hooks": "workspace:^",
     "@vue/shared": "^3.4.31"
   }
 }

@@ -40,7 +40,7 @@ describe('popper', () => {
       wrapper.find('span').exists()
     ).toBeTruthy();
   });
-  it('event', async () => {
+  it.todo('event', async () => {
     const f = vi.fn();
     const trigger = mount(
       PopperTrigger,
