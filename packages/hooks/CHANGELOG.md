@@ -1,5 +1,11 @@
 # @miraiui-org/hooks
 
+## 1.0.1-alpha.2
+
+### Patch Changes
+
+- [#89](https://github.com/GaoNeng-wWw/mirai-ui/pull/89) [`037c3fa`](https://github.com/GaoNeng-wWw/mirai-ui/commit/037c3fab0563615803f27ffb9fed21d1d3a50d14) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - refator collapse and fix build fail
+
 ## 1.0.1-alpha.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @miraiui-org/vue-collapse
 
+## 1.0.0-alpha.7
+
+### Patch Changes
+
+- [#89](https://github.com/GaoNeng-wWw/mirai-ui/pull/89) [`037c3fa`](https://github.com/GaoNeng-wWw/mirai-ui/commit/037c3fab0563615803f27ffb9fed21d1d3a50d14) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - refator collapse and fix build fail
+
+- Updated dependencies [[`037c3fa`](https://github.com/GaoNeng-wWw/mirai-ui/commit/037c3fab0563615803f27ffb9fed21d1d3a50d14)]:
+  - @miraiui-org/vue-transition-collapse@1.0.0-alpha.6
+  - @miraiui-org/theme@1.0.0-alpha.5
+
 ## 1.0.0-alpha.6
 
 ### Patch Changes
