@@ -21,7 +21,7 @@
     "dist"
   ],
   "dependencies": {
-    "@miraiui-org/vue-hooks": "workspace:1.0.0-alpha.4",
+    "@miraiui-org/vue-hooks": "workspace:^",
     "@vue/shared": "^3.4.31"
   }
 }
