@@ -46,8 +46,14 @@ describe('${camelCase(name)}', ()=>{
           [join(root, name, 'package.json')]: `{
   "name": "@miraiui-org/vue-${name}",
   "version": "${packages.version}",
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@miraiui-org/theme": "workspace:^"
+  },
+  "devDependencies": {
+    "vue": "^3.4.31",
+    "vue-tsc": "^2.0.22",
+    "vite": "^5.3.2"
+  },
   "scripts": {
     "build:dts": "vue-tsc --declaration --emitDeclarationOnly"
   },
@@ -91,13 +97,8 @@ export default builder();
         err(e);
       }
     }
-    const dependencies = {
-      workspace: ['@miraiui-org/theme'],
-      notWorkspace: ['vue', 'vue-tsc']
-    };
     shell.cd(join(root, name))
-      .exec(`pnpm add -D ${dependencies.workspace.join('')} --workspace --filter @miraiui-org/vue-${name}`)
-      .exec(`pnpm add -D ${dependencies.notWorkspace.join(' ')} --filter @miraiui-org/vue-${name}`)
+      .exec('pnpm i ')
       .exec('pnpm -w lint:fix');
     return true;
   }

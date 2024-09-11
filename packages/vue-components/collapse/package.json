@@ -2,8 +2,10 @@
   "name": "@miraiui-org/vue-collapse",
   "version": "1.0.0-alpha.6",
   "devDependencies": {
+    "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.31",
-    "vue-tsc": "^2.0.22"
+    "vue-tsc": "^2.0.22",
+    "vite": "^5.3.2"
   },
   "scripts": {
     "build:dts": "vue-tsc --declaration --emitDeclarationOnly"
@@ -19,8 +21,6 @@
     "dist"
   ],
   "dependencies": {
-    "@miraiui-org/theme": "workspace:^",
-    "@miraiui-org/vue-transition-collapse": "workspace:^",
-    "vite": "^5.3.2"
+    "@miraiui-org/vue-transition-collapse": "workspace:^"
   }
 }

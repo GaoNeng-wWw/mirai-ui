@@ -2,9 +2,10 @@
   "name": "@miraiui-org/vue-modal",
   "version": "1.0.0-alpha.4",
   "devDependencies": {
-    "@miraiui-org/theme": "workspace:1.0.0-alpha.4",
+    "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.31",
-    "vue-tsc": "^2.0.22"
+    "vue-tsc": "^2.0.22",
+    "vite": "^5.3.2"
   },
   "scripts": {
     "build:dts": "vue-tsc --declaration --emitDeclarationOnly"
@@ -20,8 +21,8 @@
     "dist"
   ],
   "dependencies": {
-    "@miraiui-org/vue-button": "workspace:1.0.0-alpha.4",
-    "@miraiui-org/vue-hooks": "workspace:1.0.0-alpha.4",
-    "@miraiui-org/vue-mask": "workspace:1.0.0-alpha.4"
+    "@miraiui-org/vue-button": "workspace:^",
+    "@miraiui-org/vue-hooks": "workspace:^",
+    "@miraiui-org/vue-mask": "workspace:^"
   }
 }
