@@ -12,7 +12,9 @@
   },
   "scripts": {
     "build:dts": "vue-tsc --declaration --emitDeclarationOnly",
-    "build": "vite build"
+    "build": "vite build",
+    "clean": "rimraf dist",
+    "clean:dep": "rimraf node_modules"
   },
   "exports": {
     ".": {

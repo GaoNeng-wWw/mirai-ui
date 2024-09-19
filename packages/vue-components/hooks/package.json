@@ -2,7 +2,11 @@
   "name": "@miraiui-org/vue-hooks",
   "version": "1.0.0-alpha.4",
   "scripts": {
-    "build-only": "tsup"
+    "build-only": "tsup",
+    "build": "tsup",
+    "build:dts": "tsup --dts-only ",
+    "clean": "rimraf dist",
+    "clean:dep": "rimraf node_modules"
   },
   "exports": {
     ".": {
