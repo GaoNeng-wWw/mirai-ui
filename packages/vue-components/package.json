@@ -17,6 +17,7 @@
   "types": "dist/index.d.ts",
   "main": "dist/vue-components.js",
   "scripts": {
+    "clean": "rimraf dist",
     "dev": "vite",
     "build": "vue-tsc -p tsconfig.build.json --composite false --declaration --emitDeclarationOnly && vite build",
     "preview": "vite preview",

@@ -47,15 +47,18 @@ describe('${camelCase(name)}', ()=>{
   "name": "@miraiui-org/vue-${name}",
   "version": "${packages.version}",
   "dependencies": {
-    "@miraiui-org/theme": "workspace:^"
   },
   "devDependencies": {
+    "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.31",
     "vue-tsc": "^2.0.22",
     "vite": "^5.3.2"
   },
   "scripts": {
-    "build:dts": "vue-tsc --declaration --emitDeclarationOnly"
+    "build:dts": "vue-tsc --declaration --emitDeclarationOnly",
+    "build": "vite",
+    "clean": "rimraf dist",
+    "clean:dep": "rimraf node_modules"
   },
   "exports":{
     ".":{

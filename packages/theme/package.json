@@ -6,7 +6,8 @@
   "main": "./dist",
   "scripts": {
     "build": "tsup ./index.ts --dts --format cjs,esm --clean",
-    "dev": "tsup ./index.ts --dts --format cjs,esm --watch --clean --no-splitting"
+    "dev": "tsup ./index.ts --dts --format cjs,esm --watch --clean --no-splitting",
+    "clean": "rimraf dist"
   },
   "keywords": [
     "mirai-ui",
