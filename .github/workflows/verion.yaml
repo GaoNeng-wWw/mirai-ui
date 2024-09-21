@@ -1,0 +1,25 @@
+name: Version
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  version:
+    name: Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3.0.0
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+      - run: pnpm install
+      - run: pnpm clean && pnpm build:vue
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          version: pnpm changeset version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
