@@ -10,7 +10,7 @@
     "@typescript-eslint/parser": "^7.14.1",
     "@vitest/coverage-v8": "^1.6.0",
     "changeset": "^0.2.6",
-    "commitlint": "^19.3.0",
+    "commitlint": "^19.4.1",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.26.0",
@@ -24,7 +24,7 @@
     "vue": "^3.4.31"
   },
   "scripts": {
-    "prepare": "husky",
+    "preinstall": "husky",
     "clean": "pnpm --filter @miraiui-org/* clean && rimraf dist",
     "clean:dep": "pnpm --filter @miraiui-org/* clean:dep && rimraf node_modules",
     "dev:vue": "pnpm clean && pnpm build:lib-entry && pnpm build:vue-props-table-data && pnpm -C docs docs:dev",

@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-message",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "devDependencies": {
     "@miraiui-org/theme": "workspace:^",
     "vue": "^3.4.31",

@@ -1,6 +1,6 @@
 {
   "name": "@miraiui-org/vue-hooks",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "scripts": {
     "build-only": "tsup",
     "build": "tsup",
