@@ -24,7 +24,7 @@
     "vue": "^3.4.31"
   },
   "scripts": {
-    "prepare": "husky",
+    "preinstall": "husky",
     "clean": "pnpm --filter @miraiui-org/* clean && rimraf dist",
     "clean:dep": "pnpm --filter @miraiui-org/* clean:dep && rimraf node_modules",
     "dev:vue": "pnpm clean && pnpm build:lib-entry && pnpm build:vue-props-table-data && pnpm -C docs docs:dev",
