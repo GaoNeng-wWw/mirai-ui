@@ -19,14 +19,17 @@
     "@miraiui-org/vue-mask": "1.0.0-alpha.2",
     "@miraiui-org/vue-message": "1.0.0-alpha.2",
     "@miraiui-org/vue-modal": "1.0.0-alpha.2",
-    "@miraiui-org/vue-transition-fade": "1.0.0-alpha.2"
+    "@miraiui-org/vue-transition-fade": "1.0.0-alpha.2",
+    "@miraiui-org/vue-transition-slide-fade": "1.0.0-alpha.2"
   },
   "changesets": [
     "calm-toys-do",
     "clean-wasps-taste",
     "cuddly-roses-fetch",
     "dry-jars-develop",
+    "eleven-rivers-type",
     "five-spies-obey",
+    "giant-beers-hug",
     "happy-avocados-sin",
     "heavy-poets-obey",
     "hot-chefs-look",
@@ -38,10 +41,12 @@
     "sixty-snakes-rule",
     "slimy-seahorses-deny",
     "slow-birds-knock",
+    "spicy-meals-buy",
     "spicy-toes-know",
     "spotty-stingrays-clean",
     "strange-news-double",
     "tasty-carrots-study",
+    "three-ads-sell",
     "tough-donkeys-pretend"
   ]
 }
