@@ -1,5 +1,14 @@
 # @miraiui-org/vue-collapse
 
+## 1.0.0-alpha.8
+
+### Patch Changes
+
+- [#96](https://github.com/GaoNeng-wWw/mirai-ui/pull/96) [`f1351f8`](https://github.com/GaoNeng-wWw/mirai-ui/commit/f1351f8c1c5b151d34e8c9df4fb01c0b75dc8e3e) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - append build command
+
+- Updated dependencies [[`f1351f8`](https://github.com/GaoNeng-wWw/mirai-ui/commit/f1351f8c1c5b151d34e8c9df4fb01c0b75dc8e3e)]:
+  - @miraiui-org/vue-transition-collapse@1.0.0-alpha.7
+
 ## 1.0.0-alpha.7
 
 ### Patch Changes
