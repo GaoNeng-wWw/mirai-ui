@@ -1,6 +1,16 @@
 
 <template>
-  <transition v-on="events" class="transition-all duration-normal ease-out-cubic">
+  <transition
+    @before-enter="events.onBeforeEnter"
+    @enter="events.onEnter"
+    @after-enter="events.onAfterEnter"
+    @before-leave="events.onBeforeLeave"
+    @leave="events.onLeave"
+    @enter-cancelled="events.onEnterCancelled"
+    @leave-cancelled="events.onLeaveCancelled"
+    @after-leave="events.onAfterLeave"
+    class="transition-all duration-normal ease-in-out"
+  >
     <slot />
   </transition>
 </template>
