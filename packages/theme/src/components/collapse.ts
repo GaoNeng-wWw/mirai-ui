@@ -51,7 +51,8 @@ export const collapseBody = cva({
     'group-data-[size=sm]:p-2 group-data-[size=sm]:pt-1',
     'group-data-[size=md]:p-3 group-data-[size=md]:pt-1',
     'group-data-[size=lg]:p-4 group-data-[size=md]:pt-1',
-    'peer-data-[disabled=true]:text-opacity-50'
+    'peer-data-[disabled=true]:text-opacity-50',
+    'box-content'
   ]
 });
 
