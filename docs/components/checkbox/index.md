@@ -9,3 +9,8 @@
 
 :::demo checkbox/disabled
 :::
+
+## 全选
+
+:::demo checkbox/indeterminate
+:::
