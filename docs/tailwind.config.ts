@@ -1,7 +1,7 @@
 import { miraiUiPlugin } from '@miraiui-org/theme';
+import { Config } from 'tailwindcss';
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const config: Config = {
   content: [
     './.vitepress/**/*.{js,ts,tsx,vue,md}',
     './**/*.vue',
@@ -16,3 +16,4 @@ module.exports = {
   ],
   darkMode: 'class',
 };
+module.exports = config;

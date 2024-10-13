@@ -4,3 +4,4 @@ export * from './tag';
 export * from './input';
 export * from './message';
 export * from './modal';
+export * from './checkbox';
