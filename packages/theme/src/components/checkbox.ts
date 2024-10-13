@@ -2,9 +2,9 @@ import { cva, VariantProps } from 'cva';
 
 export const checkIcon = cva({
   base: [
-    'transition-[transform_theme("duration.slow")_ease,stroke-dashoffset_theme("duration.slow")_ease_150ms] duration-slow ease-quint origin-center',
-    'data-[visible=true]:[stroke-dashoffset:0] data-[visible=true]:scale-100',
-    'data-[visible=false]:[stroke-dashoffset:200] data-[visible=false]:scale-0',
+    'duration-slow ease-quint origin-center transition-all delay-75',
+    'data-[visible=true]:[stroke-dashoffset:0]',
+    'data-[visible=false]:[stroke-dashoffset:200] data-[visible=false]:delay-0',
   ],
   variants: {
     variant: {
@@ -35,18 +35,18 @@ export const checkbox = cva({
   base: [
     'rounded w-6 h-6 inline-block p-1 box-border border-2 border-default',
     'group-data-[disabled=true]:bg-opacity-50 group-data-[disabled=true]:border-opacity-50 group-data-[disabled=true]:cursor-default',
-    'transition group-hover:bg-opacity-50 group-hover:border-opacity-50 relative'
+    'transition group-hover:bg-opacity-50 group-hover:border-opacity-50 relative',
+    'before:absolute before:block before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:transition-opacity before:duration-slow',
+    'before:transition-[width_theme("duration.slow")_ease,_height_theme("duration.slow")_ease]',
+    'before:w-[calc(100%_-_0.25rem)] before:h-[calc(100%_-_0.25rem)]'
   ],
   variants: {
     indeterminate: {
-      true: [
-        'group-data-[checked=true]:before:hidden',
-        'before:absolute before:block before:top-1/2 before:left-1/2',
-        'before:-translate-x-1/2 before:-translate-y-1/2',
-        'before:w-[calc(100%_-_0.25rem)] before:h-[calc(100%_-_0.25rem)]',
-        'before:transition before:rounded group-hover:before:bg-opacity-0 group-hover:before:scale-0'
+      false: [
       ],
-      false: 'before:opacity-0'
+      true: [
+        'group-hover:before:w-full group-hover:before:h-full group-hover:before:opacity-0',
+      ],
     },
     variant: {
       info: [
@@ -66,23 +66,43 @@ export const checkbox = cva({
   compoundVariants: [
     {
       variant: 'primary',
+      indeterminate: false,
+      class: 'before:bg-primary before:opacity-0'
+    },
+    {
+      variant: 'warning',
+      indeterminate: false,
+      class: 'before:bg-warning before:opacity-0'
+    },
+    {
+      variant: 'danger',
+      indeterminate: false,
+      class: 'before:bg-danger before:opacity-0'
+    },
+    {
+      variant: 'info',
+      indeterminate: false,
+      class: 'before:bg-default before:opacity-0'
+    },
+    {
+      variant: 'primary',
       indeterminate: true,
-      class: 'before:bg-primary'
+      class: 'before:bg-primary before:opacity-100'
     },
     {
       variant: 'warning',
       indeterminate: true,
-      class: 'before:bg-warning'
+      class: 'before:bg-warning before:opacity-100'
     },
     {
       variant: 'danger',
       indeterminate: true,
-      class: 'before:bg-danger'
+      class: 'before:bg-danger before:opacity-100'
     },
     {
       variant: 'info',
       indeterminate: true,
-      class: 'before:bg-default'
+      class: 'before:bg-default before:opacity-100'
     }
   ]
 } as const);

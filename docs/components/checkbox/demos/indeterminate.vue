@@ -1,6 +1,9 @@
 <template>
   <div class="grid grid-rows-2 gap-y-4">
     <checkbox :disabled="disabled" v-model="selectAll" label="Select All" :indeterminate="indeterminate" @click="onClickSelectAll" />
+    <checkbox :disabled="disabled" v-model="selectAll" label="Select All" :indeterminate="indeterminate" @click="onClickSelectAll" variant="primary"/>
+    <checkbox :disabled="disabled" v-model="selectAll" label="Select All" :indeterminate="indeterminate" @click="onClickSelectAll" variant="danger"/>
+    <checkbox :disabled="disabled" v-model="selectAll" label="Select All" :indeterminate="indeterminate" @click="onClickSelectAll" variant="warning"/>
     <div class="flex flex-wrap gap-2">
       <checkbox :disabled="disabled" v-model="checks.cola" label="Cola" />
       <checkbox :disabled="disabled" v-model="checks.coffee" label="Coffee" />
@@ -12,6 +15,7 @@
     <p>Cola: {{ checks.cola }}</p>
     <p>Coffee: {{ checks.coffee }}</p>
     <p>Tea: {{ checks.tea }}</p>
+    <p>indeterminate: {{ indeterminate }}</p>
   </div>
 </template>
 
@@ -30,7 +34,6 @@ const indeterminate = computed(() => {
   if (values.every(v => !v) || values.every(v => v)) {
     return false;
   }
-  console.log(Object.values(checks).some(v => !v));
   return Object.values(checks).some(v => !v);
 });
 const selectAll = ref(Object.values(checks).every(v => v));
