@@ -1,5 +1,12 @@
 # @miraiui-org/vue-collapse
 
+## 1.0.0-alpha.9
+
+### Patch Changes
+
+- Updated dependencies [[`66aa2ef`](https://github.com/GaoNeng-wWw/mirai-ui/commit/66aa2ef86726ef8e92c293b5721012eff65089be)]:
+  - @miraiui-org/vue-transition-collapse@1.0.0-alpha.8
+
 ## 1.0.0-alpha.8
 
 ### Patch Changes
