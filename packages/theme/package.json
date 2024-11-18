@@ -9,6 +9,13 @@
     "dev": "tsup ./index.ts --dts --format cjs,esm --watch --clean --no-splitting",
     "clean": "rimraf dist"
   },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "keywords": [
     "mirai-ui",
     "design",

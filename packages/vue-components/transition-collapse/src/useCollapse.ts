@@ -1,4 +1,4 @@
-import type { RendererElement } from 'vue';
+import type { BaseTransitionProps, RendererElement } from 'vue';
 
 export const useCollapse = () => {
   const reset = (el: RendererElement) => {
@@ -16,72 +16,68 @@ export const useCollapse = () => {
       bottom: computedStyle.paddingBottom
     };
   };
-  const events = {
-    beforeEnter(el: RendererElement) {
-      if (!el.dataset) { el.dataset = {}; }
+  const events: BaseTransitionProps = {
+    onBeforeEnter(el) {
+      if (!el.dataset) {
+        el.dataset = {};
+      }
       const { top, bottom } = getPadding(el);
-      el.dataset.oldPaddingTop = top;
       el.dataset.oldPaddingBottom = bottom;
+      el.dataset.oldPaddingTop = top;
       const h = getComputedStyle(el as HTMLElement).height;
-      if (h) { el.dataset.elExistsHeight = h; }
-  
+      if (h) {
+        el.dataset.elExistsHeight = h;
+      }
       el.style.maxHeight = 0;
       el.style.paddingTop = 0;
       el.style.paddingBottom = 0;
     },
-  
-    enter(el: RendererElement) {
+    onEnter(el, done) {
       requestAnimationFrame(() => {
         el.dataset.oldOverflow = el.style.overflow;
         if (el.dataset.elExistsHeight) {
           el.style.maxHeight = el.dataset.elExistsHeight;
         } else if (el.scrollHeight !== 0) {
-          el.style.maxHeight = `${el.scrollHeight }px`;
+          el.style.maxHeight = `${el.scrollHeight}px`;
         } else {
           el.style.maxHeight = 0;
         }
-  
         el.style.paddingTop = el.dataset.oldPaddingTop;
         el.style.paddingBottom = el.dataset.oldPaddingBottom;
         el.style.overflow = 'hidden';
+        el.addEventListener('transitionend', done);
       });
     },
-  
-    afterEnter(el: RendererElement) {
+    onAfterEnter(el) {
       el.style.maxHeight = '';
       el.style.overflow = el.dataset.oldOverflow;
     },
-  
-    enterCancelled(el: RendererElement) {
-      reset(el);
-    },
-  
-    beforeLeave(el: RendererElement) {
+    onBeforeLeave(el) {
       if (!el.dataset) { el.dataset = {}; }
       const { top, bottom } = getPadding(el);
       el.dataset.oldPaddingTop = top;
       el.dataset.oldPaddingBottom = bottom;
       el.dataset.oldOverflow = el.style.overflow;
-  
       el.style.maxHeight = `${el.offsetHeight}px`;
       el.style.overflow = 'hidden';
     },
-  
-    leave(el: RendererElement) {
+    onLeave(el, done) {
       if (el.scrollHeight !== 0) {
         el.style.maxHeight = 0;
         el.style.paddingTop = 0;
         el.style.paddingBottom = 0;
       }
+      el.addEventListener('transitionend', done);
     },
-  
-    afterLeave(el: RendererElement) {
+    onEnterCancelled(el) {
       reset(el);
     },
-  
-    leaveCancelled(el: RendererElement) {
+    onAfterLeave(el) {
       reset(el);
     },
+    onLeaveCancelled(el) {
+      reset(el);
+    }
   };
   return { events };
 };

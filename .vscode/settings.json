@@ -19,4 +19,5 @@
     "yaml.schemas": {
       "https://json.schemastore.org/github-workflow.json": "file:///d%3A/code/mirai-ui/.github/workflows/Site.yaml"
     },
+    "eslint.experimental.useFlatConfig": false
 }
