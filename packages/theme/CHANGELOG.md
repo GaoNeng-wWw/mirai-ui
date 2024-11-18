@@ -1,5 +1,13 @@
 # @miraiui-org/theme
 
+## 1.0.0-alpha.7
+
+### Patch Changes
+
+- [#108](https://github.com/GaoNeng-wWw/mirai-ui/pull/108) [`1a53a99`](https://github.com/GaoNeng-wWw/mirai-ui/commit/1a53a99a457ba73f12d1f5244ea641d6dfde81a6) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - add export fields
+
+- [#106](https://github.com/GaoNeng-wWw/mirai-ui/pull/106) [`66aa2ef`](https://github.com/GaoNeng-wWw/mirai-ui/commit/66aa2ef86726ef8e92c293b5721012eff65089be) Thanks [@GaoNeng-wWw](https://github.com/GaoNeng-wWw)! - fix: transition-collapse smooth transition
+
 ## 1.0.0-alpha.6
 
 ### Patch Changes
