@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@gaonengwww/eslint-config": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-storybook": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
+}

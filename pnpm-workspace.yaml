@@ -1,0 +1,32 @@
+packages:
+  - ./packages/**/*
+
+catalog:
+  '@chromatic-com/storybook': 4.1.1
+  '@gaonengwww/eslint-config': ^1.0.5
+  '@storybook/addon-a11y': 9.1.15
+  '@storybook/addon-docs': 9.1.15
+  '@storybook/addon-vitest': 9.1.15
+  '@storybook/vue3-vite': 9.1.15
+  '@types/chroma-js': ^3.1.1
+  '@types/node': ^24.6.0
+  '@vitejs/plugin-vue': ^6.0.1
+  '@vitest/browser-playwright': ^4.0.3
+  '@vitest/coverage-v8': ^4.0.3
+  '@vue/tsconfig': ^0.8.1
+  chroma-js: ^3.1.2
+  color2k: ^2.0.3
+  deepmerge: ^4.3.1
+  eslint: ^9.38.0
+  eslint-plugin-storybook: 9.1.15
+  playwright: ^1.56.1
+  storybook: 9.1.15
+  tsdown: ^0.15.9
+  typescript: ~5.9.3
+  unocss: 66.5.4
+  vite: ^7.1.7
+  vitest: ^4.0.3
+  vue: ^3.5.22
+  vue-tsc: ^3.1.0
+
+catalogMode: strict
