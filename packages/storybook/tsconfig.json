@@ -6,7 +6,9 @@
     "paths": {
       "@miraiui-org/theme": ["../theme/src/index.ts"],
       "@miraiui-org/internal-utils": ["../utils/internal/src/index.ts"]
-    }
+    },
+    "noEmit": true,
+    "incremental": null
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"]
 }
