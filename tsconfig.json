@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": ["DOM","DOM.Iterable","ES2020"],
     "declaration": true,
     "sourceMap": true,
     "moduleResolution": "node",
@@ -16,9 +16,10 @@
     "downlevelIteration": true,
     "noImplicitAny": false,
     "paths": {
-      "@miraiui-org/theme": ["./packages/theme/src/index.ts"]
+      "@miraiui-org/theme": ["./packages/theme/src/index.ts"],
+      "@miraiui-org/internal-utils": ["./packages/utils/internal/src/index.ts"],
     }
   },
-  "include": ["packages"],
+  "include": ["packages/**/*"],
   "exclude": ["**/node_modules", "**/dist"]
 }

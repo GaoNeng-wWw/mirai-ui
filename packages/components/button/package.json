@@ -1,24 +1,28 @@
 {
-  "name": "@miraiui-org/internal-utils",
+  "name": "@miraiui-org/button",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.12.1",
+  "description": "",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
+    ".":{
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     }
+  },  
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
   "devDependencies": {
     "vue": "catalog:"
   },
   "peerDependencies": {
     "vue": "catalog:"
-  },
-  "scripts": {
-    "build": "tsdown",
-    "clean": "rimraf dist"
   }
 }

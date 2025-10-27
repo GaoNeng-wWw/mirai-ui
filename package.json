@@ -1,9 +1,19 @@
 {
   "dependencies": {
+    "@arethetypeswrong/core": "catalog:",
     "@gaonengwww/eslint-config": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-storybook": "catalog:",
+    "publint": "catalog:",
+    "rimraf": "catalog:",
     "tsdown": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "unplugin-unused": "catalog:",
+    "unplugin-vue": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "pnpm -r run clean"
   }
 }

@@ -2,9 +2,18 @@
   "name": "@miraiui-org/theme",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports":{
+    ".":{
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",
