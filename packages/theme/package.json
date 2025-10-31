@@ -4,8 +4,8 @@
   "description": "",
   "type": "module",
   "types": "./dist/index.d.ts",
-  "exports":{
-    ".":{
+  "exports": {
+    ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
@@ -20,6 +20,10 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
+    "flat": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:",
+    "tailwindcss": "catalog:",
     "unocss": "catalog:"
   },
   "devDependencies": {

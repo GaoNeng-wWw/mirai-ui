@@ -3,12 +3,14 @@
   "compilerOptions": {
     "moduleResolution": "node16",
     "module": "node16",
-    "paths": {
-      "@miraiui-org/theme": ["../theme/src/index.ts"],
-      "@miraiui-org/internal-utils": ["../utils/internal/src/index.ts"]
-    },
     "noEmit": true,
-    "incremental": null
+    "incremental": null,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@miraiui-org/theme": ["./node_modules/@miraiui-org/theme/src/index.ts"],
+      "@miraiui-org/theme/*": ["./node_modules/@miraiui-org/theme/src/*"],
+      "@miraiui-org/internal-utils": ["../utils/internal/src/index.ts"],
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts", "uno.config.ts"]
 }

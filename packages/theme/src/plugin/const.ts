@@ -27,8 +27,7 @@ const reverseColor = (colors: Omit<ColorObject, 'DEFAULT' | 'FOREGROUND'>): Omit
   return swappedColors as any;
 };
 
-
-export const DEFAULT_PREFIX = 'miraiui';
+export const DEFAULT_PREFIX = 'mirai-ui';
 export const DEFAULT_THEME: Theme = {
   light: {
     primary: {

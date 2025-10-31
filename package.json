@@ -1,13 +1,20 @@
 {
   "dependencies": {
     "@arethetypeswrong/core": "catalog:",
+    "@chromatic-com/storybook": "4.1.2",
     "@gaonengwww/eslint-config": "catalog:",
+    "@storybook/addon-a11y": "10.0.1",
+    "@storybook/addon-docs": "10.0.1",
+    "@storybook/addon-themes": "10.0.1",
+    "@storybook/addon-vitest": "10.0.1",
+    "@storybook/vue3-vite": "10.0.1",
     "eslint": "catalog:",
-    "eslint-plugin-storybook": "catalog:",
+    "eslint-plugin-storybook": "10.0.1",
     "publint": "catalog:",
     "rimraf": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
+    "unocss": "catalog:",
     "unplugin-unused": "catalog:",
     "unplugin-vue": "catalog:",
     "vue-tsc": "catalog:"

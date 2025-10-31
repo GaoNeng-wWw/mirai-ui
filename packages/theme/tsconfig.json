@@ -1,8 +1,11 @@
 {
   "extends": "../../tsconfig.json",
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
+    "moduleResolution": "bundler",
     "paths": {
-      "@miraiui-org/internal-utils": ["../utils/internal/src/index.ts"]
+      "tailwindcss/*": ["./node_modules/tailwindcss/*"]
     }
   }
 }

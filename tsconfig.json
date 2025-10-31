@@ -20,6 +20,6 @@
       "@miraiui-org/internal-utils": ["./packages/utils/internal/src/index.ts"],
     }
   },
-  "include": ["packages/**/*"],
+  "include": ["packages/**/*", "uno.config.ts"],
   "exclude": ["**/node_modules", "**/dist"]
 }

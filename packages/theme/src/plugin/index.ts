@@ -1,2 +1,2 @@
-import miraiuiPreset from './unocss';
-export { miraiuiPreset };
+import tw from './tailwind';
+export { tw };

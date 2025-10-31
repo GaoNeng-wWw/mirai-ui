@@ -1,2 +1,3 @@
 export * from './colors';
-export * from './plugin';
+export { miraiuiPreset, tw } from './plugin';
+export * from './components';

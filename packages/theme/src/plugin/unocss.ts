@@ -1,4 +1,4 @@
-import { definePreset, Preflight, Preset, Rule } from 'unocss';
+import { definePreset, Preset, Rule } from 'unocss';
 import { Config, Theme } from '../types';
 import { DEFAULT_PREFIX, DEFAULT_THEME } from './const';
 import deepmerge from 'deepmerge';
@@ -18,21 +18,28 @@ const resolveConfig = (
     dark,
     ...omit(extendsTheme, ['light', 'dark']),
   };
-  const cssVarFactory = (
-    colorName: string, level: string,
-  ) => {
-    return `--${prefix}-${colorName}-${level}`;
-  };
   const buildCssVarByTheme = (
     theme: Theme[string],
   ) => {
-    const cssVar: string[] = [];
+    const cssVar: [string, string][] = [];
     for (const [colorName, colorObject] of Object.entries(theme)) {
       for (const [level, value] of Object.entries(colorObject)) {
-        cssVar.push(`${cssVarFactory(colorName, level)}: ${value};`);
+        cssVar.push([
+          `--colors-${colorName}-${level}`, value,
+        ]);
       }
     }
-    return cssVar;
+    return cssVar.map(([k, v]) => {
+      return {
+        [k]: v,
+      };
+    })
+      .reduce((pre, cur) => {
+        return {
+          ...pre,
+          ...cur,
+        };
+      }, {});
   };
   const buildTheme = (
     _theme: Theme[string],
@@ -43,7 +50,7 @@ const resolveConfig = (
     for (const [colorName, colorValue] of Object.entries(_theme)) {
       theme['colors'][colorName] = { };
       for (const [level] of Object.entries(colorValue)) {
-        theme['colors'][colorName][level] = `var(${cssVarFactory(colorName, level)})`;
+        theme['colors'][colorName][level] = `var(--${colorName}-${level})`;
       }
     }
     return theme;
@@ -52,7 +59,7 @@ const resolveConfig = (
     const cssVar = buildCssVarByTheme(theme);
     return [
       [
-        `&${themeName}`, cssVar,
+        `${themeName}`, cssVar,
       ],
       [
         `&[data-theme='${themeName}']`, cssVar,
@@ -75,18 +82,20 @@ const resolveConfig = (
 };
 
 export default (
-  cfg: Partial<Config>,
-): Preset => {
-  const {
-    prefix = DEFAULT_PREFIX,
-    theme = DEFAULT_THEME,
-    extendsTheme = {},
-  } = cfg;
-  const { rules, theme: unoTheme } = resolveConfig({ prefix, theme, extendsTheme });
-  return {
-    name: 'MiraiUi-Preset',
-    theme: unoTheme,
-    rules,
-    prefix,
-  };
-};
+  cfg: Partial<Config> = {},
+): Preset => definePreset(() => {
+  {
+    const {
+      prefix = DEFAULT_PREFIX,
+      theme = DEFAULT_THEME,
+      extendsTheme = {},
+    } = cfg;
+    const { rules, theme: unoTheme } = resolveConfig({ prefix, theme, extendsTheme });
+    console.log(unoTheme);
+    return {
+      name: 'MiraiUi-Preset',
+      theme: unoTheme,
+      rules: rules,
+    };
+  }
+});
