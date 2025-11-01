@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@config "../../../tailwind.config.ts";
+
+html,body{
+  width: 100vw;
+  height: 100dvh;
+  overflow: auto;
+}
+
+#__nuxt {
+  width: 100vw;
+  height: 100%;
+}
