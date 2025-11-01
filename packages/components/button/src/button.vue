@@ -10,7 +10,7 @@ const clazz = computed(() => button(props));
 </script>
 
 <template>
-  <m.button :class="clazz">
+  <m.button :class="clazz" :type="props.htmlType" layout>
     <slot name="prefix" />
     <slot />
     <slot name="suffix" />

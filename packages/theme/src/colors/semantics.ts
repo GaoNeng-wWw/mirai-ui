@@ -3,12 +3,11 @@ import blue from './blue';
 import green from './green';
 import orange from './orange';
 import red from './red';
-import stone from './stone';
 import zinc from './zinc';
 
 export const semantics = {
   primary: blue,
-  secondary: stone,
+  secondary: zinc,
   default: zinc,
   success: green,
   warning: orange,

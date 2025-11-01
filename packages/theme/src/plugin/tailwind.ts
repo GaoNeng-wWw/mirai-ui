@@ -69,6 +69,7 @@ const plugin = (
         utils[`&.${themeName}`][`--${prefix}-colors-${colorName}`] = colorValue;
       }
     }
+
     return utils;
   };
   const {

@@ -1,22 +1,34 @@
-import type { Preview } from '@storybook/vue3-vite';
+import type { Decorator, Preview } from '@storybook/vue3-vite';
 import './style.css';
 
-const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
+const preview: Preview = {};
 
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo',
-    },
-  },
+export const withTheme: Decorator = (story, context) => {
+  const theme = (context.parameters.theme || context.globals.theme) ?? 'dark';
+  return {
+    components: { story: story() },
+    template: `
+      <div class="${theme}">
+        <story />
+      </div>
+      `,
+  };
 };
+
+export const withPadding: Decorator = (story, context) => {
+  return {
+    components: { story: story() },
+    template: `
+      <div class="p-4">
+        <story />
+      </div>
+      `,
+  };
+};
+
+export const decorators = [
+  withPadding,
+  withTheme,
+];
 
 export default preview;

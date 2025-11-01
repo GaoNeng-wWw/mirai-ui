@@ -1,11 +1,11 @@
 export type ArrayToUnion<T extends unknown[]> = T[number];
-export type ColorStep = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950, 'DEFAULT', 'FOREGROUND'];
+export type ColorStep = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950, 'DEFAULT', 'foreground'];
 export type ColorObject = {
   [S in ArrayToUnion<ColorStep>]: string
 };
-export type Semantics = ['primary', 'secondary', 'default', 'success', 'warning', 'danger'];
+export type Semantics = ['primary', 'secondary', 'DEFAULT', 'success', 'warning', 'danger'];
 export type SemanticsColor = {
-  [S in ArrayToUnion<Semantics>]: Omit<ColorObject, 'DEFAULT' | 'FOREGROUND'>;
+  [S in ArrayToUnion<Semantics>]: Omit<ColorObject, 'DEFAULT' | 'foreground'>;
 } & {
   black: string;
   white: string;
