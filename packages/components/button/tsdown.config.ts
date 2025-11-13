@@ -16,4 +16,5 @@ export default defineConfig({
   attw: true,
   publint: true,
   unused: true,
+  noExternal: [/@miraiui-org\/internal-utils/],
 });

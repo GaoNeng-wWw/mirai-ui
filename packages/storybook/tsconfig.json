@@ -6,6 +6,8 @@
     "noEmit": true,
     "incremental": null,
     "allowImportingTsExtensions": true,
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
     "paths": {
       "@miraiui-org/theme": ["./node_modules/@miraiui-org/theme/src/index.ts"],
       "@miraiui-org/theme/*": ["./node_modules/@miraiui-org/theme/src/*"],

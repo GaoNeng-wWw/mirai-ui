@@ -1,0 +1,30 @@
+{
+  "name": "@miraiui-org/vue-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports":{
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "build": "tsdown"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "unplugin-vue": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "peerDependencies": {
+    "vue": "catalog:"
+  },
+  "dependencies": {
+    "@miraiui-org/vue-button": "workspace:*"
+  }
+}

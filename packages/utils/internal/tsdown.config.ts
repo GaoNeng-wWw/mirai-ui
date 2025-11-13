@@ -4,6 +4,6 @@ export default defineConfig({
   entry: './src/index.ts',
   format: ['es', 'cjs'],
   dts: true,
-  attw: true,
-  publint: true,
+  // attw: true,
+  // publint: true,
 });

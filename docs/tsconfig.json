@@ -1,19 +1,22 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "include": ["tailwind.config.ts"],
-  "files": [],
-  "references": [
-    {
-      "path": "./.nuxt/tsconfig.app.json"
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+       "@miraiui-org/theme": ["../packages/theme/src"],
+       "@miraiui-org/vue-core": ["../packages/core/src"],
+       "@miraiui-org/vue-*": ["../packages/components/*/src"]
     },
-    {
-      "path": "./.nuxt/tsconfig.server.json"
-    },
-    {
-      "path": "./.nuxt/tsconfig.shared.json"
-    },
-    {
-      "path": "./.nuxt/tsconfig.node.json"
-    }
-  ]
+    "baseUrl": "."
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.vue",
+    ".vitepress/**/*.ts",
+    ".vitepress/**/*.vue",
+    ".vitepress/**/*.mts",
+    "../packages/vue-components/**/*",
+    "../packages/theme/**/*",
+    "./docs/components/**/*.md",
+    "tailwind.config.ts"
+  ],
 }

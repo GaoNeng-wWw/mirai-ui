@@ -1,9 +1,9 @@
 import { withInstall } from '@miraiui-org/internal-utils';
-import Button from './button.vue';
+import MButton from './button.vue';
 
 export default withInstall({
   name: 'Button',
-  components: [Button],
+  components: [MButton],
 });
 
-export { Button };
+export { MButton };

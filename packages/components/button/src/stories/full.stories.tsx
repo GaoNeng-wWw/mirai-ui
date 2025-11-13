@@ -14,16 +14,11 @@ export const Full: Story = {
   parameters: {
     theme: 'light',
   },
-  render: () => {
-    return {
-      components: { Button },
-      template: `
-        <div class="w-[200px] flex flex-col gap-4 flex-wrap p-2">
-          <Button full>
-            Full
-          </Button>
-        </div>
-      `,
-    };
-  },
+  render: () => (
+    <div class="w-[200px] flex flex-col gap-4 flex-wrap p-2">
+      <Button full>
+        Full
+      </Button>
+    </div>
+  ),
 };

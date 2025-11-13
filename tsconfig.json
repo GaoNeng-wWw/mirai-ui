@@ -18,8 +18,9 @@
     "paths": {
       "@miraiui-org/theme": ["./packages/theme/src/index.ts"],
       "@miraiui-org/internal-utils": ["./packages/utils/internal/src/index.ts"],
+      "@miraiui-org/vue-button": ["./packages/components/button/src/index.ts"]
     }
   },
-  "include": ["packages/**/*", "uno.config.ts"],
+  "include": ["packages/**/*", "uno.config.ts", "packages/**/*.vue", "packages/**/*.ts"],
   "exclude": ["**/node_modules", "**/dist"]
 }

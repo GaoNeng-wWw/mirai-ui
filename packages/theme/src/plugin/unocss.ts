@@ -91,7 +91,6 @@ export default (
       extendsTheme = {},
     } = cfg;
     const { rules, theme: unoTheme } = resolveConfig({ prefix, theme, extendsTheme });
-    console.log(unoTheme);
     return {
       name: 'MiraiUi-Preset',
       theme: unoTheme,

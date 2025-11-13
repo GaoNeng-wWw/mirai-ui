@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@config "../../tailwind.config.ts";
+
+button {
+  background-color: unset;
+}

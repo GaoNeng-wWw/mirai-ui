@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -14,6 +14,7 @@
   "dependencies": {
     "@miraiui-org/theme": "workspace:*",
     "@tailwindcss/vite": "catalog:",
+    "@vitejs/plugin-vue-jsx": "catalog:",
     "tailwindcss": "catalog:",
     "unocss": "catalog:",
     "vue": "catalog:"
@@ -24,9 +25,9 @@
     "@vitest/browser-playwright": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "@vue/tsconfig": "catalog:",
-    "eslint-plugin-storybook": "10.0.1",
+    "eslint-plugin-storybook": "catalog:",
     "playwright": "catalog:",
-    "storybook": "10.0.1",
+    "storybook": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",

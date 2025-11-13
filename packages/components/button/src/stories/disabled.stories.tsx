@@ -14,58 +14,48 @@ export const DisabledLight: Story = {
   parameters: {
     theme: 'light',
   },
-  render: () => {
-    return {
-      components: { Button },
-      template: `
-        <div class="flex gap-4 flex-wrap items-center">
-          <Button color="secondary" disabled>
-            Medium
-          </Button>
-          <Button disabled>
-            Medium
-          </Button>
-          <Button color="warning" disabled>
-            Medium
-          </Button>
-          <Button color="success" disabled>
-            Medium
-          </Button>
-          <Button color="danger" disabled>
-            Medium
-          </Button>
-        </div>
-      `,
-    };
-  },
+  render: () => (
+    <div class="flex gap-4 flex-wrap items-center">
+      <Button color="secondary" disabled>
+        Medium
+      </Button>
+      <Button disabled>
+        Medium
+      </Button>
+      <Button color="warning" disabled>
+        Medium
+      </Button>
+      <Button color="success" disabled>
+        Medium
+      </Button>
+      <Button color="danger" disabled>
+        Medium
+      </Button>
+    </div>
+  ),
 };
 
 export const DisabledDark: Story = {
   parameters: {
     theme: 'dark',
   },
-  render: () => {
-    return {
-      components: { Button },
-      template: `
-        <div class="flex gap-4 flex-wrap items-center">
-          <Button color="secondary" disabled>
-            Medium
-          </Button>
-          <Button disabled>
-            Medium
-          </Button>
-          <Button color="warning" disabled>
-            Medium
-          </Button>
-          <Button color="success" disabled>
-            Medium
-          </Button>
-          <Button color="danger" disabled>
-            Medium
-          </Button>
-        </div>
-      `,
-    };
-  },
+  render: () => (
+    <div class="flex gap-4 flex-wrap items-center">
+      <Button color="secondary" disabled>
+        Medium
+      </Button>
+      <Button disabled>
+        Medium
+      </Button>
+      <Button color="warning" disabled>
+        Medium
+      </Button>
+      <Button color="success" disabled>
+        Medium
+      </Button>
+      <Button color="danger" disabled>
+        Medium
+      </Button>
+    </div>
+  ),
 };

@@ -29,19 +29,19 @@ export const button = tv({
     color: {
       primary: [
         'bg-primary-500', 'border-primary-500', 'hover:bg-primary-400',
-        'text-primary-foreground',
+        'text-primary-foreground *:text-primary-foreground',
       ],
       danger: [
-        'bg-danger', 'text-danger-foreground', 'border-danger', 'hover:bg-danger-400',
+        'bg-danger', 'text-danger-foreground *:text-danger-foreground', 'border-danger', 'hover:bg-danger-400',
       ],
       warning: [
-        'bg-warning', 'text-warning-foreground', 'border-warning', 'hover:bg-warning-400',
+        'bg-warning', 'text-warning-foreground *:text-warning-foreground', 'border-warning', 'hover:bg-warning-400',
       ],
       success: [
-        'bg-success', 'text-success-foreground', 'border-success', 'hover:bg-success-400',
+        'bg-success', 'text-success-foreground *:text-success-foreground', 'border-success', 'hover:bg-success-400',
       ],
       secondary: [
-        'bg-secondary', 'text-secondary-foreground', 'borde-secondary', 'hover:bg-secondary-400',
+        'bg-secondary', 'text-secondary-foreground *:text-secondary-foreground', 'borde-secondary', 'hover:bg-secondary-400',
       ],
     },
     size: {

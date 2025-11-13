@@ -14,58 +14,48 @@ export const ColorLight: Story = {
   parameters: {
     theme: 'light',
   },
-  render: () => {
-    return {
-      components: { Button },
-      template: `
-        <div class="flex gap-4 flex-wrap items-center">
-          <Button color="secondary">
-            Medium
-          </Button>
-          <Button>
-            Medium
-          </Button>
-          <Button color="warning">
-            Medium
-          </Button>
-          <Button color="success">
-            Medium
-          </Button>
-          <Button color="danger">
-            Medium
-          </Button>
-        </div>
-      `,
-    };
-  },
+  render: () => (
+    <div class="flex gap-4 flex-wrap items-center">
+      <Button color="secondary">
+        Medium
+      </Button>
+      <Button>
+        Medium
+      </Button>
+      <Button color="warning">
+        Medium
+      </Button>
+      <Button color="success">
+        Medium
+      </Button>
+      <Button color="danger">
+        Medium
+      </Button>
+    </div>
+  ),
 };
 
 export const ColorDark: Story = {
   parameters: {
     theme: 'dark',
   },
-  render: () => {
-    return {
-      components: { Button },
-      template: `
-        <div class="flex gap-4 flex-wrap items-center">
-          <Button color="secondary">
-            Medium
-          </Button>
-          <Button>
-            Medium
-          </Button>
-          <Button color="warning">
-            Medium
-          </Button>
-          <Button color="success">
-            Medium
-          </Button>
-          <Button color="danger">
-            Medium
-          </Button>
-        </div>
-      `,
-    };
-  },
+  render: () => (
+    <div class="flex gap-4 flex-wrap items-center">
+      <Button color="secondary">
+        Medium
+      </Button>
+      <Button>
+        Medium
+      </Button>
+      <Button color="warning">
+        Medium
+      </Button>
+      <Button color="success">
+        Medium
+      </Button>
+      <Button color="danger">
+        Medium
+      </Button>
+    </div>
+  ),
 };
