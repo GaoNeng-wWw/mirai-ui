@@ -7,7 +7,7 @@ export const button = tv({
   ],
   variants: {
     disabled: {
-      true: ['pointer-events-none', 'opacity-50'],
+      true: ['pointer-events-none', 'opacity-disabled'],
       false: [''],
     },
     full: {

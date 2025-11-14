@@ -1,4 +1,5 @@
 import { tw } from './node_modules/@miraiui-org/theme/src';
+import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -10,5 +11,7 @@ module.exports = {
   ],
   plugins: [
     tw(),
+    typography(),
   ],
+  darkMode: 'class',
 };

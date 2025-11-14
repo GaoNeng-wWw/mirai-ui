@@ -12,6 +12,7 @@
   "dependencies": {
     "@miraiui-org/theme": "workspace:*",
     "@miraiui-org/vue-core": "workspace:*",
+    "@tailwindcss/typography": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@types/markdown-it-container": "catalog:",
     "markdown-it": "catalog:",

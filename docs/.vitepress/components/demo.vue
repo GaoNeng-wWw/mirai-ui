@@ -43,19 +43,20 @@ const defaultSlotHasNode = computed(() => defaultSlots?.length);
 </script>
 
 <template>
-  <div class="w-full h-fit border border-DEFAULT-300 rounded flex flex-col gap-2 mt-2">
-    <div class="w-full h-fit rounded-md px-4 py-2">
+  <div class="w-full h-fit border border-DEFAULT-300 rounded flex flex-col gap-2 mt-2 placeholder-rose-50 not-prose">
+    <div class="w-full h-fit rounded-md px-4 py-2 font-display">
       <component :is="component" />
     </div>
     <div>
-      <p class="m-0 text-center cursor-pointer dark:text-default-700 dark:hover:text-default-800" @click="changeExpand">
+      <div class="w-full h-px bg-DEFAULT-300 font-display" />
+      <p class="m-0 text-center cursor-pointer py-4 dark:text-default-500 dark:hover:text-default-800" @click="changeExpand">
         {{ expandTip }}
       </p>
       <div v-if="expand" class="w-full bg-foreground-100 p-2 space-y-4">
         <div v-if="defaultSlotHasNode" class="w-full bg-DEFAULT-200 p-4 rounded">
           <component :is="defaultSlots" />
         </div>
-        <pre class="*:bg-transparent! overflow-auto" v-html="highLightCode" />
+        <pre class="*:bg-transparent! overflow-auto bg-transparent text-sm px-2" v-html="highLightCode" />
       </div>
     </div>
   </div>

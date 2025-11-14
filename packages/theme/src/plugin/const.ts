@@ -1,4 +1,4 @@
-import { ColorObject, Theme } from '../types';
+import { ColorObject, LayoutItem, Layout, Theme } from '../types';
 import { semantics } from '../colors/semantics';
 import chroma from 'chroma-js';
 import { readableColor } from 'color2k';
@@ -28,6 +28,46 @@ const reverseColor = (colors: Omit<ColorObject, 'DEFAULT' | 'foreground'>): Omit
 };
 
 export const DEFAULT_PREFIX = 'mirai-ui';
+export const COMMON_LAYOUT_ITEM = {
+  fontSize: {
+    xs: '0.75rem',
+    sm: '0.875rem',
+    md: '1rem',
+    lg: '1.125rem',
+    xl: '1.25rem',
+  },
+  rounded: {
+    xs: '0.15rem',
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '0.75rem',
+    xl: '1rem',
+  },
+  lineHeight: {
+    xs: '1rem',
+    sm: '1.25rem',
+    md: '1.5rem',
+    lg: '1.75rem',
+    xl: '2rem',
+  },
+};
+
+export const DEFAULT_LAYOUT: Layout = {
+  light: {
+    opacity: {
+      hover: 0.8,
+      disabled: 0.5,
+    },
+    ...COMMON_LAYOUT_ITEM,
+  },
+  dark: {
+    ...COMMON_LAYOUT_ITEM,
+    opacity: {
+      hover: 0.9,
+      disabled: 0.8,
+    },
+  },
+};
 export const DEFAULT_THEME: Theme = {
   light: {
     primary: {

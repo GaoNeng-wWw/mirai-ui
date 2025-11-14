@@ -1,6 +1,6 @@
 {
   "tailwindCSS.experimental.classRegex": [
-    // ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
   "tailwindCSS.experimental.configFile": "packages/storybook/.storybook/style.css",
   

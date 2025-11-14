@@ -3,7 +3,7 @@ import { MButton } from '@miraiui-org/vue-core';
 </script>
 
 <template>
-  <div>
+  <div class="">
     <m-button variant="solid" color="primary">
       按钮
     </m-button>

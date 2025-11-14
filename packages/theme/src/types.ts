@@ -15,11 +15,36 @@ export type DeepPartial<T> = {
 };
 export type Optional<T> = {
   [k in keyof T]?: T[k]
-}
+};
+export type BaseSize = {
+  sm: string;
+  md: string;
+  lg: string;
+};
+export type ExtraSize = {
+  xs: string;
+  xl: string;
+} & BaseSize;
+export type LayoutItem = {
+  fontSize: ExtraSize;
+  rounded: ExtraSize;
+  lineHeight: ExtraSize;
+  opacity: {
+    hover: string | number;
+    disabled: string | number;
+  };
+};
+export type Layout = {
+  light: LayoutItem;
+  dark: LayoutItem;
+} & {
+  [x: string]: LayoutItem;
+};
+
 export type ThemeMode = 'light' | 'dark';
 export type Theme = {
   light: {
-    [S in ArrayToUnion<Semantics>]: ColorObject
+    [S in ArrayToUnion<Semantics>]: ColorObject;
   };
   dark: {
     [S in ArrayToUnion<Semantics>]: ColorObject
@@ -32,5 +57,5 @@ export type Theme = {
 export type Config = {
   prefix: string;
   theme: Theme;
-  extendsTheme: DeepPartial<Optional<Theme>>;
+  layout: Layout;
 };

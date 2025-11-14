@@ -4,7 +4,8 @@
     "paths": {
        "@miraiui-org/theme": ["../packages/theme/src"],
        "@miraiui-org/vue-core": ["../packages/core/src"],
-       "@miraiui-org/vue-*": ["../packages/components/*/src"]
+       "@miraiui-org/vue-*": ["../packages/components/*/src"],
+       "@miraiui-org/internal-utils": ["../packages/utils/internal/src/index.ts"]
     },
     "baseUrl": "."
   },
