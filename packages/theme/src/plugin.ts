@@ -171,7 +171,29 @@ export const miraiUiPlugin = (
           'quart': 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
           'epic': 'cubic-bezier(0.750, 0.250, 0.250, 0.750)',
           'out-cubic': 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
-        }
+        },
+        keyframes: {
+          grow: {
+            from: {
+              strokeDashoffset: '1000'
+            },
+            to: {
+              strokeDashoffset: '0'
+            }
+          },
+          'grow-reverse': {
+            to: {
+              strokeDashoffset: '0'
+            },
+            from: {
+              strokeDashoffset: '1000'
+            }
+          }
+        },
+        animation: {
+          'grow': 'grow theme("transitionDuration.slow") ease-in',
+          'grow-reverse': 'grow-reverse theme("transitionDuration.slow") ease-in'
+        },
       },
     }
   });
