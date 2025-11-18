@@ -2,6 +2,7 @@ import { DefaultTheme, defineConfig } from 'vitepress';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 import tailwindcss from '@tailwindcss/vite';
+import { componentTypeDoc } from '../../packages/vite-plugin-component-type-doc/src';
 import { blockPlugin } from './plugins/demo-block';
 
 function generateSideBar() {
@@ -63,7 +64,13 @@ export default defineConfig({
     ],
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      componentTypeDoc({
+        basePath: join(__dirname, '../../packages/components'),
+        pattern: '**/src/*.vue'
+      })
+    ],
     resolve: {
       alias: {
         '@miraiui-org/theme': join(__dirname, '../../packages/theme/src/index.ts'),

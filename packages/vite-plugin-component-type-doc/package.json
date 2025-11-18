@@ -2,7 +2,7 @@
   "name": "vite-plugin-component-type-doc",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +11,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "devDependencies": {
+    "@types/node": "catalog:",
     "ts-morph": "catalog:",
     "tsdown": "catalog:",
     "vite": "catalog:"
@@ -21,6 +22,10 @@
     "vite": "catalog:"
   },
   "dependencies": {
-    "@vue/compiler-sfc": "catalog:"
+    "@babel/types": "catalog:",
+    "@vue/compiler-sfc": "catalog:",
+    "ast-kit": "catalog:",
+    "chalk": "catalog:",
+    "fast-glob": "catalog:"
   }
 }

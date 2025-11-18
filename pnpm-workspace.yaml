@@ -4,6 +4,7 @@ packages:
 
 catalog:
   '@arethetypeswrong/core': ^0.18.2
+  '@babel/types': ^7.28.5
   '@chromatic-com/storybook': 4.1.2
   '@gaonengwww/eslint-config': ^1.0.6
   '@nuxt/content': ^3.8.0
@@ -26,11 +27,15 @@ catalog:
   '@vitest/coverage-v8': ^4.0.3
   '@vue/compiler-sfc': ^3.5.24
   '@vue/tsconfig': ^0.8.1
+  ask-kit: 0.0.7
+  ast-kit: ^2.2.0
+  chalk: ^5.6.2
   chroma-js: ^3.1.2
   color2k: ^2.0.3
   deepmerge: ^4.3.1
   eslint: ^9.39.1
   eslint-plugin-storybook: 10.0.1
+  fast-glob: ^3.3.3
   flat: ^6.0.1
   markdown-it: ^14.1.0
   markdown-it-container: ^4.0.0

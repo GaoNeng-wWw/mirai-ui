@@ -9,6 +9,9 @@ catalogs:
     '@arethetypeswrong/core':
       specifier: ^0.18.2
       version: 0.18.2
+    '@babel/types':
+      specifier: ^7.28.5
+      version: 7.28.5
     '@chromatic-com/storybook':
       specifier: 4.1.2
       version: 4.1.2
@@ -66,6 +69,12 @@ catalogs:
     '@vue/tsconfig':
       specifier: ^0.8.1
       version: 0.8.1
+    ast-kit:
+      specifier: ^2.2.0
+      version: 2.2.0
+    chalk:
+      specifier: ^5.6.2
+      version: 5.6.2
     chroma-js:
       specifier: ^3.1.2
       version: 3.1.2
@@ -81,6 +90,9 @@ catalogs:
     eslint-plugin-storybook:
       specifier: 10.0.1
       version: 10.0.1
+    fast-glob:
+      specifier: ^3.3.3
+      version: 3.3.3
     flat:
       specifier: ^6.0.1
       version: 6.0.1
@@ -387,10 +399,25 @@ importers:
 
   packages/vite-plugin-component-type-doc:
     dependencies:
+      '@babel/types':
+        specifier: 'catalog:'
+        version: 7.28.5
       '@vue/compiler-sfc':
         specifier: 'catalog:'
         version: 3.5.24
+      ast-kit:
+        specifier: 'catalog:'
+        version: 2.2.0
+      chalk:
+        specifier: 'catalog:'
+        version: 5.6.2
+      fast-glob:
+        specifier: 'catalog:'
+        version: 3.3.3
     devDependencies:
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.10.1
       ts-morph:
         specifier: 'catalog:'
         version: 27.0.2
@@ -2358,6 +2385,10 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
+
+  chalk@5.6.2:
+    resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   character-entities-html4@2.1.0:
     resolution: {integrity: sha512-1v7fgQRj6hnSwFpq1Eu0ynr/CDEw0rXo2B61qXrLNdHZmPKgb7fqS1a2JwF0rISo9q77jDI8VMEHoApn8qDoZA==}
@@ -6497,6 +6528,8 @@ snapshots:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+
+  chalk@5.6.2: {}
 
   character-entities-html4@2.1.0: {}
 
