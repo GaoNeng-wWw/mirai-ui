@@ -7,3 +7,5 @@ export default withInstall({
 });
 
 export { MButton };
+
+export * from './button.props';

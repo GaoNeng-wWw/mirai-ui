@@ -1,0 +1,26 @@
+{
+  "name": "vite-plugin-component-type-doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "ts-morph": "catalog:",
+    "tsdown": "catalog:",
+    "vite": "catalog:"
+  },
+  "peerDependencies": {
+    "ts-morph": "catalog:",
+    "tsdown": "catalog:",
+    "vite": "catalog:"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "catalog:"
+  }
+}

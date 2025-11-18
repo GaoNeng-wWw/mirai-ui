@@ -31,7 +31,7 @@ const clazz = computed(() => button({ ...props, disabled: isDisabled.value }));
             layout
             class="w-4 h-4 animate-spin"
             :initial="{ scale: 0, width: 0, opacity: 0, marginRight: 0 }"
-            :animate="{ scale: 1, width: '1rem', opacity: 1, marginRight: '0.5rem' }"
+            :animate="{ scale: 1, width: 'calc(var(--spacing) * 4) ', height: 'calc(var(--spacing) * 4) ', opacity: 1, marginRight: '0.5rem' }"
             :exit="{ scale: 0, width: 0, opacity: 0, marginRight: 0 }"
             :transition="{ type: 'spring' }"
           >

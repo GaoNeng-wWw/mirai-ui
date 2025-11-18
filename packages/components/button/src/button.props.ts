@@ -55,3 +55,7 @@ export type ButtonProps = {
    */
   full?: boolean | undefined;
 };
+
+export type ButtonEvent = {
+  
+}

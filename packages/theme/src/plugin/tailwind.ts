@@ -135,7 +135,6 @@ const plugin = (
   };
   const colors = themeToCSSVar(prefix, theme.dark);
   const resolved = resolveTheme({ theme, layout, prefix });
-  console.log(resolved);
   return createPlugin(
     (api) => {
       variants.forEach(({ name, variant }) => {

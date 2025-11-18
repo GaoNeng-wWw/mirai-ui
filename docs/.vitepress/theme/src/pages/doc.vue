@@ -4,9 +4,9 @@ import SideBar from '../components/side-bar/index.vue';
 </script>
 
 <template>
-  <div class="w-full h-full dark bg-DEFAULT-50 flex gap-10">
+  <div class="w-full min-h-dvh flex gap-10">
     <div
-      class="w-40 h-full shrink-0 grow-0 p-4 border-r border-r-DEFAULT"
+      class="w-40 h-dvh shrink-0 grow-0 p-4 border-r border-r-DEFAULT sticky top-0"
     >
       <side-bar />
     </div>
