@@ -57,6 +57,11 @@ export const button = tv({
       ghost: ['not-hover:bg-transparent'],
       outline: ['border-solid', 'border-2', 'bg-transparent', 'hover:bg-transparent'],
     },
+    loading: {
+      true: {
+        loading: 'animate-spin',
+      },
+    },
   },
   defaultVariants: {
     color: 'primary',

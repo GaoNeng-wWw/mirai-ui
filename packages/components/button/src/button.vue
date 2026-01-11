@@ -19,6 +19,7 @@ const props = withDefaults(
 const isDisabled = computed(() => props.disabled || props.loading);
 
 const clazz = computed(() => button({ ...props, disabled: isDisabled.value }));
+const loadingClass = computed(() => props.loading ? 'animate-spin' : '');
 </script>
 
 <template>
@@ -28,14 +29,13 @@ const clazz = computed(() => button({ ...props, disabled: isDisabled.value }));
         <animate-presence>
           <motion.div
             v-if="props.loading"
-            layout
-            class="w-4 h-4 animate-spin"
+            class="w-4 h-4" :class="[loadingClass]"
             :initial="{ scale: 0, width: 0, opacity: 0, marginRight: 0 }"
             :animate="{ scale: 1, width: '1rem', opacity: 1, marginRight: '0.5rem' }"
             :exit="{ scale: 0, width: 0, opacity: 0, marginRight: 0 }"
             :transition="{ type: 'spring' }"
           >
-            <loading />
+            <loading :class="loadingClass" />
           </motion.div>
         </animate-presence>
       </slot>

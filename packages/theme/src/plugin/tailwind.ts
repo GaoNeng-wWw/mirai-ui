@@ -4,6 +4,7 @@ import { ColorObject, Config, LayoutItem, Layout, Theme } from '../types';
 import { flatColor, mapKeys, kebabCase, omit } from './utils';
 import deepmerge from 'deepmerge';
 import { utilities } from './utilities';
+import { animations } from './utilities/animate';
 
 const themeToCSSVar = (prefix: string, theme: Theme[string]) => {
   const semanticObjectToCSSVar = (
@@ -135,7 +136,6 @@ const plugin = (
   };
   const colors = themeToCSSVar(prefix, theme.dark);
   const resolved = resolveTheme({ theme, layout, prefix });
-  console.log(resolved);
   return createPlugin(
     (api) => {
       variants.forEach(({ name, variant }) => {
@@ -161,6 +161,7 @@ const plugin = (
             lg: `var(--${prefix}-layout-rounded-lg)`,
             xl: `var(--${prefix}-layout-rounded-xl)`,
           },
+          ...animations,
         },
       },
     },
