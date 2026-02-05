@@ -1,18 +1,27 @@
 <script lang="ts" setup>
 import { motion } from 'motion-v';
 import { CollapseContextKey, CollapseKey, CollapseProps } from './collapse.props';
-import { computed, provide } from 'vue';
+import { computed, provide, watch } from 'vue';
 import { collapse as Collapse } from '@miraiui-org/theme';
 
 const {
   accordion = false,
   size = 'md',
+  disabled = [],
+  pure = false,
 } = defineProps<CollapseProps>();
+
+const emits = defineEmits<{
+  change: [CollapseKey[]];
+}>();
 
 const modelValue = defineModel<CollapseKey[]>({ default: [] });
 
 const currentActive = computed(() => modelValue.value);
 const collapse = (val: CollapseKey) => {
+  if (disabled.includes(val)) {
+    return;
+  }
   if (!modelValue.value.includes(val)) {
     if (accordion) {
       modelValue.value = [val];
@@ -27,14 +36,18 @@ const collapse = (val: CollapseKey) => {
 const clazz = computed(() => {
   const { base, content, item, header } = Collapse({ size });
   return {
-    base: base(),
-    content: content(),
-    item: item(),
-    header: header(),
+    base: pure ? '' : base(),
+    content: pure ? '' : content(),
+    item: pure ? '' : item(),
+    header: pure ? '' : header(),
   };
 });
 
-provide(CollapseContextKey, { currentActive, collapse, clazz });
+provide(CollapseContextKey, { currentActive, collapse, clazz, disabled: computed(() => disabled) });
+
+watch(modelValue, () => {
+  emits('change', modelValue.value);
+}, { deep: true });
 </script>
 
 <template>
