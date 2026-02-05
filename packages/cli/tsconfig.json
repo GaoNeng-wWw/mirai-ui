@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "paths": {
+      "tailwindcss/*": ["./node_modules/tailwindcss/*"],
+      "@miraiui-org/internal-utils": ["../utils/internal/src/index.ts"]
+    },
+    "types": ["@types/node", "@types/fs-extra"]
+  }
+}

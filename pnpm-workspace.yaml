@@ -3,7 +3,9 @@ packages:
   - docs/
 
 catalog:
+  '-': ^0.0.1
   '@arethetypeswrong/core': ^0.18.2
+  '@ast-grep/napi': ^0.40.5
   '@chromatic-com/storybook': 4.1.2
   '@gaonengwww/eslint-config': ^1.0.6
   '@nuxt/content': ^3.8.0
@@ -17,6 +19,7 @@ catalog:
   '@tailwindcss/typography': ^0.5.19
   '@tailwindcss/vite': 4.1.16
   '@types/chroma-js': ^3.1.2
+  '@types/fs-extra': ^11.0.4
   '@types/markdown-it': ^14.1.2
   '@types/markdown-it-container': ^2.0.10
   '@types/node': 24.10.1
@@ -25,12 +28,20 @@ catalog:
   '@vitest/browser-playwright': ^4.0.3
   '@vitest/coverage-v8': ^4.0.3
   '@vue/tsconfig': ^0.8.1
+  chalk: ^5.6.2
+  change-case: ^5.4.4
   chroma-js: ^3.1.2
   color2k: ^2.0.3
+  commander: ^14.0.3
   deepmerge: ^4.3.1
   eslint: ^9.39.1
   eslint-plugin-storybook: 10.0.1
+  esno: ^4.8.0
   flat: ^6.0.1
+  fs-extra: ^11.3.3
+  glob: ^13.0.1
+  handlebars: ^4.7.8
+  inquirer: ^13.2.2
   markdown-it: ^14.1.0
   markdown-it-container: ^4.0.0
   motion-v: 1.7.4

@@ -1,0 +1,27 @@
+{
+  "name": "@miraiui-org/cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cli": "esno ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@ast-grep/napi": "catalog:",
+    "chalk": "catalog:",
+    "change-case": "catalog:",
+    "commander": "catalog:",
+    "fs-extra": "catalog:",
+    "glob": "catalog:",
+    "handlebars": "catalog:",
+    "inquirer": "catalog:"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "catalog:",
+    "@types/node": "catalog:"
+  }
+}

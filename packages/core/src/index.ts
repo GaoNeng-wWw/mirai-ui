@@ -1,3 +1,4 @@
+// DO NOT REMOVE THIS FILE FROM .gitignore PLEASE!
 import { MButton } from '@miraiui-org/vue-button';
 import { Plugin } from 'vue';
 
