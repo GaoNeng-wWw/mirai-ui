@@ -161,7 +161,50 @@ const plugin = (
             lg: `var(--${prefix}-layout-rounded-lg)`,
             xl: `var(--${prefix}-layout-rounded-xl)`,
           },
+          leading: {
+            xs: `var(--${prefix}-layout-leading-xs)`,
+            sm: `var(--${prefix}-layout-leading-sm)`,
+            md: `var(--${prefix}-layout-leading-md)`,
+            lg: `var(--${prefix}-layout-leading-lg)`,
+            xl: `var(--${prefix}-layout-leading-xl)`,
+          },
+          padding: {
+            none: '0',
+            xs: `var(--${prefix}-layout-padding-xs)`,
+            sm: `var(--${prefix}-layout-padding-sm)`,
+            md: `var(--${prefix}-layout-padding-md)`,
+            lg: `var(--${prefix}-layout-padding-lg)`,
+            xl: `var(--${prefix}-layout-padding-xl)`,
+          },
+          height: {
+            xs: `var(--${prefix}-layout-height-xs)`,
+            sm: `var(--${prefix}-layout-height-sm)`,
+            md: `var(--${prefix}-layout-height-md)`,
+            lg: `var(--${prefix}-layout-height-lg)`,
+            xl: `var(--${prefix}-layout-height-xl)`,
+          },
+
+          // 通常用于最小宽度(min-width)或标准容器宽
+          minWidth: {
+            auto: 'auto',
+            full: '100%',
+            xs: `var(--${prefix}--layout-min-width-xs)`,
+            sm: `var(--${prefix}--layout-min-width-sm)`,
+            md: `var(--${prefix}--layout-min-width-md)`,
+            lg: `var(--${prefix}--layout-min-width-lg)`,
+            xl: `var(--${prefix}--layout-min-width-xl)`,
+          },
+
+          margin: {
+            none: '0',
+            xs: `var(--${prefix}--layout-margin-xs)`,
+            sm: `var(--${prefix}--layout-margin-sm)`,
+            md: `var(--${prefix}--layout-margin-md)`,
+            lg: `var(--${prefix}--layout-margin-lg)`,
+            xl: `var(--${prefix}--layout-margin-xl)`,
+          },
           ...animations,
+          ...layout,
         },
       },
     },
@@ -169,43 +212,3 @@ const plugin = (
 };
 
 export default plugin;
-
-// const resolveTheme = (
-//   theme: Theme,
-//   layouts: LayoutItem,
-//   prefix: string,
-// ) => {
-//   const utils: Record<string, Record<string, string>> = {};
-//   for (const [themeName, themeValue] of Object.entries(theme)) {
-//     const selector = `&.${themeName}`;
-//     utils[selector] = {} as Record<string, string>;
-//     for (const [colorName, colorValue] of Object.entries(flatColor<object, string>(themeValue))) {
-//       if (!colorValue) {
-//         continue;
-//       }
-//       utils[selector][`--${prefix}-colors-${colorName}`] = colorValue;
-//     }
-//     const flatedLayout = mapKeys(
-//       layouts,
-//       (_, key) => kebabCase(key),
-//     );
-//     for (const [key, value] of Object.entries(flatedLayout)) {
-//       if (!value) {
-//         continue;
-//       }
-//       const cssKey = `--${prefix}-${key}`;
-//       if (typeof value === 'object') {
-//         for (const [size, sizeValue] of Object.entries(value)) {
-//           utils[selector][`${cssKey}-${size}`] = sizeValue as string;
-//         }
-//       } else {
-//         const formattedValue = cssKey.includes('opacity') && typeof value === 'number'
-//           ? value.toString().replace(/^0\./, '.')
-//           : value;
-
-//         utils[selector]![cssKey] = formattedValue;
-//       }
-//     }
-//   }
-//   return utils;
-// };

@@ -63,7 +63,24 @@ export default defineConfig({
     ],
   },
   vite: {
-    plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ['@miraiui-org/theme', 'tailwind-variants'],
+    },
+    server: {
+      fs: {
+        allow: ['../../'],
+      },
+    },
+    plugins: [
+      tailwindcss(),
+    ],
+    optimizeDeps: {
+      exclude: [
+        '@miraiui-org/theme',
+        '@miraiui-org/core',
+        '@miraiui-org/components',
+      ],
+    },
     resolve: {
       alias: {
         '@miraiui-org/theme': join(__dirname, '../../packages/theme/src/index.ts'),

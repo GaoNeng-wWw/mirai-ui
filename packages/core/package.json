@@ -25,6 +25,7 @@
     "vue": "catalog:"
   },
   "dependencies": {
+    "@miraiui-org/vue-collapse": "workspace:*",
     "@miraiui-org/vue-button": "workspace:*"
   }
 }

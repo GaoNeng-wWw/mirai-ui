@@ -1,0 +1,33 @@
+{
+  "name": "@miraiui-org/vue-collapse",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "@miraiui-org/internal-utils": "workspace:*",
+    "@miraiui-org/theme": "workspace:*",
+    "motion-v": "catalog:",
+    "vue": "catalog:"
+  },
+  "peerDependencies": {
+    "@miraiui-org/theme": "workspace:*",
+    "motion-v": "catalog:",
+    "vue": "catalog:"
+  }
+}

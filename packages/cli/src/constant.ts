@@ -70,7 +70,7 @@ export default defineConfig({
     "vue": "catalog:"
   }
 }`,
-    'index.ts': `import { withInstall } from '@miraiui-org/internal-utils';
+    'src/index.ts': `import { withInstall } from '@miraiui-org/internal-utils';
 import M${pascalCaseName} from './${kebabCaseName}.vue';
 
 export default withInstall({
@@ -81,11 +81,11 @@ export default withInstall({
 export { M${pascalCaseName} };
 
 export * from './${kebabCaseName}.props';`,
-    [`${kebabCaseName}.vue`]: `<script lang="ts" setup></script>
+    [`src/${kebabCaseName}.vue`]: `<script lang="ts" setup></script>
 <template>
 </templat>
 `,
-    [`${kebabCaseName}.props.ts`]: `export type ${pascalCaseName}Props = {}`,
-    [`stories/${kebabCaseName}.mdx`]: '',
+    [`src/${kebabCaseName}.props.ts`]: `export type ${pascalCaseName}Props = {}`,
+    [`src/stories/${kebabCaseName}.mdx`]: '',
   };
 };

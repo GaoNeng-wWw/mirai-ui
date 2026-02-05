@@ -43,12 +43,47 @@ export const COMMON_LAYOUT_ITEM = {
     lg: '0.75rem',
     xl: '1rem',
   },
-  lineHeight: {
+  leading: {
     xs: '1rem',
     sm: '1.25rem',
     md: '1.5rem',
     lg: '1.75rem',
     xl: '2rem',
+  },
+  padding: {
+    none: '0',
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+  },
+  height: {
+    xs: '1.75rem',
+    sm: '2.25rem',
+    md: '2.5rem',
+    lg: '3rem',
+    xl: '3.5rem',
+  },
+
+  // 通常用于最小宽度(min-width)或标准容器宽
+  width: {
+    auto: 'auto',
+    full: '100%',
+    xs: '4rem',
+    sm: '6rem',
+    md: '8rem',
+    lg: '12rem',
+    xl: '16rem',
+  },
+
+  margin: {
+    none: '0',
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2.5rem',
   },
 };
 

@@ -28,7 +28,7 @@ export type ExtraSize = {
 export type LayoutItem = {
   fontSize: ExtraSize;
   rounded: ExtraSize;
-  lineHeight: ExtraSize;
+  leading: ExtraSize;
   opacity: {
     hover: string | number;
     disabled: string | number;
